@@ -9,14 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 class SetupController extends Controller
 {
     /**
-     * @Route("/setup", name="setup")
-     */
-    public function indexAction(Request $request)
-    {
-        return $this->render('setup/index.html.twig');
-    }
-    
-    /**
      * @Route("/build", name="build")
      */
     public function buildAction(Request $request)
