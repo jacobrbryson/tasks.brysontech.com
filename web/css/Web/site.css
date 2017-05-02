@@ -18,10 +18,10 @@ body, html {
     background-size: cover;
 }
 
-.hero{
-    top:-800px;
-}
-
 .ep-top-20{
     padding-top: 20px;
+}
+
+.ep-40{
+    padding:40px;
 }
