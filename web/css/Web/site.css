@@ -1,4 +1,27 @@
-body {
-    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
-    color: #FFF;
+body, html {
+    height: 100%;
+    background-color: #000;
+    color:#FFF;
+}
+
+.parallax { 
+    /* The image used */
+    background-image: url("/images/hero/index/2017-05-01-hero-lg.jpg");
+
+    /* Set a specific height */
+    height: 100%; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero{
+    top:-800px;
+}
+
+.ep-top-20{
+    padding-top: 20px;
 }
