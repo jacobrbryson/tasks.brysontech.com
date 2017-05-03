@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class registrationController extends Controller{
     /**
-     * @Route("/register")
+     * @Route("/testregister")
      */
     public function indexAction()
     {
