@@ -27,7 +27,7 @@ class registrationController extends Controller{
         $name = "Ross Bryson";
         $message = \Swift_Message::newInstance()
         ->setSubject('Hello Email')
-        ->setFrom('admin@brysontech.com')
+        ->setFrom('ross@brysontech.com')
         ->setTo($email)
         ->setBody(
             $this->renderView(
