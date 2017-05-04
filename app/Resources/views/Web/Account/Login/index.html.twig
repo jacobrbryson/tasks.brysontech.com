@@ -1,0 +1,53 @@
+{% extends 'Web/Layout/base.html.twig' %}
+
+{% block body %}
+<div id="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Login</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 col-sm-10 col-sm-offset-1">
+            <form action="{{ path('login') }}" method="POST" class="center-block" name="_login">
+                <div class="form-group">
+                    <label for="email" style="float:left;">
+                        Email Address:
+                    </label>
+                    <input type="email" 
+                           class="form-control" 
+                           name="_username" 
+                           id="email" 
+                           placeholder="username@domain.com"
+                           value="{% if last_username is defined %}{{last_username }}{% endif %}">
+                </div>
+                <div class="form-group">
+                    <label for="password" style="float:left;">
+                        Password:
+                    </label>
+                    <input type="password" 
+                           class="form-control" 
+                           name="_password" 
+                           id="password" 
+                           placeholder=" y0uRP@$$w0rD">
+                </div>
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+                <button type="submit" class="btn btn-default">Submit</button>
+                {% if message is defined %}
+                    <br />
+                    <br />
+                    <div>{{ message }}</div>
+                {% endif %}
+                {% if error is not null and message is not defined %}
+                    <br />
+                    <br />
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
