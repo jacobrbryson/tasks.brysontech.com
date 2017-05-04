@@ -25,3 +25,7 @@ body, html {
 .ep-40{
     padding:40px;
 }
+
+.nav-login{
+    float:right;
+}
