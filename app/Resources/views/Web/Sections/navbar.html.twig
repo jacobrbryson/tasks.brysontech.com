@@ -30,7 +30,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="form-login">
+        <form action="{{ path('login') }}" method="POST" name="_login">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
