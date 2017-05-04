@@ -1,5 +1,5 @@
 <div class="container">
-  <nav class="navbar navbar-toggleable-md navbar-inverse">
+  <nav class="navbar fixed-top navbar-toggleable-lg navbar-inverse">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">tasks.brysontech.com</a>
     </div>
@@ -9,5 +9,41 @@
       <li><a class="nav-link" href="#">Weekly Tasks</a></li>
       <li><a class="nav-link" href="#">Monthly/Miscellaneous Tasks</a></li>
     </ul>
+      <div class="nav-link navbar-toggler-right">
+        <button class="btn btn-sm btn-outline-secondary" 
+                type="button" 
+                data-toggle="modal" 
+                data-target="#loginmodal">
+            Login
+        </button>
+      </div>
+  </nav>    
+</div>
+<!--Modal-->
+<div class="modal fade" id="loginmodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <label for="exampleInputPassword1">Password</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="passwordinput" placeholder="Enter Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
   </div>
-</nav>
+</div>
