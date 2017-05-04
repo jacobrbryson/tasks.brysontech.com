@@ -30,13 +30,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="{{ path('login') }}" method="POST" name="_login">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 <label for="exampleInputPassword1">Password</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="passwordinput" placeholder="Enter Password">
+            </div>
+            <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"> Remember me
+                </label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

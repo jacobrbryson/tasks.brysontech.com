@@ -4,6 +4,10 @@ body, html {
     color:#FFF;
 }
 
+.modal{
+    color:#000;
+}
+
 .parallax { 
     /* The image used */
     background-image: url("/images/hero/index/2017-05-01-hero-lg.jpg");
@@ -24,8 +28,4 @@ body, html {
 
 .ep-40{
     padding:40px;
-}
-
-.nav-login{
-    float:right;
 }
