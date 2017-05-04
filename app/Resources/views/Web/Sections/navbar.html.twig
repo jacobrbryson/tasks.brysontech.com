@@ -16,10 +16,16 @@
                 data-target="#loginmodal">
             Login
         </button>
+        <button class="btn btn-sm btn-outline-success"
+                type="button"
+                data-toggle="modal"
+                data-target="#registermodal">
+            Register
+        </button>
       </div>
   </nav>    
 </div>
-<!--Modal-->
+<!--Login Modal-->
 <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -30,7 +36,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ path('login') }}" method="POST" name="_login">
+        <form>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -47,6 +53,37 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
+  </div>
+</div>
+<!--Register Modal-->
+<div class="modal fade" id="registermodal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <label for="exampleInputPassword1">Password</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="passwordinput" placeholder="Enter Password">
+                <label for="exampleInputPassword2">Confirm Password</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="passwordinput" placeholder="Re-enter Password">
+            </div> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>            
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
       </div>
