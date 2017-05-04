@@ -8,46 +8,18 @@ use Symfony\Component\HttpFoundation\Request;
 
 class registrationController extends Controller{
     /**
-     * @Route("/testregister")
+     * @Route("/login", name="login")
      */
-    public function indexAction()
+    public function loginAction(Request $request)
     {
-        $email = isset($_POST['email']) ? $_POST['email'] : false;
-        $results = false;
-        
-        if($email){
-            $results = $this->testEmailSystem($email);
-        }
-        return $this->render('Web/Account/Register/index.html.twig', [
-            'results'   => $results
-        ]);
-    }
-    
-    private function testEmailSystem($email){
-        $name = "Ross Bryson";
-        $message = \Swift_Message::newInstance()
-        ->setSubject('Hello Email')
-        ->setFrom('admin@brysontech.com')
-        ->setTo($email)
-        ->setBody(
-            $this->renderView(
-                // app/Resources/views/Emails/registration.html.twig
-                'Emails/registration.html.twig',
-                array('name' => $name)
-            ),
-            'text/html'
-        )
-        /*
-         * If you also want to include a plaintext version of the message
-        ->addPart(
-            $this->renderView(
-                'Emails/registration.txt.twig',
-                array('name' => $name)
-            ),
-            'text/plain'
-        )
-        */
-    ;
-    return "Number of emails sent: " . $this->get('mailer')->send($message);
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        //$error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        //$lastUsername = $authenticationUtils->getLastUsername();
+
+        //return $this->render('account/login.twig');
     }
 }
