@@ -1,0 +1,70 @@
+<!-- NOTES or General best practices
+
+First, we, I use index to descripe the starting point of something in gerneral computer terms, 
+so the homepage is often named index as well as the root file for every 
+directory.  So you may have views -> index -> index.html.twig.
+- That is how the root file of the homepage reads.
+- I added Web as an additional sub directory because this project will have multiple roots...
+-a. Web meaning the website
+-b. Admin meaning the administrative site of the application
+-c. Application ... meaning the actual "tasks" application
+
+I guess while I'm here, I should note that basically CAPITALIATION doesn't mean dick, 
+BUT it should mean something to you, ....there's a great metaphore in there I just know it!
+
+- For me and most others, I always user camelCase or whatever_the_fuck_this_is for Server and MySQL things respectively,
+ALL_CAPS_LIKE_THIS to descripe global variables that you better not ever use unless you are actually 
+referring to that global variable, and Captial at the beginning to say "I'm just like everyone else, but be 
+careful because I am probably not the same (usinging the same base resources) as everyone else.
+
+***Sorry that was a little long winded.  BTW you're allowed to use your own caps/naming convention.
+The ONLY thing other developers ask is that it's consistant and self documenting.
+
+Next, this stuff below.
+
+So, it does not look like container (1170px wide, but not 100%) does not appear to be working
+I don't really care, just saying.
+
+See how your HTML objects nest into a lovely triangle, and you have like 3 in this file?
+
+This is not a rule per-say, but I would put them into 3 files.
+
+Like keep navbar.html.twig... but create a folder called Modals and put the other two in there.
+
+You can have 1 billion files, no one will care, but if you have a file that's 4.5 million lines long... people will get mad.
+
+There's a couple practical reasons here too.  #1 Your computer downloads and loads each file at a time, unable to do anything until the download and loading is complete, so if you section everything out, it can begin getting content up as files arrive, making a better experience.
+#2 no one has ever wanted to look at a 4 million line document, and you'll find debugging so much faster when 
+each file is like 50 lines max.
+
+Last thing, you'll note the nav only appears on the homepage, (don't give me any crap about how base should be index) but you need to call it in base.html.twig
+
+-->
+
+<div class="container">
+  <nav class="navbar fixed-top navbar-toggleable-lg navbar-inverse">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">tasks.brysontech.com</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a class="nav-link" href="#">Daily Tasks -automatically generate date here-</a></li>
+      <li><a class="nav-link" href="#">Weekly Tasks</a></li>
+      <li><a class="nav-link" href="#">Monthly/Miscellaneous Tasks</a></li>
+    </ul>
+      <div class="nav-link navbar-toggler-right">
+        <button class="btn btn-sm btn-outline-secondary" 
+                type="button" 
+                data-toggle="modal" 
+                data-target="#loginmodal">
+            Login
+        </button>
+        <button class="btn btn-sm btn-outline-success"
+                type="button"
+                data-toggle="modal"
+                data-target="#registermodal">
+            Register
+        </button>
+      </div>
+  </nav>    
+</div>
