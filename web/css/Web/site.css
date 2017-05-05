@@ -5,7 +5,25 @@ body, html {
 }
 
 .modal{
-    color:#000;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content{
+    background-color: rgba(46,46,46,0.9);
+}
+
+.modal-content span{
+    color: #FFF;
+}
+
+.btn-primary{
+    background-color: rgba(15,15,15,0.9);
+    border-color: rgba(15,15,15,0.9);
+}
+
+.btn-primary:hover{
+    background-color: rgba(90,90,90,0.9);
+    border-color: rgba(0,0,0,1);
 }
 
 .parallax { 
