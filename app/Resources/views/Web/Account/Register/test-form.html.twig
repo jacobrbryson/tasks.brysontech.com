@@ -1,0 +1,31 @@
+<div class="container ep-40">
+    <div class="row">
+        <div class="col-md-6">
+            {% if results == false %}
+            <h1>
+                Testing emails to not go to spam
+            </h1>
+            <form action="/testregister" method="post">
+                <div class="form-group">
+                <label for="email">
+                    Email address
+                </label>
+                <input type="email" 
+                       class="form-control" 
+                       id="email" 
+                       name="email" 
+                       aria-describedby="emailHelp" 
+                       placeholder="Enter email">
+                <small id="emailHelp" 
+                       class="form-text text-muted">
+                    We'll never share your email with anyone else.
+                </small>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% else %}
+                {{ results }} 
+            {% endif %}
+        </div>
+    </div>
+</div>
