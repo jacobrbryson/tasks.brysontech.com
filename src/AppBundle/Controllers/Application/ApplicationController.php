@@ -12,6 +12,6 @@ class ApplicationController extends Controller{
      */
     public function applicationAction(Request $request)
     {
-        
+        return $this->render('Application/Index/index.html.twig');
     }
 }

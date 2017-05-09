@@ -4,6 +4,10 @@ body, html {
     color:#FFF;
 }
 
+.navbar {
+    background-color: rgba(15,15,15,0.9);
+}
+
 .modal{
     background-color: rgba(0,0,0,0.9);
 }
@@ -42,6 +46,10 @@ body, html {
 
 .ep-top-20{
     padding-top: 20px;
+}
+
+.ep-top-100{
+    padding-top:100px;
 }
 
 .ep-40{

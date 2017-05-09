@@ -1,10 +1,7 @@
 {% extends 'Web/Layout/base.html.twig' %}
 
 {% block body %}
-<<<<<<< HEAD
-    {% include 'Web/Account/Register/test-form.html.twig' %}  
-=======
-<div id="content">
+<div id="content ep-top-100">
     <div class="row">
         <div class="col-sm-12">
             <h1>Register</h1>
@@ -12,50 +9,46 @@
     </div>
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 col-sm-10 col-sm-offset-1">
-            <form action="/register" method="POST" class="center-block" name="_register">
-                <div class="form-group">
-                    <label for="email" style="float:left;">
-                        Email Address:
-                    </label>
+            <form action="/register" 
+                  method="POST" 
+                  name="_register">
+                <input type="hidden" 
+                       name="_csrf_token" 
+                       value="{{ csrf_token('authenticate') }}">
+                <div class="form-group ep-top-20">
                     <input type="email" 
                            class="form-control" 
-                           name="email" 
-                           id="email" 
-                           placeholder="username@domain.com"
-                           value="{% if email is defined %}{{ email }}{% endif %}"
-                           required>
+                           id="email"
+                           name="email"
+                           aria-describedby="emailHelp" 
+                           placeholder="Enter email">
+                    <small id="emailHelp" 
+                           class="form-text text-muted text-center">
+                        We'll never share your email with anyone else.
+                    </small>
                 </div>
                 <div class="form-group">
-                    <label for="password" style="float:left;">
-                        Password:
-                    </label>
                     <input type="password" 
                            class="form-control" 
-                           name="password1" 
-                           id="password" 
-                           placeholder=" y0uRP@$$w0rD"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="_repeat_password" style="float:left;">
-                        Repeat Password:
-                    </label>
+                           id="password1"
+                           name="password1"
+                           aria-describedby="passwordinput" 
+                           placeholder="Enter Password">
                     <input type="password" 
                            class="form-control" 
-                           name="password1" 
-                           id="_repeat_password" 
-                           placeholder=" y0uRP@$$w0rD"
-                           required>
+                           id="password2"
+                           name="password2"
+                           aria-describedby="passwordinput" 
+                           placeholder="Re-enter Password">
+                </div> 
+                <div class="form-group ep-top-20">
+                    <button type="submit" 
+                            class="btn btn-primary col-md-6 offset-md-3">
+                        Submit
+                    </button>
                 </div>
-                <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate') }}"
-                >
-                <input type="hidden" name="redirect_url" value="/account" />
-                <button type="submit" class="btn btn-default">Submit</button>
-                {% if error is defined %}<br />{{ error }}{% endif %}
             </form>
         </div>
     </div>
 </div>
->>>>>>> 32a939bd66b680e1a9562f1941b9fbe28c8ef21e
 {% endblock %}
