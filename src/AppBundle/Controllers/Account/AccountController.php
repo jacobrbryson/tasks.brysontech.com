@@ -14,10 +14,47 @@ use AppBundle\Entity\User;
 use AppBundle\Entity\User_Details;
 
 class AccountController extends Controller{    
-    protected $em;
-    
-    public function __construct(){
-        $this->em = $this->getDoctrine()->getManager();        
+    /**
+     * @Route("/register", name="register")
+     */
+    public function registerAction(Request $request)
+    {
+        $error = false;
+        $url = 'Web/Account/Register/index.html.twig';
+        
+        if($request->isMethod('POST')){
+            $email      = isset($_POST['email'])    ? $_POST['email'] : false;
+            $password1  = isset($_POST['password1']) ? $_POST['password1'] : false;
+            $password2  = isset($_POST['password2']) ? $_POST['password2'] : false;
+            
+            if($this->validateRegistrationInformation($email, $password1, $password2)){
+                $this->registerNewUser($email, $password1);
+                $url = 'Web/Account/Register/success.html.twig';
+            } else {
+                $error = "Invalid registration, please check that your passwords "
+                    . "match and that you do not already have an account.";
+            }
+        } else {
+            $email = isset($_GET['email']) ? $_GET['email'] : false;
+            $token = isset($_GET['token']) ? $_GET['token'] : false;
+            
+            if ($email && $token){
+                if($this->enableUser($email, $token)){
+                    return $this->redirectToRoute('application');
+                } else {
+                    $error = "Something went wrong when enabling your account. "
+                        . "Double check the URL that was sent to you and that you "
+                        . "did not register more than 24 hours ago. You can have "
+                        . "the email resent HERE or contact support at admin@brysontech.com";
+                }
+            }
+        }
+        
+        return $this->render($url, [
+            'error'     => $error,
+            'email'     => $email
+        ]);
+        
     }
     
     /**
@@ -32,45 +69,11 @@ class AccountController extends Controller{
 
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
+        
         return $this->render('Web/Account/Login/index.html.twig',[
             'error'         => $error,
             'lastUsername'  => $lastUsername
         ]);
-    }
-    
-    /**
-     * @Route("/register", name="register")
-     */
-    public function registerAction(Request $request)
-    {
-        $email      = isset($_POST['email'])    ? $_POST['email'] : false;
-        $password1  = isset($_POST['password1']) ? $_POST['password1'] : false;
-        $password2  = isset($_POST['password2']) ? $_POST['password2'] : false;
-        $error      = false;
-        
-        $url = 'Web/Account/Register/index.html.twig';
-        
-        if($request->isMethod('POST') && validateRegistrationInformation($email, $password1, $password2)){
-            $this->registerNewUser();
-            $url = 'Web/Account/Register/success.html.twig';
-        } else if($request->isMethod('POST') && !validateRegistrationInformation($email, $password1, $password2)) {
-            $error = "Email already exists within our system.<br/><a href='/resend'>Click Here to reset your password</a>";
-        }
-        
-        return $this->render($url, [
-            'error'     => $error,
-            'email'     => $email
-        ]);
-        
-    }
-    
-    /**
-     * @Route("/account", name="account")
-     */
-    public function accountAction(Request $request)
-    {
-        
     }
     
     /**
@@ -81,34 +84,57 @@ class AccountController extends Controller{
         
     }
     
-    private function registerNewUser($email){
+    private function enableUser($email, $token){
+        if($this->sanitizeEmail($email)){
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('AppBundle:User')
+            ->findOneBy(array('email' => $email));
+            
+            if($user->getConfirmationToken() === $token){
+                $user->setEnabled(1)
+                    ->addRole("ROLE_USER")
+                    ->setRoles(array("ROLE_USER"));
+                $em->persist($user);
+                $em->flush();
+                
+                $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+                $this->get('security.token_storage')->setToken($token);
+                $this->get('session')->set('_security_main', serialize($token));
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private function registerNewUser($email, $pw){
         $user           = new User();
         $userDetails    = new User_Details();
         $password       = $this->get('security.password_encoder')->encodePassword($user, $pw);
         $tokenGenerator = $this->container->get('fos_user.util.token_generator');
         $expirationTime = new \DateTime();
-                $expirationTime->setTimestamp(time() + 3600);
-                
-                $user->setPassword($password)
-                    ->setUserName($email)
-                    ->setEmail($email)
-                    ->setConfirmationToken($tokenGenerator->generateToken());
+        $expirationTime->setTimestamp(time() + 3600);
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
+        $user->setPassword($password)
+            ->setUserName($email)
+            ->setEmail($email)
+            ->setConfirmationToken($tokenGenerator->generateToken());
 
-                $userDetails->setId($user->getId());
-                $userDetails->setFirstName('New-' . $user->getId());
-                $userDetails->setMiddleName('Awesome');
-                $userDetails->setLastName('User');
-                $userDetails->setBirthday(0);
-                $em->persist($userDetails);
-                $em->flush();
-                
-                $additional['token'] = $user->getConfirmationToken();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
 
-                $this->sendConfirmEmail($email, $additional);
+        $userDetails->setId($user->getId());
+        $userDetails->setFirstName('New-' . $user->getId());
+        $userDetails->setMiddleName('Awesome');
+        $userDetails->setLastName('User');
+        $userDetails->setBirthday(0);
+        $em->persist($userDetails);
+        $em->flush();
+
+        $additional['token'] = $user->getConfirmationToken();
+
+        $this->sendConfirmEmail($email, $additional);
     }
     
     private function validateRegistrationInformation($email, $password1, $password2){
@@ -122,19 +148,20 @@ class AccountController extends Controller{
     }
     
     private function checkUserExists($email){
-        $exists = $this->em->getRepository('AppBundle:User')
+        $em = $this->getDoctrine()->getManager();
+        $exists = $em->getRepository('AppBundle:User')
             ->findOneBy(array('email' => $email));
-        return !$exists ? false : true;
+        return empty($exists) ? false : true;
     }
     
     private function verifyPasswords($password1, $password2){
-        return $password1 === $password2;
+        return $password1 === $password2 ? true : false;
     }
     
     private function sendConfirmEmail($email, $additional){
         $message = \Swift_Message::newInstance()
-        ->setSubject('Confirmation Email')
-        ->setFrom('task.admin@brysontech.com')
+        ->setSubject('Tasks Manager - Confirmation Email')
+        ->setFrom('admin@brysontech.com')
         ->setTo($email)
         ->setBody(
             $this->renderView(

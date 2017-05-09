@@ -1,0 +1,13 @@
+
+<div class="container ep-top-100">
+    Awesome the authentication works!
+    <br>
+    You are logged in as 
+    {% if is_granted('ROLE_ADMIN') %}
+        an Administrator
+    {% elseif is_granted('ROLE_USER') %}
+        a User
+    {% else %}
+        an Anonymous User
+    {% endif %}
+</div>
