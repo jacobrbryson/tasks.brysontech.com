@@ -8,8 +8,8 @@ body, html {
     background-color: rgba(15,15,15,0.9);
 }
 
-.list-group-item{
-   background-color: black; 
+.icon-white{
+  color:white;  
 }
 
 .modal{
