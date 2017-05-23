@@ -1,0 +1,97 @@
+<div class="col-md-12 ep-top-20">
+    <div class="header">
+        Tasks
+    </div>
+    <div class="content">
+        <div class="table-full-width">
+            <table class="table" id="tableTasks">
+                <thead>
+                    <th>
+                        Descriptions
+                    </th>
+                    <th>
+                        Points
+                    </th>
+                    <th class="text-right">
+                        Actions
+                    </th>
+                </thead>
+                    <tbody>
+{% if tasks is defined and tasks is not empty %}                        
+    {% for task in tasks %}
+                        <tr id="tasks-tr-{{ task.id}}">
+                            <td>{{ task.description }}</td>
+                            <td>{{ task.value}}</td>
+                            <td class="td-actions text-right">
+                                <button type="button" 
+                                        onclick="completeTask({{ task.id }});"
+                                        rel="tooltip" 
+                                        title="Complete Task" 
+                                        class="btn btn-success btn-simple btn-xs">
+                                    <i class="fa fa-check" 
+                                       aria-hidden="true"></i>
+                                </button>
+                                <button type="button" 
+                                        onclick="deleteTask({{ task.id }});"
+                                        rel="tooltip" 
+                                        title="Remove" 
+                                        class="btn btn-danger btn-simple btn-xs">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+    {% endfor %}
+{% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <form class="form-inline" id="add_tasks">
+                <div class="form-group col-md-8">
+                    <textarea 
+                           rows="2"
+                           class="form-control" 
+                           style="width:100%;"
+                           name="description"
+                           id="description" 
+                           placeholder="description"></textarea>
+                </div>
+                <div class="form-group col-xs-6 col-md-2">
+                    <label class="sr-only" 
+                           for="points">
+                        Points
+                    </label>
+                    <select class="form-control" 
+                           style="width:100%"
+                           name="points"
+                           id="points">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-6 col-md-2">
+                    <button type="submit" 
+                            style="width:100%"
+                            class="btn btn-default">
+                        Create Task
+                    </button>
+                </div>
+            </form>
+            <div class="footer">
+                <hr>
+                <div class="stats">
+                    <i class="fa fa-history"></i> Updated Just Now
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+<script src="{{ asset('/js/Application/tasks.js') }}"></script>
