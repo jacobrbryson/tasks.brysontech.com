@@ -3,10 +3,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Task Manager{% endblock %}</title>
+        <meta name="viewport"       content="width=device-width" />
+        <link rel="icon" 
+              type="image/x-icon" 
+              href="{{ asset('images/icons/bt.ico') }}" />
+        <link rel="apple-touch-icon" 
+              sizes="76x76" 
+              href="{{ asset('images/icons/icon-logo-76x76.png') }}">
+        <link rel="apple-touch-icon" 
+              sizes="76x76" 
+              href="{{ asset('images/icons/icon-logo-120x120.png') }}">
+        <link rel="apple-touch-icon" 
+              sizes="76x76" 
+              href="{{ asset('images/icons/icon-logo-152x152.png') }}">
         {% block stylesheets %}
-            <!--<link href="Web/bootstrap.min.css">
-            <link href="Web/site.css">-->
             <link rel="stylesheet" 
                   type="text/css" 
                   href="{{ asset('css/Bootstrap4.0/bootstrap.min.css') }}">
@@ -17,7 +28,6 @@
                   type="text/css" 
                   href="{{ asset('css/font-awesome.min.css') }}">
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% include 'Application/Layout/navbar.html.twig' %}
