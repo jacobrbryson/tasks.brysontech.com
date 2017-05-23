@@ -35,8 +35,7 @@ body, html {
 }
 
 .parallax { 
-    /* The image used */
-    background-image: url("/images/hero/index/2017-05-01-hero-lg.jpg");
+    
 
     /* Set a specific height */
     height: 100%; 
@@ -46,6 +45,16 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.parallax1 {
+    /* The image used */
+    background-image: url("/images/hero/index/2017-05-01-hero-lg.jpg");
+}
+
+.parallax2 {
+    /* The image used */
+    background-image: url("/images/hero/index/2017-05-01-hero2.jpg");
 }
 
 .ep-top-20{
