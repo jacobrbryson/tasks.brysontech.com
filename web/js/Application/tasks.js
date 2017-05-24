@@ -4,10 +4,9 @@ addTaskForm.addEventListener('submit', function(e){
     e.preventDefault();
     description = this.description.value;
     points = this.points.value;
-    site = this.site.value;
 
     if(validateNewTask()){
-        addTask(description, points, site);
+        addTask(description, points);
     } else {
         alert("Invalid task");
     }
@@ -24,12 +23,12 @@ function validateNewTask(description, points){
     return true;
 }
 
-function addTask(description, points, site){
+function addTask(description, points){
     $.ajax({
         type: "POST",
         dataType: "json",
         url: "/tasks/addTask",
-        data: {description: description, points: points, site: site},
+        data: {description: description, points: points},
         success: function(response) {
             addTaskForm.reset();
             $("#tableTasks tr:last").after("<tr id='tasks-tr-"+ response.task_id + "'><td>" + description + "</td>\n\

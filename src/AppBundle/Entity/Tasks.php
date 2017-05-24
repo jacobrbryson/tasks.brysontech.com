@@ -17,11 +17,6 @@ class Tasks{
     protected $id;
     
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $siteId;
-    
-    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -84,30 +79,6 @@ class Tasks{
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set siteId
-     *
-     * @param integer $siteId
-     *
-     * @return Tasks
-     */
-    public function setSiteId($siteId)
-    {
-        $this->siteId = $siteId;
-
-        return $this;
-    }
-
-    /**
-     * Get siteId
-     *
-     * @return integer
-     */
-    public function getSiteId()
-    {
-        return $this->siteId;
     }
 
     /**
