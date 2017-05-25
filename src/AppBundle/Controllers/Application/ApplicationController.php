@@ -17,7 +17,18 @@ class ApplicationController extends Controller{
      */
     public function applicationAction(Request $request)
     {
-        return $this->render('Application/Index/index.html.twig');
+        return $this->render('Application/Index/index.html.twig',
+                [
+                    'tasks' => $this->getIncompleteTasksByUser()
+                ]);
+    }
+    
+    private function getIncompleteTasksByUser(){
+        $em = $this->getDoctrine()->getManager();
+        $tasks = $em->getRepository('AppBundle:Tasks')
+            ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0));
+        
+        return $tasks;
     }
     
     /**
