@@ -29,7 +29,7 @@ class ApplicationController extends Controller{
             ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0));
         
         return $tasks;
-    }
+    }   
     
     /**
      * @Route("/tasks/addTask", name="/tasks/addTask")
@@ -262,3 +262,13 @@ class ApplicationController extends Controller{
         return;
     }
 }
+
+ class TeamsController extends Controller{
+        /**
+         * @Route("/application/teams", name="application/teams")
+         */
+        public function teamsAction(Request $request){
+            
+            return $this->render('Application/Index/index.html.twig');
+        }
+    }
