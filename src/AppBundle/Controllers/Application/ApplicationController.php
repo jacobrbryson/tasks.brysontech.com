@@ -266,7 +266,7 @@ class ApplicationController extends Controller{
          */
         public function teamsAction(){
             
-            return $this->render('Application/Index/index.html.twig');
+            return $this->render('Application/Teams/Index/index.html.twig');
         }
     
 }

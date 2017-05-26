@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Task Manager{% endblock %}</title>
+        <meta name="viewport"       content="width=device-width" />
+        <link rel="icon" 
+              type="image/x-icon" 
+              href="{{ asset('images/icons/bt.ico') }}" />
+        <link rel="apple-touch-icon" 
+              sizes="76x76" 
+              href="{{ asset('images/icons/icon-logo-76x76.png') }}">
+        <link rel="apple-touch-icon" 
+              sizes="76x76" 
+              href="{{ asset('images/icons/icon-logo-120x120.png') }}">
+        <link rel="apple-touch-icon" 
+              sizes="76x76" 
+              href="{{ asset('images/icons/icon-logo-152x152.png') }}">
+        {% block stylesheets %}
+            <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/Bootstrap4.0/bootstrap.min.css') }}">
+            <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/Web/site.css') }}">
+                        <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/font-awesome.min.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        {% include 'Application/Layout/navbar.html.twig' %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+          <script src="js/jquery.min.js"></script>
+          <script src="js/tether.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>  
+        {% endblock %}
+    </body>
+</html>
+
