@@ -264,7 +264,7 @@ class ApplicationController extends Controller{
         /**
          * @Route("/application/teams", name="application/teams")
          */
-        public function teamsAction(Request $request){
+        public function teamsAction(){
             
             return $this->render('Application/Index/index.html.twig');
         }
