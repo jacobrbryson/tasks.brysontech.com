@@ -268,6 +268,14 @@ class ApplicationController extends Controller{
             
             return $this->render('Application/Teams/Index/index.html.twig');
         }
+        
+        /**
+         * @Route("/application/teams/addteam", name="application/teams/addteam")
+         */
+        public function AddTeamAction(){
+          
+            return $this->render('Application/Teams/AddTeam.html.twig');
+        }
     
 }
 
