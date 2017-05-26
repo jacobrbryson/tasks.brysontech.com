@@ -260,10 +260,7 @@ class ApplicationController extends Controller{
         $em->flush();
             
         return;
-    }
-}
-
- class TeamsController extends Controller{
+    }    
         /**
          * @Route("/application/teams", name="application/teams")
          */
@@ -271,4 +268,6 @@ class ApplicationController extends Controller{
             
             return $this->render('Application/Index/index.html.twig');
         }
-    }
+    
+}
+
