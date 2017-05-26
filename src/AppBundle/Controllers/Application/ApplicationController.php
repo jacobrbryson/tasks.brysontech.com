@@ -273,8 +273,13 @@ class ApplicationController extends Controller{
          * @Route("/application/teams/addteam", name="application/teams/addteam")
          */
         public function AddTeamAction(){
-          
-            return $this->render('Application/Teams/AddTeam.html.twig');
+            $description  = isset($_POST['description']) ? $_POST['description'] : false;
+            
+            return $this->render('Application/Teams/AddTeam.html.twig',
+                    [
+                        
+                    'TeamName' => $TeamName()
+                ]);
         }
     
 }
