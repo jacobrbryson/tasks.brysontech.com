@@ -1,0 +1,40 @@
+<form class="form-inline" id="form_add_task">
+    <div class="form-group col-md-8">
+        <textarea 
+               rows="2"
+               class="form-control" 
+               style="width:100%;"
+               name="description"
+               id="description" 
+               placeholder="description"></textarea>
+    </div>
+    <div class="form-group col-xs-6 col-md-2">
+        <label class="sr-only" 
+               for="points">
+            Points
+        </label>
+        <select class="form-control" 
+               style="width:100%"
+               name="points"
+               id="points">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+    <div class="form-group col-xs-6 col-md-2">
+        <button type="submit" 
+                style="width:100%"
+                class="btn btn-default">
+            Create Task
+        </button>
+    </div>
+</form>
