@@ -2,5 +2,8 @@
 <div class="container ep-top-20">
     Welcome {{ app.user.username }}!
     </br>
-    {% include 'Application/Index/tasks.html.twig' %}
+    {% include 'Application/Tasks/Base/index.html.twig' %}
+    {% include 'Application/Tasks/Modals/edit.html.twig' %}
+    {% include 'Application/Tasks/Modals/add.html.twig' %}
+    {% include 'Application/Tasks/Modals/delete.html.twig' %}
 </div>
