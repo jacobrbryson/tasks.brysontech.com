@@ -1,5 +1,6 @@
 var addTaskForm = document.getElementById("form_add_task");
 var addTaskBtn = document.getElementById("btn_add_task");
+var navDate = document.getElementById("nav_date");
 
 addTaskBtn.addEventListener('click', function(e){
     e.preventDefault();
@@ -112,3 +113,48 @@ function deleteTask(taskid){
     });
 }
 
+function updateClock(){
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var M = today.getMonth();
+    var day = today.getDay();
+    var year = today.getFullYear();
+    var amPM = "a";
+    amPM = checkAMPM(h);
+    h = fixHour(h);
+    m = checkTime(m);
+    
+    
+    
+    navDate.innerHTML = M + "/" + day + "/" + year + " " + h + ":" + m + amPM;
+}
+
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i;
+    };  // add zero in front of numbers < 10
+        return i;
+    }
+    
+    function fixHour(h){
+        if(h > 12){
+            h = h - 12;
+        }
+        return h;
+    }
+    
+    function checkAMPM(h){
+        if(h > 11){
+            return "p";
+        } else {
+            return "a";
+        }
+        
+    }
+
+updateClock();
+
+clock = setInterval(function() {
+    updateClock();
+}, 60 * 1000);
