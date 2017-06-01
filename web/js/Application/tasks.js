@@ -73,6 +73,7 @@ function completeTask(taskid){
         success: function(response) {
             if(response.result){
                 $("#tasks-tr-" + taskid).remove();
+                $("#tasks-tr-m-" + taskid).remove();
                 alert(response.message);
             } else {
                 alert(response.message);
@@ -98,6 +99,7 @@ function deleteTask(taskid){
         success: function(response) {
             if(response.result){
                 $("#tasks-tr-" + taskid).remove();
+                $("#tasks-tr-m-" + taskid).remove();
                 alert(response.message);
             } else {
                 alert(response.message);
