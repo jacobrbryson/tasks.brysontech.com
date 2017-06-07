@@ -113,10 +113,21 @@
     </div>    
 </div>
 <div class="fixed-bottom">
-        <div class="popup" onclick="taskComp();">
-          <span class="popuptext" id="myPopup">Congratulations! You have completed
-          "Insert Task Name"!</span>
-        </div>
+    <div class="popup" id="myPopup" onclick="taskComp();">
+        Task Completed&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="#">
+            Undo
+        </a>
+        <button type="button" 
+                class="close" 
+                data-dismiss="popup" 
+                aria-label="Close">
+            <span>
+                &times;
+            </span>
+        </button>
+    </div>
+
 </div>
 
 
