@@ -38,7 +38,7 @@
                                        aria-hidden="true"></i>
                                 </button>
                                 <button type="button" 
-                                        onclick="completeTask({{ task.id }});"
+                                        onclick="taskComp();"
                                         rel="tooltip" 
                                         title="Complete" 
                                         class="btn btn-success btn-simple btn-sm btn-tasks">
@@ -112,8 +112,11 @@
         </div> 
     </div>
 </div>
-<div class="popup" onclick="myFunction()">Click me to toggle the popup!
-  <span class="popuptext" id="myPopup">A Simple Popup!</span>
+<div class="fixed-bottom">
+    <div class="popup" onclick="taskComp()">
+      <span class="popuptext" id="myPopup">Congratulations! You have completed
+      "Insert Task Name"!</span>
+    </div>
 </div>
 
 {% include 'Application/Tasks/Modals/add.html.twig' %}

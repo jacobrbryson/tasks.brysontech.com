@@ -115,7 +115,7 @@ function deleteTask(taskid){
 }
 
 // When the user clicks on <div>, open the popup
-function myFunction() {
+function taskComp() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 }
