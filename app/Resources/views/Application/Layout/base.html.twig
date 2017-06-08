@@ -23,6 +23,12 @@
                   href="{{ asset('css/Bootstrap4.0/bootstrap.min.css') }}">
             <link rel="stylesheet" 
                   type="text/css" 
+                  href="{{ asset('css/bootstrap-datetimepicker-standalone.min.css') }}" />
+            <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/datetimepicker.css') }}" />
+            <link rel="stylesheet" 
+                  type="text/css" 
                   href="{{ asset('css/Web/site.css') }}">
                         <link rel="stylesheet" 
                   type="text/css" 
@@ -30,6 +36,7 @@
             <link rel="stylesheet"
                   type="text/css"
                   href="{{ asset('css/Application/site.css') }}">
+            
         {% endblock %}
     </head>
     <body>
@@ -38,7 +45,10 @@
         {% block javascripts %}
           <script src="js/jquery.min.js"></script>
           <script src="js/tether.min.js"></script>
-          <script src="js/bootstrap.min.js"></script> 
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/Application/Tasks/moment.min.js"></script>  
+          <script src="js/Application/Tasks/datetimepicker.min.js"></script>
+          <script src="js/Application/Tasks/add_task.js"></script>
           <script src="{{ asset('/js/Application/clock.js') }}"></script>
         {% endblock %}
     </body>

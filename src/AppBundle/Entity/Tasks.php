@@ -24,6 +24,16 @@ class Tasks{
     /**
      * @ORM\Column(type="integer")
      */
+    private $startDateTime;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $endDateTime;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $value;
     
     /**
@@ -34,17 +44,7 @@ class Tasks{
     /**
      * @ORM\Column(type="integer")
      */
-    private $inProgress;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $owner;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $team;
     
     /**
      * @ORM\Column(type="integer")
@@ -55,21 +55,6 @@ class Tasks{
      * @ORM\Column(type="integer")
      */
     private $updated;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $completed;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $peerReviewed;
-    
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $achievementId;
     
     /**
      * Get id
@@ -343,5 +328,53 @@ class Tasks{
     public function getAchievementId()
     {
         return $this->achievementId;
+    }
+
+    /**
+     * Set startDateTime
+     *
+     * @param integer $startDateTime
+     *
+     * @return Tasks
+     */
+    public function setStartDateTime($startDateTime)
+    {
+        $this->startDateTime = $startDateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get startDateTime
+     *
+     * @return integer
+     */
+    public function getStartDateTime()
+    {
+        return $this->startDateTime;
+    }
+
+    /**
+     * Set endDateTime
+     *
+     * @param integer $endDateTime
+     *
+     * @return Tasks
+     */
+    public function setEndDateTime($endDateTime)
+    {
+        $this->endDateTime = $endDateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get endDateTime
+     *
+     * @return integer
+     */
+    public function getEndDateTime()
+    {
+        return $this->endDateTime;
     }
 }

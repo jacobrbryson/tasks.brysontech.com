@@ -36,46 +36,32 @@ class ApplicationController extends Controller{
      * @Method("POST")
      */
     public function addTask(){
-        //Initialize stuff we need
-        $description  = isset($_POST['description']) ? $_POST['description'] : false;
-        $points  = isset($_POST['points']) ? $_POST['points'] : false;
+        $taskData = array();
+        parse_str($_POST['data'], $taskData);     
         $userId = $this->getUser()->getId();
-        $results = Array('result' => 0);
+        $results = Array('result' => 0, 'message' => "No userid or data.");
 
-        //Check for UserId
-        if (!$userId){
+        //Check for UserId and data
+        if (!$userId || empty($taskData)){
             return new Response(json_encode($results));
         }
-        
-        //Get Doctrine ready for connections
-        $em = $this->getDoctrine()->getManager();
-        
-        //check to see if user is in a team. We'll pass 0/false if not.
-        $team = $em->getRepository('AppBundle:TasksTeams')
-                     ->findOneBy(array('userId' => $userId));
-        
-        $teamId = !empty($team) ? $team->getId() : false;
 
-        //Validation complete, create the task.
+        $em = $this->getDoctrine()->getManager();
         $task = new Tasks();
         
-        $task->setDescription($description)
-                ->setValue($points)
-                ->setComplete(0)
-                ->setInprogress(1)
-                ->setOwner($userId)
-                ->setCreated(time())
-                ->setUpdated(time())
-                ->setCompleted(0)
-                ->setPeerReviewed(0)
-                ->setTeam($teamId)
-                ->setAchievementId(0);
+        $task->setDescription($taskData['description'])
+            ->setStartDateTime($taskData['start_date_time'])
+            ->setEndDateTime($taskData['end_date_time'])
+            ->setValue(0)
+            ->setComplete(0)
+            ->setOwner($userId)
+            ->setCreated(time())
+            ->setUpdated(time());
         
         $em->persist($task);
         $em->flush();
                 
         $results['result'] = 1;
-        $results['message'] = "Successfully added!";
         $results['task_id'] = $task->getId();
         
         return new Response(json_encode($results));
@@ -171,96 +157,23 @@ class ApplicationController extends Controller{
                      ->findOneBy(array('id' => $taskId));
         
         $owner = !empty($task) && $task->getOwner() === $userId ? true : false;
-        
-        if($task->getAchievementId() > 0){
-            $achievement = $em->getRepository('AppBundle:Admin\Achievements')
-                     ->findOneBy(array('id' => $task->getAchievementId()));
-            
-            $results['message'] = "BOOM! New Achievement earned! " . $achievement->getName() . "\n";
-            
-            $userAchievement = new UserAchievements();
-            
-            $userAchievement->setId($achievement->getId())
-                    ->setUserId($userId)
-                    ->setTimestamp(time());
-            
-            $em->persist($userAchievement);
-            $em->flush();
-        }
-        
-        
+
         if($owner){
-            $points = $task->getValue();
-            $this->updatePoints($userId, $points);
-            
             $task->setComplete(1)
-                ->setInProgress(0)
                 ->setUpdated(time());
             
             $em->persist($task);
             $em->flush();
                 
             $results['result'] = 1;
-            $results['message'] .= "Completed by owner. " . $points . " points awarded.";
+            $results['message'] .= "Completed by owner.&nbsp;&nbsp;---&nbsp;&nbsp;<a href='/tasks/undo?action=complete&task_id=" . $taskId . "'>Undo</a>";
             
             return new Response(json_encode($results));
         }
         
-        //check if user is on a team, if no return results
-        $team = $em->getRepository('AppBundle:TasksTeams')
-                     ->findOneBy(array('userId' => $userId));
-        
-        if(empty($team)){
-            return new Response(json_encode($results));
-        }
-        
-        //check if task belongs to that team, if yes, delete and return results
-        if($task->getTeam() === $team->getId()){
-            $points = $task->getValue();
-            $this->updatePoints($userId, $points);
-            
-            $task->setComplete(1)
-                ->setInProgress(0)
-                ->setUpdated(time());
-            
-            $em->persist($task);
-            $em->flush();
-            
-            $results['result'] = 1;
-            $results['message'] .= "Task completed by team member. " . $points . " points awarded.";
-            
-            return new Response(json_encode($results));
-        }
-
         //last, return results
         return new Response(json_encode($results));
-    }
-    
-    private function updatePoints($userId, $points){
-        //Get Doctrine ready for connections
-        $em = $this->getDoctrine()->getManager();
-        
-        //check if user is the owner of the task, if yes, delete it and return results
-        $user = $em->getRepository('AppBundle:TasksPoints')
-                     ->findOneBy(array('userId' => $userId));
-        
-        if(!empty($user)){
-            $user->setScore($user->getScore() + $points);
-            $em->persist($user);
-            $em->flush();
-            
-            return;
-        }
-        $taskPoints = new TasksPoints();
-        
-        $taskPoints->setUserId($userId)
-                ->setScore($points);
-        
-        $em->persist($taskPoints);
-        $em->flush();
-            
-        return;
-    }    
+    }  
         /**
          * @Route("/application/teams", name="application/teams")
          */
