@@ -69,3 +69,14 @@ function taskComp(message) {
     document.getElementById("popup_message").innerHTML = message;
     popup.classList.toggle("show");
 }
+
+function showNote(type) {
+    var text = "";
+    
+    if(type === "disabled"){
+        text = "This item can be enabled in <a href='/application/settings' title='Settings'>Settings</a>";
+    }
+    var note = document.getElementById("note");
+    note.innerHTML = text;
+    note.classList.toggle("show");
+}
