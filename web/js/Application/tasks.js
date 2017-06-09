@@ -115,7 +115,10 @@ function deleteTask(taskid){
 }
 
 // When the user clicks on <div>, open the popup
+var tOut = setInterval(taskComp, 5000);
+
 function taskComp() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
 }
+clearInterval(taskComp);
