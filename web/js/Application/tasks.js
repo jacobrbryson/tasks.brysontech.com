@@ -11,8 +11,9 @@ function submitTaskEdits(data){
 }
 
 function completeTask(taskid){
-    console.log("Complete TaskId: " + taskid);
-
+    $("#tasks-tr-" + taskid).remove();
+    $("#tasks-tr-m-" + taskid).remove();
+    
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -20,26 +21,22 @@ function completeTask(taskid){
         data: {task_id: taskid},
         success: function(response) {
             if(response.result){
-                $("#tasks-tr-" + taskid).remove();
-                $("#tasks-tr-m-" + taskid).remove();
-                //alert(response.message);
-                taskComp(response.message);
+                popup(response.message);
             } else {
-                alert(response.message);
+                popup(response.message);
             }
         },
         error: function(){
-            title   = "Something went wrong.";
-            body    = "AJAX error.";
-
-            showAlert(title, body);
+            popup("Ajax Error - Refresh and try again.");
         }
     });
 }
 
 function deleteTask(taskid){
     console.log("Delete TaskId: " + taskid);
-
+    $("#tasks-tr-" + taskid).remove();
+    $("#tasks-tr-m-" + taskid).remove();
+                
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -47,24 +44,27 @@ function deleteTask(taskid){
         data: {task_id: taskid},
         success: function(response) {
             if(response.result){
-                $("#tasks-tr-" + taskid).remove();
-                $("#tasks-tr-m-" + taskid).remove();
-                alert(response.message);
+                popup(response.message);
             } else {
-                alert(response.message);
+                popup(response.message);
             }
         },
         error: function(){
-            title   = "Something went wrong.";
-            body    = "AJAX error.";
-
-            showAlert(title, body);
+            popup("Ajax Error - Refresh and try again.");
         }
     });
 }
 
 // When the user clicks on <div>, open the popup
-function taskComp(message) {
+function popup(message) {
+    showPopup(message);
+    setTimeout(function(){
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("hide");
+    }, 3000);
+}
+
+function showPopup(message){
     var popup = document.getElementById("myPopup");
     document.getElementById("popup_message").innerHTML = message;
     popup.classList.toggle("show");
