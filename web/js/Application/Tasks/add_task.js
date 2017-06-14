@@ -4,8 +4,8 @@ var addTaskBtn = document.getElementById("btn_add_task");
 addTaskBtn.addEventListener('click', function(e){
     e.preventDefault();
     $("#modal_add_task").modal();
-    $("#start_date_time").val(Math.round(new Date().getTime()/1000.0));
-    $("#end_date_time").val(Math.round(new Date().getTime()/1000.0) + 86400);
+    $("#start_date_time").val(Number(Math.round(new Date().getTime()/1000.0)));
+    $("#end_date_time").val(Number(Math.round(new Date().getTime()/1000.0) + 86400));
 });
     
 addTaskForm.addEventListener('submit', function(e){
