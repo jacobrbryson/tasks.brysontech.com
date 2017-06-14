@@ -4,16 +4,21 @@ var addTaskBtn = document.getElementById("btn_add_task");
 addTaskBtn.addEventListener('click', function(e){
     e.preventDefault();
     $("#modal_add_task").modal();
-    $("#start_time").val(Math.round(new Date().getTime()/1000.0));
-    $("#end_time").val(Math.round(new Date().getTime()/1000.0) + 86400);
+    $("#start_date_time").val(Math.round(new Date().getTime()/1000.0));
+    $("#end_date_time").val(Math.round(new Date().getTime()/1000.0) + 86400);
 });
     
 addTaskForm.addEventListener('submit', function(e){
     e.preventDefault();
     description = this.description.value;
     
-    $("#start_date_time").val(Math.round(new Date($("#start_time").val())/1000.0));
-    $("#end_date_time").val(Math.round(new Date($("#end_time").val())/1000.0));
+    if ($("#start_time").val() !== ''){
+        $("#start_date_time").val(Math.round(new Date($("#start_time").val())/1000.0));
+    }
+    
+    if($("#end_time").val() !== ''){
+        $("#end_date_time").val(Math.round(new Date($("#end_time").val())/1000.0));
+    }
 
     if(validateNewTask(description)){
         addTask();
