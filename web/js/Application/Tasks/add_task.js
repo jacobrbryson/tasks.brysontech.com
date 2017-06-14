@@ -41,7 +41,7 @@ function addTask(){
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "/tasks/addTask",
+        url: "/app_dev.php/tasks/addTask",
         data: {data: $data},
         success: function(response) {
             $("#tasks-tr-" + temp_id).remove();
