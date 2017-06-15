@@ -55,6 +55,8 @@ function addTask(){
         },
         error: function(){
             popup("Ajax Error - Refresh and try again.");
+            document.cookie="task=$data";
+            console.log("the cookie's value for task");
         }
     });
 }
