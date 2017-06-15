@@ -46,7 +46,7 @@ function addTask(){
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "/tasks/addTask",
+        url: "/tasks/addTasks",
         data: {data: $data},
         success: function(response) {
             $("#tasks-tr-" + temp_id).remove();
@@ -55,10 +55,57 @@ function addTask(){
         },
         error: function(){
             popup("Ajax Error - Refresh and try again.");
-            document.cookie="task=$data";
+            document.cookie= "task="+ $data;
             console.log("the cookie's value for task");
+            var task = {id: temp_id, task: $data};
+            
+            function checkCookie() {
+                var username = getCookie("tasks");
+                if (user != "") {
+                    alert("Welcome again " + user);
+                } else {
+                    user = prompt("Please enter your name:", "");
+                    if (user != "" && user != null) {
+                        setCookie("username", user, 365);
+                    }
+                }
+            }
         }
     });
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
 }
 
 $(function () {
