@@ -6,59 +6,24 @@
           aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/">Tasks Manager</a>
-
-  <div class="collapse navbar-collapse" id="lrNavbar">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">  
-       <button class="btn btn-sm btn-outline-secondary" 
-                type="button" 
-                data-toggle="modal" 
-                data-target="#modal_login">
-            Login
-       </button>
-      </li>
-      <li class="nav-item">
-       <button class="btn btn-sm btn-outline-secondary"
-                type="button"
-                data-toggle="modal"
-                data-target="#modal_register">
-            Register
-       </button>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!--<nav class="navbar fixed-top navbar-toggleable-sm navbar-inverse">
-<div class="container-fluid">
-    
-    
-      <div class="navbar-header">
-        <button type="button" 
-                class="navbar-toggle" 
-                data-toggle="collapse" 
-                data-target="#lrNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="/">Tasks Manager</a>
-     </div>
-     <div id="lrNavbar" class="class navbar-collapse nav-link navbar-toggler-right">
-        <button class="btn btn-sm btn-outline-secondary" 
-                type="button" 
-                data-toggle="modal" 
-                data-target="#modal_login">
-            Login
-        </button>
-        <button class="btn btn-sm btn-outline-secondary"
-                type="button"
-                data-toggle="modal"
-                data-target="#modal_register">
-            Register
-        </button>
-      </div>
-     
+    <div class="col-6">
+        <a class="navbar-brand" href="/">Tasks Manager</a>
+    </div>
+    <div class="col-6">
+        <div class="collapse navbar-collapse" id="lrNavbar">
+            <ul class="navbar-nav text-center ml-auto">
+              <li class="nav-item nav-right">
+                <a href="/login"
+                   data-toggle="modal" 
+                   data-target="#modal_login">Login</a>
+              </li>
+              <li class="nav-item nav-right" style="padding-left: 25px; padding-right: 25px;">
+                <a href="/register"
+                   data-toggle="modal"
+                   data-target="#modal_register">Register</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
 </div>
-</nav> -->   
