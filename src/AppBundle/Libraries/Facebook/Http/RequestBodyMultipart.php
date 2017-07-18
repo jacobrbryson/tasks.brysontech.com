@@ -21,9 +21,9 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-namespace Facebook\Http;
+namespace AppBundle\Libraries\Facebook\Http;
 
-use Facebook\FileUpload\FacebookFile;
+use AppBundle\Libraries\Facebook\FileUpload\FacebookFile;
 
 /**
  * Class RequestBodyMultipartt

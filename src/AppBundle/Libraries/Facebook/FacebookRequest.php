@@ -23,13 +23,13 @@
  */
 namespace AppBundle\Libraries\Facebook;
 
-use Facebook\Authentication\AccessToken;
-use Facebook\Url\FacebookUrlManipulator;
-use Facebook\FileUpload\FacebookFile;
-use Facebook\FileUpload\FacebookVideo;
-use Facebook\Http\RequestBodyMultipart;
-use Facebook\Http\RequestBodyUrlEncoded;
-use Facebook\Exceptions\FacebookSDKException;
+use AppBundle\Libraries\Facebook\Authentication\AccessToken;
+use AppBundle\Libraries\Facebook\Url\FacebookUrlManipulator;
+use AppBundle\Libraries\Facebook\FileUpload\FacebookFile;
+use AppBundle\Libraries\Facebook\FileUpload\FacebookVideo;
+use AppBundle\Libraries\Facebook\Http\RequestBodyMultipart;
+use AppBundle\Libraries\Facebook\Http\RequestBodyUrlEncoded;
+use AppBundle\Libraries\Facebook\Exceptions\FacebookSDKException;
 
 /**
  * Class Request

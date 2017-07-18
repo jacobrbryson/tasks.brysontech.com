@@ -23,8 +23,8 @@
  */
 namespace AppBundle\Libraries\Facebook\HttpClients;
 
-use Facebook\Http\GraphRawResponse;
-use Facebook\Exceptions\FacebookSDKException;
+use AppBundle\Libraries\Facebook\Http\GraphRawResponse;
+use AppBundle\Libraries\Facebook\Exceptions\FacebookSDKException;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\ResponseInterface;

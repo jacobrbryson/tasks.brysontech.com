@@ -21,7 +21,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-namespace Facebook\Http;
+namespace AppBundle\Libraries\Facebook\Http;
 
 /**
  * Interface

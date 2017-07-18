@@ -21,7 +21,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-namespace Facebook\Exceptions;
+namespace AppBundle\Libraries\Facebook\Exceptions;
 
 /**
  * Class FacebookOtherException

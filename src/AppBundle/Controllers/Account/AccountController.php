@@ -81,7 +81,7 @@ class AccountController extends Controller{
           $helper = $fb->getRedirectLoginHelper();
 
           $permissions = ['email']; // Optional permissions
-          $loginUrl = $helper->getLoginUrl('https://tasks.brysontech.com/fb-login', $permissions);
+          $loginUrl = $helper->getLoginUrl('http://local.tasks.brysontech.com/fb-login', $permissions);
 
           $fbButton = '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
         
@@ -152,7 +152,7 @@ class AccountController extends Controller{
           var_dump($tokenMetadata);
 
           // Validation (these will throw FacebookSDKException's when they fail)
-          $tokenMetadata->validateAppId(471244956601440); // Replace {app-id} with your app id
+          $tokenMetadata->validateAppId('471244956601440'); // Replace {app-id} with your app id
           // If you know the user ID this access token belongs to, you can validate it here
           //$tokenMetadata->validateUserId('123');
           $tokenMetadata->validateExpiration();
@@ -174,7 +174,7 @@ class AccountController extends Controller{
 
           // User is logged in with a long-lived access token.
           // You can redirect them to a members-only page.
-          header('Location: https://tasks.brysontech.com/application');
+          return $this->redirectToRoute('application');
     }
     
     private function enableUser($email, $token){

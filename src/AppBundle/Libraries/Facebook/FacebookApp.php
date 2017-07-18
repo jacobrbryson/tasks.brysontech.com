@@ -23,8 +23,8 @@
  */
 namespace AppBundle\Libraries\Facebook;
 
-use Facebook\Authentication\AccessToken;
-use Facebook\Exceptions\FacebookSDKException;
+use AppBundle\Libraries\Facebook\Authentication\AccessToken;
+use AppBundle\Libraries\Facebook\Exceptions\FacebookSDKException;
 
 class FacebookApp implements \Serializable
 {

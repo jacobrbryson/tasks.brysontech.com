@@ -21,9 +21,9 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-namespace Facebook\Exceptions;
+namespace AppBundle\Libraries\Facebook\Exceptions;
 
-use Facebook\FacebookResponse;
+use AppBundle\Libraries\Facebook\FacebookResponse;
 
 /**
  * Class FacebookResponseException
