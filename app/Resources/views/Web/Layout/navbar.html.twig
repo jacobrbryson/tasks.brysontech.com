@@ -1,3 +1,14 @@
+<!--<style>
+    .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    }
+
+    .navbar .navbar-collapse {
+    text-align: center;
+    }
+    
+</style>
 <nav class="navbar navbar-toggleable-md navbar-inverse">
   <button class="navbar-toggler navbar-toggler-right" 
           type="button" 
@@ -6,59 +17,74 @@
           aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/">Tasks Manager</a>
+    <div class="col-6">
+        <a class="navbar-brand" href="/">Tasks Manager</a>
+    </div>
+    <div class="col-6">
+        <div class="collapse navbar-collapse" id="lrNavbar">
+            <ul class="nav navbar-nav">
+                
+              <li class="nav-item">
+                <a href="/login"
+                   data-toggle="modal" 
+                   data-target="#modal_login">Login</a>
+              </li>
+               
+              <li class="nav-item" style="padding-left: 25px; padding-right: 25px;">
+                <a href="/register"
+                   data-toggle="modal"
+                   data-target="#modal_register">Register</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+</div>-->
+<style>
+    @media (max-width: 991px) {
+        .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        font-size: 25px;        
+        }
 
-  <div class="collapse navbar-collapse" id="lrNavbar">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">  
-       <button class="btn btn-sm btn-outline-secondary" 
-                type="button" 
-                data-toggle="modal" 
-                data-target="#modal_login">
-            Login
-       </button>
-      </li>
-      <li class="nav-item">
-       <button class="btn btn-sm btn-outline-secondary"
-                type="button"
-                data-toggle="modal"
-                data-target="#modal_register">
-            Register
-       </button>
-      </li>
-    </ul>
-  </div>
-</nav>
+        .navbar .navbar-collapse {
+             text-align:center;
+        }
+    }
 
-<!--<nav class="navbar fixed-top navbar-toggleable-sm navbar-inverse">
-<div class="container-fluid">
-    
-    
+</style>
+
+<nav class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" 
-                class="navbar-toggle" 
-                data-toggle="collapse" 
-                data-target="#lrNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="/">Tasks Manager</a>
-     </div>
-     <div id="lrNavbar" class="class navbar-collapse nav-link navbar-toggler-right">
-        <button class="btn btn-sm btn-outline-secondary" 
-                type="button" 
-                data-toggle="modal" 
-                data-target="#modal_login">
-            Login
-        </button>
-        <button class="btn btn-sm btn-outline-secondary"
-                type="button"
-                data-toggle="modal"
-                data-target="#modal_register">
-            Register
-        </button>
+          <a class="navbar-brand" href="/">Tasks Manager</a>
+        <button class="navbar-toggler navbar-toggler-right" 
+          type="button" 
+          data-toggle="collapse" 
+          data-target="#lrNavbar" 
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>          
       </div>
-     
-</div>
-</nav> -->   
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse" id="lrNavbar">
+        
+        
+            <ul class="nav navbar-nav ml-auto">
+                
+              <li class="nav-item">
+                <a href="/login"
+                   data-toggle="modal" 
+                   data-target="#modal_login">Login</a>
+              </li>
+               
+              <li class="nav-item" style="padding-left: 25px; padding-right: 25px;">
+                <a href="/register"
+                   data-toggle="modal"
+                   data-target="#modal_register">Register</a>
+              </li>
+            </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+ 

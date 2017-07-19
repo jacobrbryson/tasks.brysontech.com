@@ -3,14 +3,21 @@ body, html {
     background-color: #000;
     color:#FFF;
 }
-
-.navbar {
+/* ************** */
+/* Web Navigation */
+/* ************** */
+.navbar{
     background-color: rgba(15,15,15,0.9);
 }
 
-.brand {
+.brand{
     padding-right:15px;
     font-size: 30px;
+}
+
+.nav-right a{
+    width:100%;
+    color:#fff;
 }
 
 .icon-white{

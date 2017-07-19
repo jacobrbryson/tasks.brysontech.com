@@ -17,7 +17,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        // force all users to the user role first.
         $this->roles = array('ROLE_USER');
     }
 
@@ -28,6 +28,7 @@ class User extends BaseUser
      */
     protected $id;
     
+    //force username and email to be the same
     public function setEmail($email)
     {
         parent::setEmail($email);
@@ -35,4 +36,18 @@ class User extends BaseUser
 
         return $this;
     }
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", nullable=true)
+     */
+    private $facebookID;
+ 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google_id", type="string", nullable=true)
+     */
+    private $googleID;
 }
