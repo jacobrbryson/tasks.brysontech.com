@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    facebook_client_id:           0
+    facebook_client_secret:       0
+    google_client_id:             0
+    google_client_secret:         0

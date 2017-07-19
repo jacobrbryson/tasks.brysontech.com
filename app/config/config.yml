@@ -50,12 +50,6 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #path: '%database_path%'
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
@@ -66,11 +60,8 @@ doctrine:
 swiftmailer:
     transport: "%mailer_transport%"
     host:      "%mailer_host%"
-    port:       "%mailer_port%"
-    encryption: "%mailer_encryption%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    auth_mode:   "%mailer_authmode%"
     spool: { type: memory }
 
 fos_user:
@@ -80,3 +71,27 @@ fos_user:
     from_email:
         address: "noreply@brysontech.com"
         sender_name: "No Reply"
+        
+hwi_oauth:
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_names: [main]
+    connect:
+        account_connector: app.provider.oauth
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           %facebook_client_id%
+            client_secret:       %facebook_client_secret%
+            scope:               "email, public_profile"
+            infos_url:           "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
+            paths:
+                email: email
+            options:
+                display: page
+        google:
+            type:                google
+            client_id:           %google_client_id%
+            client_secret:       %google_client_secret%
+            scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+            paths:
+                email: email
