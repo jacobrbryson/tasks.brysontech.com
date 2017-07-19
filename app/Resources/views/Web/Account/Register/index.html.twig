@@ -1,20 +1,10 @@
 {% extends 'Web/Layout/base.html.twig' %}
 
 {% block body %}
-<div id="content ep-top-100">
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h1>Register</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 col-sm-10 col-sm-offset-1">
-        </div>
-        <div class="col-lg-4 col-lg-offset-4 col-sm-10 col-sm-offset-1 ">
+    <div class="row ep-top-20">
+        <div class="col-10 offset-1 col-md-4 offset-md-4">
+            <h1 class="text-center">Register</h1>
             {% include 'Web/Forms/register.html.twig' %}
         </div>
-        <div class="col-lg-4 col-lg-offset-4 col-sm-10 col-sm-offset-1">
-        </div>
     </div>
-    
 {% endblock %}
