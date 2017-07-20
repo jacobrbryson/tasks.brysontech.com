@@ -72,6 +72,12 @@
         
         
             <ul class="nav navbar-nav ml-auto">
+                {% if is_granted('ROLE_USER') %} 
+               <li class="nav-item">
+                <a href="/logout"
+                   data-toggle="modal" 
+                   data-target="#modal_login">Logout</a>
+              </li> {% else %} 
                 
               <li class="nav-item">
                 <a href="/login"
@@ -84,6 +90,7 @@
                    data-toggle="modal"
                    data-target="#modal_register">Register</a>
               </li>
+              {% endif %}
             </ul>
       </div><!-- /.navbar-collapse -->
     </nav>
