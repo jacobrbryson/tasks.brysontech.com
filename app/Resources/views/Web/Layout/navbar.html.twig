@@ -1,97 +1,51 @@
-<!--<style>
-    .navbar .navbar-nav {
-    display: inline-block;
-    float: none;
-    }
-
-    .navbar .navbar-collapse {
-    text-align: center;
-    }
-    
-</style>
-<nav class="navbar navbar-toggleable-md navbar-inverse">
-  <button class="navbar-toggler navbar-toggler-right" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#lrNavbar" 
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <div class="col-6">
-        <a class="navbar-brand" href="/">Tasks Manager</a>
-    </div>
-    <div class="col-6">
-        <div class="collapse navbar-collapse" id="lrNavbar">
-            <ul class="nav navbar-nav">
-                
-              <li class="nav-item">
-                <a href="/login"
-                   data-toggle="modal" 
-                   data-target="#modal_login">Login</a>
-              </li>
-               
-              <li class="nav-item" style="padding-left: 25px; padding-right: 25px;">
-                <a href="/register"
-                   data-toggle="modal"
-                   data-target="#modal_register">Register</a>
-              </li>
-            </ul>
-        </div>
-    </div>
-  </nav>
-</div>-->
-<style>
-    @media (max-width: 991px) {
-        .navbar .navbar-nav {
-        display: inline-block;
-        float: none;
-        font-size: 25px;        
-        }
-
-        .navbar .navbar-collapse {
-             text-align:center;
-        }
-    }
-
-</style>
-
-<nav class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-          <a class="navbar-brand" href="/">Tasks Manager</a>
+<nav class="navbar navbar-toggleable-md navbar-inverse" 
+     role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+            Tasks Manager
+        </a>
         <button class="navbar-toggler navbar-toggler-right" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#lrNavbar" 
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+                type="button" 
+                data-toggle="collapse" 
+                data-target="#lrNavbar" 
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>          
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-ex1-collapse" id="lrNavbar">
-        
-        
-            <ul class="nav navbar-nav ml-auto">
-                {% if is_granted('ROLE_USER') %} 
-               <li class="nav-item">
-                <a href="/logout"
-                   data-toggle="modal" 
-                   data-target="#modal_logout">Logout</a>
-              </li> {% else %} 
-                
-              <li class="nav-item">
+    </div>
+    <div class="collapse navbar-collapse" 
+       id="lrNavbar">
+        <ul class="nav navbar-nav ml-auto">
+            {% if is_granted('ROLE_USER') %}
+            <li class="nav-item">
+                <a href="/application">
+                    Application
+                </a>
+            </li> 
+            <li class="nav-item nav-not-right">
+                <a href="/application/settings">
+                    Settings
+                </a>
+            </li> 
+            <li class="nav-item">
+                <a href="/logout">
+                    Logout
+                </a>
+            </li> 
+            {% else %} 
+            <li class="nav-item nav-not-right">
+                <a href="/register"
+                   data-toggle="modal"
+                   data-target="#modal_register">
+                    Register
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="/login"
                    data-toggle="modal" 
                    data-target="#modal_login">Login</a>
-              </li>
-               
-              <li class="nav-item" style="padding-left: 25px; padding-right: 25px;">
-                <a href="/register"
-                   data-toggle="modal"
-                   data-target="#modal_register">Register</a>
-              </li>
-              {% endif %}
-            </ul>
-      </div><!-- /.navbar-collapse -->
-    </nav>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
  

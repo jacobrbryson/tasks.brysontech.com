@@ -89,3 +89,17 @@ body, html {
     width:38px !important;
     height:38px !important;
 }
+
+.nav-not-right{
+    padding: 0 25px 0 25px; 
+}
+
+@media (max-width: 991px) {
+        .nav-item {
+            text-align:center;
+            display: inline-block;
+            float: none;
+            font-size: 25px;
+            padding:20px;
+        }
+    }
