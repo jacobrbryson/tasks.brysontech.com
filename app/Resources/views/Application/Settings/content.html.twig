@@ -1,0 +1,19 @@
+<div class="container-fluid bg-white text-black">
+    <div class="container ep-top-100">
+        <h4>
+            <span style="color:gray">Settings for</span> {{ app.user.username }}
+        </h4>
+        </br>
+        <div class="row">
+            <div class="col-md-6 ep-40" style="border: 1px solid black">
+                {% include 'Application/Settings/profile.html.twig' %}
+            </div>
+            <div class="col-md-6 ep-40" style="border: 1px solid black">
+                {% include 'Application/Settings/profile.html.twig' %}
+            </div>
+        </div>
+        <div class="row ep-top-100">
+            &nbsp;
+        </div>
+    </div>
+</div>
