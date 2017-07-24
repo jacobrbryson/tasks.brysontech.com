@@ -101,7 +101,7 @@ class AccountController extends Controller{
     }
     
      /**
-     * @Route("login/check-facebook", name="check-facebook")
+     * @Route("login/fb-login", name="facebook")
      */
     public function facebookLoginAction(Request $request)
     {
