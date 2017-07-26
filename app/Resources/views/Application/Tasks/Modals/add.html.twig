@@ -18,20 +18,13 @@
                     </span>
                 </button>
             </div>
-            <label class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">General</span>
-            </label>
-            <label class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Work</span>
-            </label>
-            <label class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Personal</span>
+            <label class="custom-control">
+                <select class="custom-select">
+                    <option selected>General</option>
+                      <option value="1">Work</option>
+                      <option value="2">Personal</option>
+                      <option value="3">Fitness</option>
+                </select>
             </label>
             <div class="modal-body">
                 {% include 'Application/Tasks/Forms/add_task.html.twig' %}
