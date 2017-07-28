@@ -194,6 +194,10 @@ class ApplicationController extends Controller{
                     'TeamName' => $TeamName
                 ]);
         }
+        
+        function getCategory($all = false, $id = 1){
+            //*...*// }
+        }
     
 }
 
