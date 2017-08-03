@@ -200,7 +200,7 @@ class ApplicationController extends Controller{
             try{
                 $em = $this->getDoctrine()->getManager();
                 $categories = $em->getRepository('AppBundle:Category')
-            ->findBy(array('name' => $this->getName()));
+            ->findByAll();
                 
             } catch (Exception $ex) {
 
