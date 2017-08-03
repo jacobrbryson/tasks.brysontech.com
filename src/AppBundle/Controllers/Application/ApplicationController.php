@@ -199,7 +199,7 @@ class ApplicationController extends Controller{
             $categories= array();
             try{
                 $em = $this->getDoctrine()->getManager();
-                $categories = $em->getRepository('AppBundle:Tasks')
+                $categories = $em->getRepository('AppBundle:categories')
             ->findBy(array('name' => $this->getName()));
                 
             } catch (Exception $ex) {
