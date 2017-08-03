@@ -20,7 +20,7 @@ class ApplicationController extends Controller{
         return $this->render('Application/Index/index.html.twig',
                 [
                     'tasks' => $this->getIncompleteTasksByUser(),
-                    'categories' => $this->getCategories()
+                    'categories' => $this->getCategory()
                 ]);
     }
     
@@ -205,7 +205,7 @@ class ApplicationController extends Controller{
                 $em = $this->getDoctrine()->getManager();
                 //have "categories" go to the AppBundle/Entity/categories.php for the "Category" class
                 $categories = $em->getRepository('AppBundle:Category')
-            ->findByAll();
+            ->FindAll();
                 //if the "try" doesn't work, then this will activate//
             } catch (Exception $ex) {
 
