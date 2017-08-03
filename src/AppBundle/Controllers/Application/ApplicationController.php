@@ -19,7 +19,8 @@ class ApplicationController extends Controller{
     {
         return $this->render('Application/Index/index.html.twig',
                 [
-                    'tasks' => $this->getIncompleteTasksByUser()
+                    'tasks' => $this->getIncompleteTasksByUser(),
+                    'categories' => $this->getCategories()
                 ]);
     }
     
