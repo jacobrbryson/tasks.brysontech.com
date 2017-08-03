@@ -196,7 +196,8 @@ class ApplicationController extends Controller{
         }
         
         function getCategory($all = false, $id = 1){
-            $categories=
+            $categories= array();
+            return $categories;
         }
     
 }
