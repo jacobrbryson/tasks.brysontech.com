@@ -198,6 +198,9 @@ class ApplicationController extends Controller{
         function getCategory($all = false, $id = 1){
             $categories= array();
             try{
+                $em = $this->getDoctrine()->getManager();
+                $categories = $em->getRepository('AppBundle:Tasks')
+            ->findBy(array('name' => $this->getName()));
                 
             } catch (Exception $ex) {
 
