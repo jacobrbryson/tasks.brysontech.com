@@ -197,6 +197,11 @@ class ApplicationController extends Controller{
         
         function getCategory($all = false, $id = 1){
             $categories= array();
+            try{
+                
+            } catch (Exception $ex) {
+
+            }
             return $categories;
         }
     
