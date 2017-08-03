@@ -196,15 +196,20 @@ class ApplicationController extends Controller{
         }
         
         function getCategory($all = false, $id = 1){
+            //set variable "categories" to an empty array; setting aside memory
             $categories= array();
+            //this tells the site to "try" this aspect of the function
             try{
+                //establish the connection to our database
                 $em = $this->getDoctrine()->getManager();
+                //have "categories" go to the AppBundle/Entity/categories.php for the "Category" class
                 $categories = $em->getRepository('AppBundle:Category')
             ->findByAll();
-                
+                //if the "try" doesn't work, then this will activate//
             } catch (Exception $ex) {
 
             }
+            //return the results of our variables categories 
             return $categories;
         }
     
