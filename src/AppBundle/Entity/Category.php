@@ -22,6 +22,11 @@ class Category{
     private $name;
     
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $userId;
+    
+    /**
      * Get id
      *
      * @return integer
@@ -45,6 +50,20 @@ class Category{
         return $this;
     }
     
+    /**
+     * Set userId
+     *
+     * @param string $userId
+     *
+     * @return Tasks
+     */
+    public function setuserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+    
      /**
      * Get name
      *
@@ -55,4 +74,13 @@ class Category{
         return $this->name;
     }
     
+    /**
+     * Get userId
+     *
+     * @return string
+     */
+    public function getuserId()
+    {
+        return $this->userId;
+    }
 }
