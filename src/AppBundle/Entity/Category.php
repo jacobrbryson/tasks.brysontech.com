@@ -57,7 +57,7 @@ class Category{
      *
      * @return Tasks
      */
-    public function setuserId($userId)
+    public function setUserId($userId)
     {
         $this->userId = $userId;
 
@@ -79,7 +79,7 @@ class Category{
      *
      * @return string
      */
-    public function getuserId()
+    public function getUserId()
     {
         return $this->userId;
     }
