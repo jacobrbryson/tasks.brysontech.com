@@ -203,7 +203,7 @@ class ApplicationController extends Controller{
             try{
                 //establish the connection to our database
                 $em = $this->getDoctrine()->getManager();
-                //have "categories" go to the AppBundle/Entity/categories.php for the "Category" class
+                //have "categories" go to the AppBundle/Entity/Category.php for the "Category" class
                 $categories = $em->getRepository('AppBundle:Category')
             ->FindAll();
                 //if the "try" doesn't work, then this will activate//
