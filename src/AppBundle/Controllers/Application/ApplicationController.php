@@ -205,7 +205,7 @@ class ApplicationController extends Controller{
                 $em = $this->getDoctrine()->getManager();
                 //have "categories" go to the AppBundle/Entity/Category.php for the "Category" class
                 $categories = $em->getRepository('AppBundle:Category')
-            ->FindBy(['userId' => $this->getUserId()]);
+            ->FindBy(['userId' => $this->getUser()->getId()]);
                 //if the "try" doesn't work, then this will activate//
             } catch (Exception $ex) {
 
