@@ -85,6 +85,14 @@ body, html {
     padding:40px;
 }
 
+.ep-20{
+    padding:20px;
+}
+
+.ep-10{
+    padding:10px;
+}
+
 .btn-tasks {
     width:38px !important;
     height:38px !important;
