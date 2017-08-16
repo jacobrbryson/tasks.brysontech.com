@@ -213,6 +213,21 @@ class ApplicationController extends Controller{
             //return the results of our variables categories 
             return $categories;
         }
+        
+        function addCategory(){
+            $newcategories=array();
+            $userId = $this->getUser()->getId();
+            try{
+                $em = $this->getDoctrine()->getManager();
+                $newcategories = new Category();
+                
+                $newcategories ->setName;
+                
+            } catch (Exception $ex) {
+
+            }
+            
+        }
     
 }
 
