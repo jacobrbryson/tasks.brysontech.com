@@ -221,7 +221,7 @@ class ApplicationController extends Controller{
                 $em = $this->getDoctrine()->getManager();
                 $newcategories = new Category();
                 
-                $newcategories ->setName;
+                $newcategories->setName();
                 
             } catch (Exception $ex) {
 
