@@ -17,6 +17,7 @@ class ApplicationController extends Controller{
      */
     public function applicationAction(Request $request)
     {
+        $this->addCategory("Put Your Name Here Justin");
         return $this->render('Application/Index/index.html.twig',
                 [
                     'tasks' => $this->getIncompleteTasksByUser(),
