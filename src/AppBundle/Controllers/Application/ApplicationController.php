@@ -214,7 +214,7 @@ class ApplicationController extends Controller{
             return $categories;
         }
         
-        function addCategory(){
+        function addCategory($name){
             $newcategories=array();
             $userId = $this->getUser()->getId();
             try{
@@ -224,7 +224,7 @@ class ApplicationController extends Controller{
                 $newcategories->setName($name);
                 $userId->setUserId($userId);
                 
-                $em->persist($newcategories, $userId);
+                $em->persist($newcategories);
                 $em->flush();
                 
             } catch (Exception $ex) {
