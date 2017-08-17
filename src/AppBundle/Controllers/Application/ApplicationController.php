@@ -234,6 +234,32 @@ class ApplicationController extends Controller{
             }
             
         }
+        //why is there no parameter needed here?
+        public function deleteCategory(){
+            
+            //initialize stuff we need
+                //this line retrieves the id of the current user
+            $userId = $this->getUser() ->getId();
+                //this line initializes $name by using the getName function from the Category entity
+            $name=$this->getName();
+            try{
+                //initializes the database connection
+                $em = $this->getDoctrine()->getManager();
+                //initializes the $currentcategories to go to the Category repository and find a category by 
+                //its name
+                $removeThisCategory = $em->getRepository('AppBundle:Category')
+                     ->findOneBy(array('name' => $name));
+                
+                //tells our database to remove the named category and to apply the changes 
+                $em->remove($removeThisCategory);
+                $em->flush();
+                
+                
+            } catch (Exception $ex) {
+
+            }
+            
+        }
     
 }
 
