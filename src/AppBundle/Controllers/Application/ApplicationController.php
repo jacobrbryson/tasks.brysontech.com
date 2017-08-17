@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Tasks;
+use AppBundle\Entity\Category;
 use AppBundle\Entity\TasksPoints;
 
 class ApplicationController extends Controller{
@@ -222,8 +223,8 @@ class ApplicationController extends Controller{
                 $em = $this->getDoctrine()->getManager();
                 $newcategories = new Category();
                 
-                $newcategories->setName($name);
-                $userId->setUserId($userId);
+                $newcategories->setName($name)
+                              ->setUserId($userId);
                 
                 $em->persist($newcategories);
                 $em->flush();
