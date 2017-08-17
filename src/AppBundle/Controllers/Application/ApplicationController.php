@@ -19,7 +19,7 @@ class ApplicationController extends Controller{
     public function applicationAction(Request $request)
     {
         $this->addCategory("Put Your Name Here Justin");
-        $this->deleteCategory("7");
+        $this->deleteCategory("6");
         return $this->render('Application/Index/index.html.twig',
                 [
                     'tasks' => $this->getIncompleteTasksByUser(),
@@ -237,19 +237,11 @@ class ApplicationController extends Controller{
         }
         //the parameter used here will be the one used by the function to identify which category to delete
         public function deleteCategory($categoryId){
-            
-            //initialize stuff we need
-                //this line retrieves the id of the current user
-            $userId = $this->getUser() ->getId();
-                //this line initializes $categoryId by using the getId function from the Category entity
-            //$categoryId=$this->getId();
             try{
                 //initializes the database connection
                 $em = $this->getDoctrine()->getManager();
                 //initializes the $removeThisCategory to go to the Category repository and find a category by 
                 //its id.
-                    //Question...is 'id' the way that $categoryId gets a value which in turn makes 
-                    //$removeThisCategory have a value?
                 $removeThisCategory = $em->getRepository('AppBundle:Category')
                      ->findOneBy(array('id' => $categoryId));
                 
