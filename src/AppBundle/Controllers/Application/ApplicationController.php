@@ -19,7 +19,7 @@ class ApplicationController extends Controller{
     public function applicationAction(Request $request)
     {
         $this->addCategory("Put Your Name Here Justin");
-        $this->deleteCategory("6");
+        $this->deleteCategory("8");
         return $this->render('Application/Index/index.html.twig',
                 [
                     'tasks' => $this->getIncompleteTasksByUser(),
@@ -217,6 +217,10 @@ class ApplicationController extends Controller{
             return $categories;
         }
         
+        /**
+        * @Route("/tasks/addCategory", name="/tasks/addCategory")
+        * @Method("POST")
+        */
         function addCategory($name){
             $newcategories=array();
             $userId = $this->getUser()->getId();
