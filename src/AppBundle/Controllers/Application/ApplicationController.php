@@ -222,7 +222,6 @@ class ApplicationController extends Controller{
         * @Method("POST")
         */
         public function addCategory(){
-            $newcategories=array();
             $name  = isset($_POST['name']) ? $_POST['name'] : false;            
             $userId = $this->getUser()->getId();
             try{
