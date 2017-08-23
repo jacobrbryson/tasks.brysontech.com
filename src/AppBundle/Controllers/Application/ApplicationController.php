@@ -223,7 +223,7 @@ class ApplicationController extends Controller{
         */
         public function addCategory(){
             $newcategories=array();
-            parse_str($_POST['data'], $name);            
+            $name  = isset($_POST['name']) ? $_POST['name'] : false;            
             $userId = $this->getUser()->getId();
             try{
                 $em = $this->getDoctrine()->getManager();
