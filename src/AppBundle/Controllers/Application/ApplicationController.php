@@ -18,8 +18,8 @@ class ApplicationController extends Controller{
      */
     public function applicationAction(Request $request)
     {
-        $this->addCategory("Put Your Name Here Justin");
-        $this->deleteCategory("8");
+        //$this->addCategory("Put Your Name Here Justin");
+        //$this->deleteCategory("8");
         return $this->render('Application/Index/index.html.twig',
                 [
                     'tasks' => $this->getIncompleteTasksByUser(),
@@ -221,8 +221,9 @@ class ApplicationController extends Controller{
         * @Route("/tasks/addCategory", name="/tasks/addCategory")
         * @Method("POST")
         */
-        function addCategory($name){
+        public function addCategory(){
             $newcategories=array();
+            parse_str($_POST['data'], $name);            
             $userId = $this->getUser()->getId();
             try{
                 $em = $this->getDoctrine()->getManager();
