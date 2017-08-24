@@ -84,3 +84,7 @@ function showNote(type) {
 function addCategory(){
     console.log("calling add category");
 }
+
+function deleteCategory(){
+    console.log("calling delete category");
+}
