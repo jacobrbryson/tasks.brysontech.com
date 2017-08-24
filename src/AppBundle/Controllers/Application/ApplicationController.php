@@ -19,7 +19,7 @@ class ApplicationController extends Controller{
     public function applicationAction(Request $request)
     {
         //$this->addCategory("Put Your Name Here Justin");
-        //$this->deleteCategory("8");
+        //$this->deleteCategory("13");
         return $this->render('Application/Index/index.html.twig',
                 [
                     'tasks' => $this->getIncompleteTasksByUser(),
@@ -240,7 +240,9 @@ class ApplicationController extends Controller{
             
         }
         //the parameter used here will be the one used by the function to identify which category to delete
-        public function deleteCategory($categoryId){
+        public function deleteCategory(){
+            $categoryId = isset($_POST['category_id']) ? $_POST['category_id'] : false;
+                    
             try{
                 //initializes the database connection
                 $em = $this->getDoctrine()->getManager();
