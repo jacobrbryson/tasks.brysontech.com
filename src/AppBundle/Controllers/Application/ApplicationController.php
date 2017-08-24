@@ -240,6 +240,10 @@ class ApplicationController extends Controller{
             
         }
         //the parameter used here will be the one used by the function to identify which category to delete
+        /**
+         * @Route ("/tasks/deleteCategory", name="/tasks/deleteCategory")
+         * @Method("POST")
+         */
         public function deleteCategory(){
             $categoryId = isset($_POST['category_id']) ? $_POST['category_id'] : false;
                     
