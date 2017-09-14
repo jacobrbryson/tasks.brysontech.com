@@ -27,7 +27,7 @@ function addCategory(){
         type: "POST",
         dataType: "json",
         url: "/tasks/addCategory",
-        data: {aCat: $name  = isset($_POST['name']) ? $_POST['name'] : false;},
+        data: {name: "Name of Category"},
         success: function(response) {
             alert("This Works");
         },
