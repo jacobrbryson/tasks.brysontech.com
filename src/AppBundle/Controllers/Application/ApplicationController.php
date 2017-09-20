@@ -18,12 +18,10 @@ class ApplicationController extends Controller{
      */
     public function applicationAction(Request $request)
     {
-        //$this->addCategory("Put Your Name Here Justin");
-        //$this->deleteCategory("13");
+        
         return $this->render('Application/Index/index.html.twig',
                 [
-                    'tasks' => $this->getIncompleteTasksByUser(),
-                    'categories' => $this->getCategory()
+                    'tasks' => $this->getIncompleteTasksByUser(),                    
                 ]);
     }
     
