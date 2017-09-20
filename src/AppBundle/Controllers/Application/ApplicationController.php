@@ -237,7 +237,7 @@ class ApplicationController extends Controller{
             } catch (Exception $ex) {
 
             }
-            
+            return new Response(json_encode("Added"));
         }
         //the parameter used here will be the one used by the function to identify which category to delete
         /**
