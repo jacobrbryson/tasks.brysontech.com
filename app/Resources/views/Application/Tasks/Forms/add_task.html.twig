@@ -40,6 +40,7 @@
         Select a Category:
         <label class="custom-control">
             <select class="custom-select">
+                <option value="0">General</option>
                 {% for cat in categories %}
                     <option>{{ cat.name|e }}</option>
                 {%endfor%}
