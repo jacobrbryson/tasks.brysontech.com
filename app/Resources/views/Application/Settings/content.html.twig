@@ -16,17 +16,27 @@
     <div>
         <form id="add_category_form" action="/tasks/addCategory" method="post">
             Input Category Name: 
-            <input type="text" name="categoryName">
-            <button type="button" class="btn btn-primary"
-                    onclick="addCategory();">
+            <input type="text" name="name">
+            <button type="submit" class="btn btn-primary">
                 Add Category
             </button>
         </form>
     </div>
-        <button type="button" class="btn btn-primary"
-                onclick="deleteCategory();">
-            Delete Category
-        </button>
+    <div>
+        <form id="delete_category_form" action="/tasks/addCategory" method="post">
+            Choose a Category to Delete:
+            <label class="custom-control">
+                <select class="custom-select">
+                    {% for cat in categories %}
+                        <option>{{ cat.name|e }}</option>
+                    {%endfor%}
+                </select>
+            </label>
+            <button type="submit" class="btn btn-primary">
+                Delete Category
+            </button>
+        </form>
+    </div>
             <script>
 
 }

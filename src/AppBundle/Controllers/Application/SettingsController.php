@@ -41,4 +41,26 @@ class SettingsController extends Controller{
             }
             return new Response(json_encode("Added"));
         }
+        
+        public function deleteCategory(){
+            $categoryId = isset($_POST['category_id']) ? $_POST['category_id'] : false;
+                    
+            try{
+                //initializes the database connection
+                $em = $this->getDoctrine()->getManager();
+                //initializes the $removeThisCategory to go to the Category repository and find a category by 
+                //its id.
+                $removeThisCategory = $em->getRepository('AppBundle:Category')
+                     ->findOneBy(array('id' => $categoryId));
+                
+                //tells our database to remove the named category and to apply the changes 
+                $em->remove($removeThisCategory);
+                $em->flush();
+                
+                
+            } catch (Exception $ex) {
+
+            }
+            
+        }
 }
