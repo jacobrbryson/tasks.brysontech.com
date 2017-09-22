@@ -14,7 +14,7 @@ addCategoryForm.addEventListener('submit', function(e){
 });
 
 function addCategory(){
-    $data = $("#form_add_task").serialize();
+    $data = $("#add_category_form").serialize();
     
     $.ajax({
         type: "POST",
