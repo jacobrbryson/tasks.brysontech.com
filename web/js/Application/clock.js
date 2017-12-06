@@ -48,6 +48,7 @@ function fixMonth(M){
         'July',
         'Aug',
         'Sept',
+        'Oct',
         'Nov',
         'Dec'
     ];
