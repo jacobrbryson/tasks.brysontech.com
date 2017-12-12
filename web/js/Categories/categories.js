@@ -13,7 +13,7 @@ function addCategory(){
         dataType: "json",
         url: "/tasks/addCategory",
         data: {name: categoryName},
-        success: function(categoryName) {
+        success: function(addCategory) {
            alert("Category " + categoryName + " has been added");
         }
         /*error: function(){

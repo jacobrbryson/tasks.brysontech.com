@@ -62,6 +62,9 @@ class SettingsController extends Controller{
             return new Response(json_encode("Added"));
         }
         
+        /** @Route("/tasks/deleteCategory", name="/tasks/deleteCategory")
+         *  @Method ("POST")
+         */
         public function deleteCategory(){
             $categoryId = isset($_POST['category_id']) ? $_POST['category_id'] : false;
                     

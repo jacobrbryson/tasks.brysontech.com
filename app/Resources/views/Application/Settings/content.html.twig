@@ -16,14 +16,14 @@
     <div>
         <form id="add_category_form" action="/tasks/addCategory" method="post">
             Input Category Name: 
-            <input id="name" type="text" name="name">
+            <input id="categoryName" type="text" name="name">
             <button id="add_category_btn" type="submit" class="btn btn-primary">
                 Add Category
             </button>
         </form>
     </div>
     <div>
-        <form id="delete_category_form" action="/tasks/addCategory" method="post">
+        <form id="delete_category_form" action="/tasks/deleteCategory" method="post">
             Choose a Category to Delete:
             <label class="custom-control">
                 <select class="custom-select">
