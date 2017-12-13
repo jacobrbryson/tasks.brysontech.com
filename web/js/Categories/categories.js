@@ -1,5 +1,6 @@
 var addCategoryForm = document.getElementById("add_category_form");
-var categoryName = document.getElementById("name").value;
+var categoryName = document.getElementById("categoryName").value;
+var value = document.getElementById("categoryDropDown").value;
 addCategoryForm.addEventListener('submit', function(e){
     e.preventDefault();
     addCategory();
@@ -28,7 +29,7 @@ function deleteCategory(){
         type: "POST",
         dataType: "json",
         url: "/tasks/deleteCategory",
-        data: {name: "Name of Category"},
+        data: {id: value},
         success: function(response) {
             alert("This Works");
         }
