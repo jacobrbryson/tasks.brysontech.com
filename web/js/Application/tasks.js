@@ -80,3 +80,11 @@ function showNote(type) {
     note.innerHTML = text;
     note.classList.toggle("show");
 }
+
+function addCategory(){
+    console.log("calling add category");
+}
+
+function deleteCategory(){
+    console.log("calling delete category");
+}

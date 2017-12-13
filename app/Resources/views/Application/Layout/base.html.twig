@@ -46,14 +46,16 @@
         {% include 'Application/Layout/navbar.html.twig' %}
         {% block body %}{% endblock %}
         {% block javascripts %}
-          <script src="js/jquery.min.js"></script>
+          <script src="{{ asset('/js/jquery.min.js') }}"></script>
           <script src="js/tether.min.js"></script>
           <script src="js/bootstrap.min.js"></script>
           <script src="js/Application/Tasks/moment.min.js"></script>  
           <script src="js/Application/Tasks/datetimepicker.min.js"></script>
           <script src="js/Application/Tasks/add_task.js"></script>
           <script src="js/Application/Tasks/edit_task.js"></script>
+          <script src="js/Application/tasks.js"></script>
           <script src="{{ asset('/js/Application/clock.js') }}"></script>
+          <script src="{{ asset('/js/Categories/categories.js') }}"></script>
         {% endblock %}
     </body>
 </html>
