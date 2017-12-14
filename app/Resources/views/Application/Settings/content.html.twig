@@ -34,12 +34,22 @@
             </label>
             <button type="submit" class="btn btn-primary">
                 Delete Category
-                
             </button>
         </form>
     </div>
                   
 <script>
+
+    //first we'll make a form object and use that to capture the submit...
+    deleteForm = document.getElementById("delete_category_form");
+
+    //add an event listener to the form that listens for submit
+    deleteForm.addEventListener("submit", function(e){
+        //prevents the form from going to the action ... /tasks/deleteCategory
+        e.preventDefault();
+        //maybe this will work???
+        console.log(deleteForm.categoryDropDown.value);
+    });
 
 
 function deleteCategory(){
