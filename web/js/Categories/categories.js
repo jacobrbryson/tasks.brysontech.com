@@ -25,6 +25,7 @@ function addCategory(){
 };
 
 function deleteCategory(){
+    console.log(document.getElementById("categoryDropDown").value);
     $.ajax({
         type: "POST",
         dataType: "json",
