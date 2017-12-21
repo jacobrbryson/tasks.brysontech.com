@@ -28,4 +28,12 @@ class AdminController extends Controller{
         
         return $emails;
     }
+    
+    /**
+     * @Route ("/admin/users", name="users")
+     */
+    public function adminUsersAction(Request $request)
+    {
+        return $this->render('Admin/Users/index.html.twig');
+    }
 }
