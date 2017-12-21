@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            Send test email
+        </h4>
+        <div class="col-md-4">
+            <form id="form_send_email" class="form-vertical" method="POST" action="admin/email/sendFromForm">
+                <div class="form-group">
+                    <label for="email_list">
+                        Email:
+                    </label>
+                    <select id="email_list" class="form-control">
+                        {% for email in emails %}
+                            <option id="{{email.id}}">
+                                {{email.name}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <label for="email_recipient">
+                        To:
+                    </label>
+                    <input type="text" id="email_recipient" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    Send Email
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="email-content">
+            {% include 'Emails/test.html.twig' %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                Tasks Admin Page
+            {% endblock %}
+        </title>
+        
+        {% block meta %}
+            <meta charset="UTF-8" />
+            <meta name="author"         content="Ross Bryson">
+            <meta name="viewport"       content="width=device-width" />
+        {% endblock %}
+        <link rel="icon" 
+              type="image/x-icon" 
+              href="{{ asset('images/icons/favicon.ico') }}" />
+        {% block stylesheets %}
+            <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/bootstrap.min.css') }}">
+            <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/light-bootstrap-dashboard.css') }}">
+            <link rel="stylesheet" 
+                  type="text/css" 
+                  href="{{ asset('css/font-awesome.min.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        <div class="wrapper">
+            {% include 'Admin/Layout/sidebar.html.twig' %}
+            <div class="main-panel">
+                {% include 'Admin/Layout/nav.html.twig' %}
+                <div class="content">
+                    {% block body %}{% endblock %}
+                    {% include 'Admin/Layout/footer.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </body>
+    
+        
+    {% block javascripts %}
+
+    {% endblock %}
+</html>

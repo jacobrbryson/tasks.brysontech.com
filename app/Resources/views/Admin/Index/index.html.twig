@@ -1,38 +1,5 @@
-<h1>
-    Hello Admin
-</h1>
-<i>
-    Add Bootstrap and template ect...
-</i>
-<div class="row">
-    <div class="col-md-12">
-        <form id="form_send_email" class="form-inline" method="POST" action="admin/email/sendFromForm">
-            <div class="form-group">
-                <label for="email_list">
-                    Email:
-                </label>
-                <select id="email_list" class="form-control">
-                    {% for email in emails %}
-                        <option id="{{email.id}}">
-                            {{email.name}}
-                        </option>
-                    {% endfor %}
-                </select>
-                <label for="email_recipient">
-                    To:
-                </label>
-                <input type="text" id="email_recipient" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-success">
-                Send Email
-            </button>
-        </form>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div id="email-content">
-            {% include 'Emails/test.html.twig' %}
-        </div>
-    </div>
-</div>
+{% extends 'Admin/Layout/base.html.twig' %}
+
+{% block body %}
+    {% include 'Admin/Index/content.html.twig' %}
+{% endblock %}

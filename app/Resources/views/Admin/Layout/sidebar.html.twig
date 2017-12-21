@@ -1,0 +1,26 @@
+<div class="sidebar" data-color="black">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="/admin" class="simple-text">
+                BT Administration
+            </a>
+        </div>
+                <ul class="nav">
+            <li {% if (path(app.request.attributes.get('_route'),
+                    app.request.attributes.get('_route_params'))) == '/admin' %}class="active"{% endif %}>
+                <a href="/admin">
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <hr />
+            <li {% if (path(app.request.attributes.get('_route'),
+                    app.request.attributes.get('_route_params'))) == '/application/users' %}class="active"{% endif %}>
+                <a href="/admin/users">
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    <p>Users</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
