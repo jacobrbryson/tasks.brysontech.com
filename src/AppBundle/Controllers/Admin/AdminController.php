@@ -12,6 +12,20 @@ class AdminController extends Controller{
      */
     public function adminAction(Request $request)
     {
+        return $this->render('Admin/Index/index.html.twig',
+                [
+                    'emails' => $this->getEmails()
+                ]);
+    }
+    
+    private function getEmails(){
+        $emails = Array(
+            Array(
+                'id' => 0,
+                'name' => "Select Email"
+            )
+        );
         
+        return $emails;
     }
 }

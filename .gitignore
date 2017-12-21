@@ -16,3 +16,4 @@
 /web/bundles/
 /web/videos/
 /composer.phar
+/web/app_dev.php
