@@ -9,6 +9,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity
  * @ORM\Table(name="brysontech1.bt_users")
+ * @ORM\AttributeOverrides({
+ *  @ORM\AttributeOverride(
+ *      name="salt",
+ *      column=@ORM\Column(name="salt", type="string", nullable=true)
+ *      )
+ *  })
  * @UniqueEntity(fields="email", message="Email already taken")
  * @UniqueEntity(fields="username", message="Username already taken")
  */
