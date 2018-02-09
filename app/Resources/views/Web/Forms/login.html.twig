@@ -19,11 +19,6 @@
             <br />
             <div class="text-center">{{ message }}</div>
         {% endif %}
-        {% if error is defined and error is not null and message is not defined %}
-            <br />
-            <br />
-            <div class="text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
   </div>
 </form>
 <div class="row ep-top-20">
