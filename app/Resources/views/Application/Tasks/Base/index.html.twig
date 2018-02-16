@@ -4,7 +4,8 @@
     {% for category in tasks %}
     <li class="nav-item">
         <a class="nav-link{% if loop.first %} active{% endif %}" 
-            data-toggle="tab" 
+            data-toggle="tab"
+            data-target="#{{category.id}}"  
             href="#{{category.id}}" 
             role="tab"
             aria-controls="{{category.id}}" 
