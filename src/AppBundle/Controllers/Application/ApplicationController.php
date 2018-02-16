@@ -18,15 +18,38 @@ class ApplicationController extends Controller{
     public function applicationAction(Request $request)
     {
         return $this->render('Application/Index/index.html.twig',
-                [
-                    'tasks' => $this->getIncompleteTasksByUser()
-                ]);
+            [
+                'tasks' => $this->getIncompleteTasksByUser()
+            ]);
     }
     
     private function getIncompleteTasksByUser(){
         $em = $this->getDoctrine()->getManager();
-        $tasks = $em->getRepository('AppBundle:Tasks')
+
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT DISTINCT(t.categoryId), c.name FROM tasks t JOIN categories c ON t.categoryId = c.Id WHERE owner = :owner AND complete = 0");
+        $statement->bindValue('owner', $this->getUser()->getId());
+        $distictCategories = $statement->execute();
+
+        $tasks = Array();
+        $task = Array();
+
+        if(!empty($distictCategoryIds)){
+            //loop over them to create the tasks array
+            foreach($distictCategories as $category){
+                $task['category']   = category.name;
+                $task['id']   = category.categoryId;
+                $task['tasks']      = $em->getRepository('AppBundle:Tasks')
+                ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0, 'categoryId' => $category.categoryId));
+                $tasks[] = $task;
+            }
+        }else{
+            $task['category']   = "Default";
+            $task['id']         = "1";
+            $task['tasks']      = $em->getRepository('AppBundle:Tasks')
             ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0));
+            $tasks[] = $task;
+        }
         
         return $tasks;
     }   
@@ -174,26 +197,5 @@ class ApplicationController extends Controller{
         //last, return results
         return new Response(json_encode($results));
     }  
-        /**
-         * @Route("/application/teams", name="application/teams")
-         */
-        public function teamsAction(){
-            
-            return $this->render('Application/Teams/Index/index.html.twig');
-        }
-        
-        /**
-         * @Route("/application/teams/addteam", name="application/teams/addteam")
-         */
-        public function AddTeamAction(){
-            $TeamName  = isset($_POST['TeamName']) ? $_POST['TeamName'] : false;
-            
-            return $this->render('Application/Teams/AddTeam.html.twig',
-                    [
-                        
-                    'TeamName' => $TeamName
-                ]);
-        }
-    
 }
 

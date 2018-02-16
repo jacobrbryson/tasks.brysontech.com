@@ -50,4 +50,52 @@ class User extends BaseUser
      * @ORM\Column(name="google_id", type="string", nullable=true)
      */
     private $googleID;
+
+    /**
+     * Set facebookID.
+     *
+     * @param string|null $facebookID
+     *
+     * @return User
+     */
+    public function setFacebookID($facebookID = null)
+    {
+        $this->facebookID = $facebookID;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookID.
+     *
+     * @return string|null
+     */
+    public function getFacebookID()
+    {
+        return $this->facebookID;
+    }
+
+    /**
+     * Set googleID.
+     *
+     * @param string|null $googleID
+     *
+     * @return User
+     */
+    public function setGoogleID($googleID = null)
+    {
+        $this->googleID = $googleID;
+
+        return $this;
+    }
+
+    /**
+     * Get googleID.
+     *
+     * @return string|null
+     */
+    public function getGoogleID()
+    {
+        return $this->googleID;
+    }
 }
