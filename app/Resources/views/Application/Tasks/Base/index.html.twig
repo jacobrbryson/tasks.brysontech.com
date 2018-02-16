@@ -9,7 +9,7 @@
             role="tab"
             aria-controls="{{category.id}}" 
             aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
-            {{category.category}}
+            {{category.category}} ({{category.tasks|length}})
         </a>
     </li>
     {% endfor %}
