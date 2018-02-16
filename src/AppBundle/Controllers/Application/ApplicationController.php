@@ -29,12 +29,13 @@ class ApplicationController extends Controller{
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT DISTINCT(t.categoryId), c.name FROM tasks t JOIN categories c ON t.categoryId = c.Id WHERE owner = :owner AND complete = 0");
         $statement->bindValue('owner', $this->getUser()->getId());
-        $distictCategories = $statement->execute();
+        $statement->execute();
+        $distictCategories =$statement->fetchAll();
 
         $tasks = Array();
         $task = Array();
 
-        if(!empty($distictCategoryIds)){
+        if(!empty($distictCategories)){
             //loop over them to create the tasks array
             foreach($distictCategories as $category){
                 $task['category']   = category.name;

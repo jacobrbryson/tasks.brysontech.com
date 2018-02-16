@@ -59,7 +59,7 @@ class Tasks{
     /**
      * @ORM\Column(type="integer")
      */
-    private $categoryId = 1;
+    private $categoryId = 0;
     
     /**
      * Get id
