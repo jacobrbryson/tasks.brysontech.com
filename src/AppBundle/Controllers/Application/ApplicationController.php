@@ -27,7 +27,7 @@ class ApplicationController extends Controller{
         $em = $this->getDoctrine()->getManager();
 
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT DISTINCT(t.categoryId) as 'categoryId', c.name as 'name' FROM tasks t JOIN categories c ON t.categoryId = c.Id WHERE owner = :owner AND complete = 0");
+        $statement = $connection->prepare("SELECT DISTINCT(t.categoryId) as 'categoryId', c.name as 'name' FROM tasks t JOIN categories c ON t.categoryId = c.Id WHERE owner = :owner AND complete = 0 ORDER BY categoryId asc");
         $statement->bindValue('owner', $this->getUser()->getId());
         $statement->execute();
         $distictCategories = $statement->fetchAll();
