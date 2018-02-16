@@ -6,16 +6,18 @@
         <a class="nav-link{% if loop.first %} active{% endif %}" 
             data-toggle="tab" 
             href="#{{category.id}}" 
-            role="tab">
+            role="tab"
+            aria-controls="{{category.id}}" 
+            aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
             {{category.category}}
         </a>
     </li>
     {% endfor %}
 </ul>
-<div class="tab-content">
+<div class="tab-content" id="tab_content">
     {% for category in tasks %}
-    <div id="{{category.id}}" class="tab-pane fade{% if loop.first %} in active{% endif %}" role="tabpanel">
-        <table class="table" id="tableTasks">
+    <div id="{{category.id}}" class="tab-pane fade{% if loop.first %} show active{% endif %}" role="tabpanel">
+        <table class="table table-striped" id="tableTasks">
             <thead>
                 <th style="width:75%">
                     Descriptions

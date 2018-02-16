@@ -1,3 +1,7 @@
+body{
+    color:#FFF !important;
+}
+
 .ep-top-40{
     padding-top:40px;
 }
@@ -15,7 +19,6 @@
     border-radius: 6px;
     padding: 8px 0;
 }
-
 
 /* Toggle this class - hide and show the popup */
 .show {
