@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="user_categories")
  */
-class Categories{
+class USer_Categories{
     /**
      * @ORM\Column(type="integer")
      */
