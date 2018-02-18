@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var editTaskForm = document.getElementById("form_edit_task");
+    /* var editTaskForm = document.getElementById("form_edit_task");
     var editTaskBtn = document.getElementById("btn_edit_task");
 
     editTaskBtn.addEventListener('click', function(e){
@@ -7,9 +7,9 @@ $(document).ready(function () {
         $("#modal_edit_task").modal();
         $("#start_date_time").val(Math.round(new Date().getTime()/1000.0));
         $("#end_date_time").val(Math.round(new Date().getTime()/1000.0) + 86400);
-    });
+    }); */
 
-    editTaskForm.addEventListener('submit', function(e){
+    /* editTaskForm.addEventListener('submit', function(e){
         e.preventDefault();
         description = this.description.value;
 
@@ -21,8 +21,16 @@ $(document).ready(function () {
         } else {
             alert("Please enter a description for your task.");
         }
+    }); */
+
+    $(".nav-link").on("click", function(e){
+        $(".categories").collapse("toggle");
+        //$("#categories_toggler").show();
     });
 
+/*     $("#categories_toggler").on("click", function(){
+        $("#categories_toggler").hide();
+    }); */
     function validateTask(description, points){
         isNumber = !isNaN(points);
         if(description === ""){
