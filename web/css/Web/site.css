@@ -108,5 +108,6 @@ body, html {
             display: inline-block;
             float: none;
             font-size: 25px;
+            padding:5px;
         }
     }
