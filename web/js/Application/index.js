@@ -106,9 +106,8 @@ function addTask(){
         success: function(response) {
             $("#form_add_task")[0].reset();
             $("#modal_add_task").modal('toggle');
-            $("#table_tasks_" + $("#form_add_task")
-                .find("#category").val() + " tr:last")
-                .after("<tr id='tasks-tr-" + response.task_id + "'><td>" + 
+            $("#table_tasks_" + category_id)
+                .append("<tr id='tasks-tr-" + response.task_id + "'><td>" + 
                 description + "</td><td class='text-center'>0</td><td class='td-actions text-right'><div class='hidden-lg-up text-center'><button type='button'  data-toggle='collapse' data-target='.task-" + 
                 response.task_id + "' class='btn btn-secondary btn-simple btn-sm btn-tasks'><i class='fa fa-plus-circle' aria-hidden='true'></i></button></div><div class='hidden-md-down'><button type='button' onclick='editTask(" + 
                 response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-sm btn-tasks'><i class='fa fa-pencil' aria-hidden='true'></i></button>&nbsp;<button type='button' onclick='completeTask(" + 
