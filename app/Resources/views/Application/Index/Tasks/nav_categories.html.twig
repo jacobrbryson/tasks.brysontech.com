@@ -5,7 +5,7 @@
     <div class="navbar-collapse collapse categories">
         <ul class="navbar-nav nav nav-tabs" role="tablist">
             {% for category in tasks %}
-            <li class="nav-item">
+            <li class="nav-item" id="category_tab_{{category.id}}">
                 <a class="nav-link{% if loop.first %} active{% endif %}" 
                     data-toggle="tab"
                     data-target="#{{category.id}}"  
@@ -13,7 +13,7 @@
                     role="tab"
                     aria-controls="{{category.id}}" 
                     aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
-                    {{category.category}} ({{category.tasks|length}})
+                    {{category.category}} (<span id="tasks_category_id_{{category.id}}">{{category.tasks|length}}</span>)
                 </a>
             </li>
             {% endfor %}

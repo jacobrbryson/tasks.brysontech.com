@@ -49,16 +49,16 @@
         
         {% include 'Application/Layout/notification.html.twig' %}
         
+        <script src="{{ asset('/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('/js/tether.min.js') }}"></script>
+        <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('/js/Application/moment.min.js') }}"></script>
+        <script src="{{ asset('/js/Application/datetimepicker.min.js') }}"></script>
+        <script src="{{ asset('/js/Application/site.js') }}"></script>
+        <script src="{{ asset('/js/Application/clock.js') }}"></script>
         {% block javascripts %}
-          <script src="{{ asset('/js/jquery.min.js') }}"></script>
-          <script src="{{ asset('/js/tether.min.js') }}"></script>
-          <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-
-          <script src="{{ asset('/js/Application/moment.min.js') }}"></script>
-          <script src="{{ asset('/js/Application/datetimepicker.min.js') }}"></script>
-          <script src="{{ asset('/js/Application/site.js') }}"></script>
-          <script src="{{ asset('/js/Application/clock.js') }}"></script>
         {% endblock %}
+        
     </body>
 </html>
 

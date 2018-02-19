@@ -3,3 +3,6 @@
 {% block body %}
     {% include 'Application/Index/content.html.twig' %}
 {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('/js/Application/index.js') }}"></script>
+{% endblock %}

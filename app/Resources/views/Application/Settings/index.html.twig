@@ -3,3 +3,6 @@
 {% block body %}
     {% include 'Application/Settings/content.html.twig' %}
 {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('/js/Application/settings.js') }}"></script>
+{% endblock %}

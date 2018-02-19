@@ -56,7 +56,7 @@ class ApplicationController extends Controller{
     }   
     
     /**
-     * @Route("/tasks/addTask", name="/tasks/addTask")
+     * @Route("/tasks/add", name="/tasks/add")
      * @Method("POST")
      */
     public function addTask(){
@@ -197,6 +197,30 @@ class ApplicationController extends Controller{
         
         //last, return results
         return new Response(json_encode($results));
-    }  
+    }
+    
+    /**
+     * @Route("/tasks/getCategories", name="/tasks/getCategories")
+     * @Method("POST")
+     */
+    public function getCategories(){
+        $results = Array(
+            'result'    => 0,
+            'message'   => 'no message.',
+            'data'      => Array(
+                Array('id' => 1,
+                    'name'  => 'test')
+            )
+        );
+        
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.categoryId");
+
+        $results['data'] = $statement->fetchAll();
+        
+        return new Response(json_encode($results));
+    }
+    
 }
 
