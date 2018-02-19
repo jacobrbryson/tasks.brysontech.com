@@ -1,3 +1,25 @@
+//runs on JS load and put the current categories in the select boxes.
+getCategories();
+function getCategories(){
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/tasks/getCategories",
+        success: function(response) {
+            populateCategories(response.data);
+        },
+        error: function(){
+            popup("Ajax Error - Refresh and try again.");
+        }
+    });
+}
+
+function populateCategories(categories){
+    for(i=0;i<categories.length;i++){
+        $('#category').append($('<option>', {value:categories[i].id, text:categories[i].name}));
+    }
+}
+
 function completeTask(taskid){
     $("#tasks-tr-" + taskid).remove();
     $("#tasks-tr-m-" + taskid).remove();
