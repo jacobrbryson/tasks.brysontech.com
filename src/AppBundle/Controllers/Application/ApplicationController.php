@@ -216,7 +216,7 @@ class ApplicationController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.categoryId WHERE uc.userID = " . $this->getUser()->getId());
-
+        $statement->execute();
         $results['data'] = $statement->fetchAll();
         
         return new Response(json_encode($results));
