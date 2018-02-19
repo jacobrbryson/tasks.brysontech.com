@@ -1,3 +1,40 @@
+function completeTask(taskid){
+    $("#tasks-tr-" + taskid).remove();
+    $("#tasks-tr-m-" + taskid).remove();
+    
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/tasks/completeTask",
+        data: {task_id: taskid},
+        success: function(response) {
+            popup(response.message);
+        },
+        error: function(){
+            popup("Ajax Error - Refresh and try again.");
+        }
+    });
+}
+
+function deleteTask(taskid){
+    console.log("Delete TaskId: " + taskid);
+    $("#tasks-tr-" + taskid).remove();
+    $("#tasks-tr-m-" + taskid).remove();
+                
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/tasks/deleteTask",
+        data: {task_id: taskid},
+        success: function(response) {
+            popup(response.message);
+        },
+        error: function(){
+            popup("Ajax Error - Refresh and try again.");
+        }
+    });
+}
+
 var addTaskForm = document.getElementById("form_add_task");
 var addTaskBtn = document.getElementById("btn_add_task");
     
@@ -37,7 +74,8 @@ function validateNewTask(description, points){
 
 function addTask(){
     $data = $("#form_add_task").serialize();
-    var temp_id = Math.floor((Math.random() * 1000000) + 1);;
+    var temp_id = Math.floor((Math.random() * 1000000) + 1);
+    var category_id = $("#form_add_task").find("#category");
     
     addTaskForm.reset();
     $("#tableTasks tr:last").after("<tr id='tasks-tr-" + temp_id + "'><td>" + description + "</td><td class='text-center'>0</td><td class='td-actions text-right'><div class='hidden-lg-up text-center'><button type='button'  data-toggle='collapse' data-target='.task-" + temp_id + "' class='btn btn-secondary btn-simple btn-sm btn-tasks'><i class='fa fa-plus-circle' aria-hidden='true'></i></button></div><div class='hidden-md-down'><button type='button' rel='tooltip' title='Edit' class='btn btn-simple btn-sm btn-tasks'><i class='fa fa-pencil' aria-hidden='true'></i></button>&nbsp;<button type='button' rel='tooltip' title='Complete' class='btn btn-simple btn-sm btn-tasks'><i class='fa fa-check' aria-hidden='true'></i></button>&nbsp;<button type='button' rel='tooltip' title='Remove' class='btn btn-simple btn-sm btn-tasks'><i class='fa fa-times'></i></button></div></td></tr><tr id='tasks-tr-m-" + temp_id +"' class='hidden-lg-up'><td colspan='3' style='border-top:none'><div class='navbar-collapse collapse task-" + temp_id + "'><ul class='navbar-nav ml-auto'><li class='nav-item'><button type='button' rel='tooltip' title='Edit' class='btn btn-simple btn-block'><i class='fa fa-pencil' aria-hidden='true'></i>Edit</button></li><li class='nav-item' style='padding-top:10px'><button type='button' rel='tooltip' title='Complete' class='btn btn-success btn-block'><i class='fa fa-check' aria-hidden='true'></i>Complete</button></li><li class='nav-item' style='padding-top:10px'><button type='button' rel='tooltip' title='Remove' class='btn btn-simple btn-block disabled'><i class='fa fa-times'></i>Delete</button></li></ul></div></td></tr>");
@@ -50,7 +88,7 @@ function addTask(){
         data: {data: $data},
         success: function(response) {
             $("#tasks-tr-" + temp_id).remove();
-            $("#tableTasks tr:last").after("<tr id='tasks-tr-" + response.task_id + "'><td>" + description + "</td><td class='text-center'>0</td><td class='td-actions text-right'><div class='hidden-lg-up text-center'><button type='button'  data-toggle='collapse' data-target='.task-" + response.task_id + "' class='btn btn-secondary btn-simple btn-sm btn-tasks'><i class='fa fa-plus-circle' aria-hidden='true'></i></button></div><div class='hidden-md-down'><button type='button' onclick='editTask(" + response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-sm btn-tasks'><i class='fa fa-pencil' aria-hidden='true'></i></button>&nbsp;<button type='button' onclick='completeTask(" + response.task_id + ");'rel='tooltip' title='Complete' class='btn btn-success btn-simple btn-sm btn-tasks'><i class='fa fa-check' aria-hidden='true'></i></button>&nbsp;<button type='button' onclick='deleteTask(" + response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-sm btn-tasks'><i class='fa fa-times'></i></button></div></td></tr><tr id='tasks-tr-m-" + response.task_id +"' class='hidden-lg-up'><td colspan='3' style='border-top:none'><div class='navbar-collapse collapse task-" + response.task_id + "'><ul class='navbar-nav ml-auto'><li class='nav-item'><button type='button' onclick='editTask(" + response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-block'><i class='fa fa-pencil' aria-hidden='true'></i>Edit</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='completeTask(" + response.task_id + ");'rel='tooltip' title='Complete' class='btn btn-success btn-simple btn-block'><i class='fa fa-check' aria-hidden='true'></i>Complete</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='deleteTask(" + response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-block'><i class='fa fa-times'></i>Delete</button></li></ul></div></td></tr>");
+            $("#table_tasks_" + category_id + " tr:last").after("<tr id='tasks-tr-" + response.task_id + "'><td>" + description + "</td><td class='text-center'>0</td><td class='td-actions text-right'><div class='hidden-lg-up text-center'><button type='button'  data-toggle='collapse' data-target='.task-" + response.task_id + "' class='btn btn-secondary btn-simple btn-sm btn-tasks'><i class='fa fa-plus-circle' aria-hidden='true'></i></button></div><div class='hidden-md-down'><button type='button' onclick='editTask(" + response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-sm btn-tasks'><i class='fa fa-pencil' aria-hidden='true'></i></button>&nbsp;<button type='button' onclick='completeTask(" + response.task_id + ");'rel='tooltip' title='Complete' class='btn btn-success btn-simple btn-sm btn-tasks'><i class='fa fa-check' aria-hidden='true'></i></button>&nbsp;<button type='button' onclick='deleteTask(" + response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-sm btn-tasks'><i class='fa fa-times'></i></button></div></td></tr><tr id='tasks-tr-m-" + response.task_id +"' class='hidden-lg-up'><td colspan='3' style='border-top:none'><div class='navbar-collapse collapse task-" + response.task_id + "'><ul class='navbar-nav ml-auto'><li class='nav-item'><button type='button' onclick='editTask(" + response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-block'><i class='fa fa-pencil' aria-hidden='true'></i>Edit</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='completeTask(" + response.task_id + ");'rel='tooltip' title='Complete' class='btn btn-success btn-simple btn-block'><i class='fa fa-check' aria-hidden='true'></i>Complete</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='deleteTask(" + response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-block'><i class='fa fa-times'></i>Delete</button></li></ul></div></td></tr>");
             popup("New Task Added");
         },
         error: function(){
@@ -78,3 +116,21 @@ $(function () {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
 });
+
+
+// *************
+//* Popup Stuff *
+// *************
+function popup(message) {
+    showPopup(message);
+    setTimeout(function(){
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("hide");
+    }, 3000);
+}
+
+function showPopup(message){
+    var popup = document.getElementById("myPopup");
+    document.getElementById("popup_message").innerHTML = message;
+    popup.classList.toggle("show");
+}

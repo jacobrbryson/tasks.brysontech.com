@@ -1,0 +1,22 @@
+<nav class="navbar navbar-toggleable-sm navbar-inverse" style="background-color:#000;">
+    <button id="categories_toggler" class="navbar-toggler" type="button" data-toggle="collapse" data-target=".categories">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse categories">
+        <ul class="navbar-nav nav nav-tabs" role="tablist">
+            {% for category in tasks %}
+            <li class="nav-item">
+                <a class="nav-link{% if loop.first %} active{% endif %}" 
+                    data-toggle="tab"
+                    data-target="#{{category.id}}"  
+                    href="#{{category.id}}" 
+                    role="tab"
+                    aria-controls="{{category.id}}" 
+                    aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+                    {{category.category}} ({{category.tasks|length}})
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

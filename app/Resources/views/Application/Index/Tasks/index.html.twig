@@ -1,0 +1,13 @@
+{% if tasks is defined and tasks is not empty %}
+    {% include 'Application/Index/Tasks/nav_categories.html.twig' %}
+    {% include 'Application/Index/Tasks/content.html.twig' %}
+{% endif %}
+<a href="#" id="btn_add_task" class="btn btn-block btn-success">
+    Add New Task!
+</a>
+<div class="footer">
+    <hr>
+    <div class="stats">
+        <i class="fa fa-history"></i> Updated Just Now
+    </div>
+</div>

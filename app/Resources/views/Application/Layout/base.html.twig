@@ -44,15 +44,19 @@
     </head>
     <body>
         {% include 'Application/Layout/navbar.html.twig' %}
+
         {% block body %}{% endblock %}
+        
+        {% include 'Application/Layout/notification.html.twig' %}
+        
         {% block javascripts %}
-          <script src="js/jquery.min.js"></script>
-          <script src="js/tether.min.js"></script>
-          <script src="js/bootstrap.min.js"></script>
-          <script src="js/Application/Tasks/moment.min.js"></script>  
-          <script src="js/Application/Tasks/datetimepicker.min.js"></script>
-          <script src="js/Application/Tasks/add_task.js"></script>
-          <script src="js/Application/Tasks/edit_task.js"></script>
+          <script src="{{ asset('/js/jquery.min.js') }}"></script>
+          <script src="{{ asset('/js/tether.min.js') }}"></script>
+          <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+
+          <script src="{{ asset('/js/Application/moment.min.js') }}"></script>
+          <script src="{{ asset('/js/Application/datetimepicker.min.js') }}"></script>
+          <script src="{{ asset('/js/Application/site.js') }}"></script>
           <script src="{{ asset('/js/Application/clock.js') }}"></script>
         {% endblock %}
     </body>

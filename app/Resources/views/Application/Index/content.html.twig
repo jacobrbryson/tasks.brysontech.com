@@ -2,9 +2,8 @@
 <div class="container ep-top-100">
     Welcome {{ app.user.username }}!
     </br>
-    {% include 'Application/Tasks/Base/index.html.twig' %}
-    {% include 'Application/Layout/popup_notification.html.twig' %}
-    {% include 'Application/Tasks/Modals/edit.html.twig' %}
-    {% include 'Application/Tasks/Modals/add.html.twig' %}
-    {% include 'Application/Tasks/Modals/delete.html.twig' %}
+    {% include 'Application/Index/Tasks/index.html.twig' %}
+    {% include 'Application/Layout/Modals/edit.html.twig' %}
+    {% include 'Application/Layout/Modals/add.html.twig' %}
+    {% include 'Application/Layout/Modals/delete.html.twig' %}
 </div>

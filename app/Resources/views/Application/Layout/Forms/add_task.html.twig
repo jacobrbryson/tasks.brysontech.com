@@ -1,0 +1,211 @@
+<form class="form" id="form_add_task">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                    <textarea 
+                    rows="5"
+                    class="form-control" 
+                    style="width:100%;"
+                    name="description"
+                    id="description" 
+                    placeholder="description"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-12">
+            <label for="category">
+                Category
+            </label>
+            <select class="form-control" 
+                    name="category" 
+                    id="category" 
+                    required>
+                <option value="1">
+                    Default
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="row ep-top-20 text-center">
+        <div class="col-md-6">
+            Start: <a href="#" data-toggle="collapse" data-target="#calendar_start">Now</a>
+            <input type="hidden" id="start_date_time" name="start_date_time" value="0">
+            <div class="form-group collapse" id="calendar_start">
+                <div class='input-group date' id='datetimepicker6'>
+                    <input type="text" id="start_time" class="form-control" />
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar" aria-hidden="true" style="color:#000;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            End: <a href="#" data-toggle="collapse" data-target="#calendar_end">24 hours</a>
+            <input type="hidden" id="end_date_time" name="end_date_time" value="0">
+            <div class="form-group collapse" id="calendar_end">
+                <div class='input-group date' id='datetimepicker7'>
+                    <input type="text" id="end_time" class="form-control" />
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar" aria-hidden="true" style="color:#000;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ep-top-20 text-center">
+        <div class="col-12">
+            <a href="#" data-toggle="collapse" 
+               data-target="#advanced_options">
+                Advanced Options
+            </a>
+            <div class="collapse text-left" id="advanced_options">
+                <div class="row">
+                    <div class="col-12 ep-top-20">
+                        <textarea 
+                               rows="5"
+                               class="form-control" 
+                               style="width:100%;"
+                               name="solution"
+                               id="solution" 
+                               placeholder="solution" 
+                               disabled></textarea>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="ep-top-20">
+                            Remind Me...
+                        </h4>
+                        <ul class="list-unstyled ep-left-20">
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_day" name="task_reminder_day" disabled>
+                                    <span class="ep-left-20">
+                                        The Day Before
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_hour" name="task_reminder_hour" disabled>
+                                    <span class="ep-left-20">
+                                        The Hour Before
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_late" name="task_reminder_late" disabled>
+                                    <span class="ep-left-20">
+                                        When the task is late
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_constantly" name="task_reminder_constantly" disabled>
+                                    <span class="ep-left-20">
+                                        Constantly
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                        <h4>
+                            Via...
+                        </h4>
+                        <ul class="list-unstyled ep-left-20">
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_day" name="task_reminder_email" disabled>
+                                    <span class="ep-left-20">
+                                        Via Email
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_hour" name="task_reminder_text" disabled>
+                                    <span class="ep-left-20">
+                                        Via Text
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_late" name="task_reminder_app" disabled>
+                                    <span class="ep-left-20">
+                                        Via App Notifications
+                                    </span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="task_reminder_constantly" name="task_reminder_constantly" disabled>
+                                    <span class="ep-left-20">
+                                        Within the App Only
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="ep-top-20">
+                            Steps or Sub Tasks
+                        </h4>
+                        <div>
+                            <textarea 
+                                   rows="2"
+                                   class="form-control" 
+                                   style="width:100%;"
+                                   name="step-1"
+                                   id="step-1" 
+                                   placeholder="step 1" disabled></textarea>
+                            <button type="button" 
+                                    style="width:100%; margin-top:5px"
+                                    class="btn btn-default" disabled>
+                                Add Step
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="ep-top-20">
+                            Sharing
+                        </h4>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="ep-left-20">Team:</span>
+                        <select class="form-control" disabled>
+                            <option>
+                                No Teams Avail
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="ep-left-20">Friends:</span>
+                        <select class="form-control" disabled>
+                            <option>
+                                No Friends Avail
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row ep-top-20">
+        <div class="col-12">
+            <div class="form-group">
+                <button type="submit" 
+                        style="width:100%"
+                        class="btn btn-default">
+                    Create Task
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
