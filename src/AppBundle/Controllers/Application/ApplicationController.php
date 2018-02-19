@@ -80,7 +80,8 @@ class ApplicationController extends Controller{
             ->setComplete(0)
             ->setOwner($userId)
             ->setCreated(time())
-            ->setUpdated(time());
+            ->setUpdated(time())
+            ->setCategoryId($taskData['category']);
         
         $em->persist($task);
         $em->flush();
