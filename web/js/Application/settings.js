@@ -1,3 +1,4 @@
+//runs on JS load and put the current categories in the select boxes.
 getCategories();
 function getCategories(){
     $.ajax({
@@ -15,7 +16,8 @@ function getCategories(){
 
 function populateCategories(categories){
     for(i=0;i<categories.length;i++){
-        $('#select_category').append($('<option>', {value:categories[i].id, text:categories[i].name}));
+        $('#select_category_delete').append($('<option>', {value:categories[i].id, text:categories[i].name}));
+        $('#select_category_update').append($('<option>', {value:categories[i].id, text:categories[i].name}));
     }
 }
 
@@ -26,23 +28,15 @@ function addCategory(name){
         url: "/tasks/addCategory",
         data:{name:name},
         success: function(response) {
+            
+            //expects the new category to be returned and adds it to the select boxes
             populateCategories(response.data);
+            
+            //Display at the bottom of the screen that the category has been added
             popup(response.data[0].name + " added.");
+            
+            //Clear the add category form
             $("#form_categories")[0].reset();
-        },
-        error: function(){
-            popup("Ajax Error - Refresh and try again.");
-        }
-    });
-}
-
-function deleteCategory(){
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/tasks/addCategories",
-        success: function(response) {
-            populateCategories(response.data);
         },
         error: function(){
             popup("Ajax Error - Refresh and try again.");
