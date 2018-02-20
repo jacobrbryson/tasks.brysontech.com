@@ -1,0 +1,74 @@
+<h3 class="text-center">
+    <u>
+        Edit Teams
+    </u>
+</h3>
+<form class="form" id="form_teams">
+    <h4>
+        Add Team
+    </h4>
+    <div class="form-group row">
+        <div class="col-8">
+            <input type="text" 
+                   class="form-control" 
+                   name="team_name" 
+                   id="team_name"
+                   placeholder="Team Name"
+                   required>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-success col-12">
+                Add
+            </button>
+        </div>
+    </div>
+</form>
+<form class="form" id="form_teams_update">
+    <h4>
+        Update Team
+    </h4>
+    <div class="form-group row">
+        <div class="col-4">
+            <select class="form-control" 
+                    name="select_team_update" 
+                    id="select_team_update">
+                <option value="1">
+                    Default
+                </option>
+            </select>
+        </div>
+        <div class="col-4">
+            <input type="text" 
+                   class="form-control" 
+                   name="new_name" 
+                   id="new_name"
+                   placeholder="New Name">
+        </div>
+        <div class="col-4">
+            <button class="btn btn-info col-12">
+                Update
+            </button>
+        </div>
+    </div>
+</form>
+<form class="form" id="form_teams_delete">
+    <h4>
+        Delete Category
+    </h4>
+    <div class="form-group row">
+        <div class="col-8">
+            <select class="form-control" 
+                    name="select_team_delete" 
+                    id="select_team_delete">
+                <option value="1">
+                    Default
+                </option>
+            </select>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-danger col-12">
+                Delete
+            </button>
+        </div>
+    </div>
+</form>
