@@ -4,7 +4,7 @@ function getCategories(){
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "/tasks/getCategories",
+        url: "/application/categories/get",
         success: function(response) {
             populateCategories(response.data);
         },
