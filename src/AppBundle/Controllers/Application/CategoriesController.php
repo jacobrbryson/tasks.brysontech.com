@@ -73,9 +73,9 @@ class CategoriesController extends Controller{
        $em = $this->getDoctrine()->getManager();
        $connection = $em->getConnection(); 
        $statement=$connection->prepare("UPDATE categories "
-                      . "SET name=:new_name "
-                      . "WHERE id=:select_category_update");
-       $statement->bindValue('id', $_POST['select_category_update']);
+                      . "SET name=:name "
+                      . "WHERE id=:id");       
+       $statement->bindValue('id', $_POST['id']);
        $statement->bindValue('name', $_POST['new_name']);
        $statement->execute();
        

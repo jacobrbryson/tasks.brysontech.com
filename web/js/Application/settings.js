@@ -50,25 +50,34 @@ $("#form_categories").on("submit", function(e){
     addCategory($('#category_name').val());
 });
 
-function updateCategory(id, name){
+function updateCategory(){
+        var id=$('#form_categories_update').find("#select_category_update").val();
+        var new_name = $("#form_categories_update").find("#new_name").val();
+        console.log(id, new_name);
          $.ajax({
              type:"POST",
              url:"/application/categories/update",
-             data: {id:id, new_name:name},
+             data: {id:id, new_name:new_name},
              success: function(response){
                  
                  //removes the pre-update category
-                 $("#form_categories_update option:selected").remove();
+                 $("#form_categories_update").find("option:selected").text(new_name);
+                 
+                 //Adds the updated category to the "update" select box
+                //populateCategories(response.id);
             
-                //expects the new category to be returned and adds it to the select boxes     
-                populateCategories(response.data);
-
                 //Display at the bottom of the screen that the category has been updated
-                popup(response.data[0].name + " updated.");
+                popup(response.new_name + " updated.");
 
                 //Clear the update category form
-                $("#form_categories_update")[0].reset();
+                //$("#form_categories_update")[0].reset();
              }
         });
          
 }
+
+$("#form_categories_update").on("submit", function(e){
+    e.preventDefault();
+    
+    updateCategory($('#select_category_update').val());
+});
