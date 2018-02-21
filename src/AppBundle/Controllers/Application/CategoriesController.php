@@ -64,7 +64,8 @@ class CategoriesController extends Controller{
         
         return new Response(json_encode($results));
     }
-    
+ 
+   
     /**
      * @Route ("/application/categories/update", name="/application/categories/update")
      * @Method("POST")
@@ -83,4 +84,20 @@ class CategoriesController extends Controller{
        
         return new Response(json_encode($connection->lastInsertId()));
     }
+    
+     /**
+     * @Route ("/application/categories/update", name="/application/categories/update")
+     * @Method("POST")
+     */
+    
+    public function deleteCategory(){
+        $em=$this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement=$connection->prepare("DELETE FROM Vehicle WHERE id=:id");
+        $statement->bindValue('id', $_POST['id']);
+        $statement->execute();
+        
+        return new Response(json_encode($connection->lastInsertId()));
+    }
+    
 }

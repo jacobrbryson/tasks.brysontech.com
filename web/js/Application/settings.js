@@ -17,6 +17,12 @@ $("#form_categories_update").on("submit", function(e){
     updateCategory($('#select_category_update').val());
 });
 
+$("#form_categories_update").on("submit", function(e){
+   e.preventDefault();
+   
+   deleteCategory($('#select_category_delete').val());
+});
+
 // **********************
 //*      Ajax calls      *
 // ********************** 
@@ -73,6 +79,20 @@ function updateCategory(){
              }
         });
          
+}
+
+function deleteCategory(){
+    var id=$('form_categories_delete').find('#select_category_delete').val();
+    console.log(id);
+    $.ajax({
+        type:"POST",
+        url:"/application/categories/delete",
+        data: {id:id},
+        success: function(response){
+         //removes the selected category
+         $("#form_categories_update option:selected").remove();
+        }
+    });
 }
 
 // **********************
