@@ -70,15 +70,17 @@ class CategoriesController extends Controller{
      * @Method("POST")
      */
     public function updateCategory(){
-       $em = $this->getDoctrine()->getManager();
-       $connection = $em->getConnection(); 
-       $statement=$connection->prepare("UPDATE categories "
-                      . "SET name=:name "
-                      . "WHERE id=:id");       
-       $statement->bindValue('id', $_POST['id']);
-       $statement->bindValue('name', $_POST['new_name']);
-       $statement->execute();
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection(); 
+        $statement = $connection->prepare(
+            "UPDATE categories "
+            . "SET name=:name "
+            . "WHERE id=:id"
+        );       
+        $statement->bindValue('id', $_POST['id']);
+        $statement->bindValue('name', $_POST['new_name']);
+        $statement->execute();
        
-       return new Response(json_encode($connection->lastInsertId()));
+        return new Response(json_encode($connection->lastInsertId()));
     }
 }

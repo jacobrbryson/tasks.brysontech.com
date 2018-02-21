@@ -1,5 +1,25 @@
-//runs on JS load and put the current categories in the select boxes.
-getCategories();
+// **********************
+//*    Event Handlers    *
+// **********************
+$(document).ready(function() {
+    getCategories();
+});
+
+$("#form_categories_add").on("submit", function(e){
+    e.preventDefault();
+    
+    addCategory($('#category_name').val());
+});
+
+$("#form_categories_update").on("submit", function(e){
+    e.preventDefault();
+    
+    updateCategory($('#select_category_update').val());
+});
+
+// **********************
+//*      Ajax calls      *
+// ********************** 
 function getCategories(){
     $.ajax({
         type: "POST",
@@ -12,13 +32,6 @@ function getCategories(){
             popup("Ajax Error - Refresh and try again.");
         }
     });
-}
-
-function populateCategories(categories){
-    for(i=0;i<categories.length;i++){
-        $('#select_category_delete').append($('<option>', {value:categories[i].id, text:categories[i].name}));
-        $('#select_category_update').append($('<option>', {value:categories[i].id, text:categories[i].name}));
-    }
 }
 
 function addCategory(name){
@@ -36,7 +49,7 @@ function addCategory(name){
             popup(response.data[0].name + " added.");
             
             //Clear the add category form
-            $("#form_categories")[0].reset();
+            $("#form_categories_add")[0].reset();
         },
         error: function(){
             popup("Ajax Error - Refresh and try again.");
@@ -44,16 +57,9 @@ function addCategory(name){
     });
 }
 
-$("#form_categories").on("submit", function(e){
-    e.preventDefault();
-    
-    addCategory($('#category_name').val());
-});
-
 function updateCategory(){
         var id=$('#form_categories_update').find("#select_category_update").val();
         var new_name = $("#form_categories_update").find("#new_name").val();
-        console.log(id, new_name);
          $.ajax({
              type:"POST",
              url:"/application/categories/update",
@@ -62,22 +68,20 @@ function updateCategory(){
                  
                  //removes the pre-update category
                  $("#form_categories_update").find("option:selected").text(new_name);
-                 
-                 //Adds the updated category to the "update" select box
-                //populateCategories(response.id);
-            
-                //Display at the bottom of the screen that the category has been updated
-                popup(response.new_name + " updated.");
 
-                //Clear the update category form
-                //$("#form_categories_update")[0].reset();
+                popup(response.new_name + " updated.");
              }
         });
          
 }
 
-$("#form_categories_update").on("submit", function(e){
-    e.preventDefault();
-    
-    updateCategory($('#select_category_update').val());
-});
+// **********************
+//*      Utilities       *
+// ********************** 
+function populateCategories(categories){
+    for(i=0;i<categories.length;i++){
+        $('#select_category_delete').append($('<option>', {value:categories[i].id, text:categories[i].name}));
+        $('#select_category_update').append($('<option>', {value:categories[i].id, text:categories[i].name}));
+    }
+}
+
