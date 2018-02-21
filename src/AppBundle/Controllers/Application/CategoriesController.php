@@ -64,4 +64,21 @@ class CategoriesController extends Controller{
         
         return new Response(json_encode($results));
     }
+    
+    /**
+     * @Route ("/application/categories/update", name="/application/categories/update")
+     * @Method("POST")
+     */
+    public function updateCategory(){
+       $em = $this->getDoctrine()->getManager();
+       $connection = $em->getConnection(); 
+       $statement=$connection->prepare("UPDATE categories "
+                      . "SET name=:new_name "
+                      . "WHERE id=:select_category_update");
+       $statement->bindValue('id', $_POST['select_category_update']);
+       $statement->bindValue('name', $_POST['new_name']);
+       $statement->execute();
+       
+       return new Response(json_encode($connection->lastInsertId()));
+    }
 }
