@@ -86,14 +86,14 @@ class CategoriesController extends Controller{
     }
     
      /**
-     * @Route ("/application/categories/update", name="/application/categories/update")
+     * @Route ("/application/categories/delete", name="/application/categories/delete")
      * @Method("POST")
      */
     
     public function deleteCategory(){
         $em=$this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement=$connection->prepare("DELETE FROM Vehicle WHERE id=:id");
+        $statement=$connection->prepare("DELETE FROM categories WHERE id=:id");
         $statement->bindValue('id', $_POST['id']);
         $statement->execute();
         
