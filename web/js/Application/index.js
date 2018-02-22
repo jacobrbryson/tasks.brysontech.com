@@ -68,6 +68,11 @@ function updateTab(category_id, value){
         $("#tasks_category_id_" + category_id).html(newValue);
     }else{
         $("#category_tab_" + category_id).remove();
+        $("#table_tasks_" + category_id).remove();
+        //make the first nav-tabs active
+        $(".nav-tabs").find('li').first().find('a').addClass('active');
+        target = $(".nav-tabs").find('li').first().find('a').attr('data-target');
+        $(target).addClass('show active');
     }
 }
 
