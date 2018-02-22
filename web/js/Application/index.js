@@ -21,6 +21,7 @@ function populateCategories(categories){
 }
 
 function completeTask(taskid){
+    var category_id = $("#tasks-tr-" + taskid).parent().parent().attr("id").replace('table_tasks_', '');
     $("#tasks-tr-" + taskid).remove();
     $("#tasks-tr-m-" + taskid).remove();
     
@@ -30,6 +31,7 @@ function completeTask(taskid){
         url: "/tasks/completeTask",
         data: {task_id: taskid},
         success: function(response) {
+            updateTab(category_id, -1);
             popup(response.message);
         },
         error: function(){
@@ -50,7 +52,6 @@ function deleteTask(taskid){
             $("#tasks-tr-" + taskid).remove();
             $("#tasks-tr-m-" + taskid).remove();
             updateTab(category_id, -1);
-            
             popup(response.message);
         },
         error: function(){
