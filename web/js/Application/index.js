@@ -156,3 +156,9 @@ $(function () {
         $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
     });
 });
+
+$(".nav-link").on("click", function(){
+    id=$(this).attr('aria-controls');
+    //console.log(id);
+    $("#form_add_task").find("#category").val(id);
+});
