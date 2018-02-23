@@ -84,6 +84,9 @@ addTaskBtn.addEventListener('click', function(e){
     $("#modal_add_task").modal();
     $("#start_date_time").val(Math.round(new Date().getTime()/1000.0));
     $("#end_date_time").val(Math.round(new Date().getTime()/1000.0) + 86400);
+    id=$(".nav-link.active").attr('aria-controls');
+    console.log(id);
+    $("#form_add_task").find("#category").val(id);
 });
     
 addTaskForm.addEventListener('submit', function(e){
@@ -158,7 +161,5 @@ $(function () {
 });
 
 $(".nav-link").on("click", function(){
-    id=$(this).attr('aria-controls');
-    //console.log(id);
-    $("#form_add_task").find("#category").val(id);
+    $(".categories").collapse("hide")
 });
