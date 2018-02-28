@@ -1,46 +1,40 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse" 
-     role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-            Tasks Manager
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" 
-                type="button" 
-                data-toggle="collapse" 
-                data-target="#lrNavbar" 
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>          
-    </div>
-    <div class="collapse navbar-collapse" 
-       id="lrNavbar">
-        <ul class="nav navbar-nav ml-auto">
+<nav class="navbar navbar-expand-md fixed-top bg-dark">
+    <a class="navbar-brand" href="/">
+        Tasks Manager
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#lrNavbar">
+        <i class="fas fa-bars"></i>
+    </button>        
+    <div class="collapse navbar-collapse" id="lrNavbar">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav">
             {% if is_granted('ROLE_USER') %}
             <li class="nav-item">
-                <a href="/application">
+                <a class="nav-link" href="/application">
                     Application
                 </a>
             </li> 
             <li class="nav-item nav-not-right">
-                <a href="/application/settings">
+                <a class="nav-link" href="/application/settings">
                     Settings
                 </a>
             </li> 
             <li class="nav-item">
-                <a href="/logout">
+                <a class="nav-link" href="/logout">
                     Logout
                 </a>
             </li> 
             {% else %} 
             <li class="nav-item nav-not-right">
-                <a href="/register"
+                <a class="nav-link" href="/register"
                    data-toggle="modal"
                    data-target="#modal_register">
                     Register
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/login"
+                <a class="nav-link" href="/login"
                    data-toggle="modal" 
                    data-target="#modal_login">Login</a>
             </li>
@@ -48,4 +42,3 @@
         </ul>
     </div>
 </nav>
- 

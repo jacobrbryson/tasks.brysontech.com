@@ -19,26 +19,25 @@
                     <td>{{ task.description }}</td>
                     <td class="text-center">{{ task.value}}</td>
                     <td class="td-actions text-right">
-                        <div class="hidden-lg-up text-center">
+                        <div class="d-lg-none text-center">
                             <button type="button"  data-toggle="collapse" data-target=".task-{{ task.id }}" class="btn btn-secondary btn-simple btn-sm btn-tasks">
                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <div class="hidden-md-down">
+                        <div class="d-none d-lg-block">
                             <button type="button" 
                                     onclick="editTask({{ task.id }});"
                                     rel="tooltip" 
                                     title="Edit" 
                                     class="btn btn-info btn-simple btn-sm btn-tasks">
-                                <i class="fa fa-pencil" 
-                                aria-hidden="true"></i>
+                                <i class="fas fa-pencil-alt"></i>
                             </button>
                             <button type="button" 
                                     onclick="completeTask({{ task.id }});"
                                     rel="tooltip" 
                                     title="Complete" 
                                     class="btn btn-success btn-simple btn-sm btn-tasks">
-                                <i class="fa fa-check" 
+                                <i class="fas fa-check" 
                                 aria-hidden="true"></i>
                             </button>
                             <button type="button" 
@@ -46,12 +45,12 @@
                                     rel="tooltip" 
                                     title="Remove" 
                                     class="btn btn-danger btn-simple btn-sm btn-tasks">
-                                <i class="fa fa-times"></i>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
                     </td>
                 </tr>
-                <tr id="tasks-tr-m-{{ task.id }}" class="hidden-lg-up">
+                <tr id="tasks-tr-m-{{ task.id }}" class="d-lg-none">
                     <td colspan="3" style="border-top:none">
                         <div class="navbar-collapse collapse task-{{ task.id }}">
                             <ul class="navbar-nav ml-auto">
@@ -61,8 +60,7 @@
                                             rel="tooltip" 
                                             title="Edit" 
                                             class="btn btn-info btn-simple btn-block">
-                                        <i class="fa fa-pencil" 
-                                        aria-hidden="true"></i>
+                                        <i class="fa fa-pencil-alt"></i>
                                         Edit
                                     </button>
                                 </li>
@@ -72,8 +70,7 @@
                                             rel="tooltip" 
                                             title="Complete" 
                                             class="btn btn-success btn-simple btn-block">
-                                        <i class="fa fa-check" 
-                                        aria-hidden="true"></i>
+                                        <i class="fa fa-check"></i>
                                         Complete
                                     </button>
                                 </li>
@@ -83,7 +80,7 @@
                                             rel="tooltip" 
                                             title="Remove" 
                                             class="btn btn-danger btn-simple btn-block">
-                                        <i class="fa fa-times"></i>
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
                                         Delete
                                     </button>
                                 </li>

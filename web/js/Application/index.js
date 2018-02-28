@@ -1,5 +1,7 @@
-//runs on JS load and put the current categories in the select boxes.
-getCategories();
+$(function() {
+    getCategories();
+});
+
 function getCategories(){
     $.ajax({
         type: "POST",

@@ -20,24 +20,25 @@
         {% block stylesheets %}
             <link rel="stylesheet" 
                   type="text/css" 
-                  href="{{ asset('css/Bootstrap4.0/bootstrap.min.css') }}">
+                  href="{{ asset('css/bootstrap.min.css') }}">
             <link rel="stylesheet" 
                   type="text/css" 
-                  href="{{ asset('css/Web/site.css') }}">
+                  href="{{ asset('css/site.css') }}">
             <link rel="stylesheet"
                   type="text/css"
-                  href="{{ asset('css/font-awesome.min.css') }}"
+                  href="{{ asset('css/fa-regular.min.css') }}">
         {% endblock %}
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('f161.ico') }}" />
     </head>
     <body>
         {% include 'Web/Layout/navbar.html.twig' %}
         {% block body %}{% endblock %}
         {% include 'Web/Modals/login.html.twig' %}
         {% include 'Web/Modals/register.html.twig' %}
-        {% block javascripts %}
-          <script src="js/jquery.min.js"></script>
-          <script src="js/bootstrap.min.js"></script>  
-        {% endblock %}
+        
+            <script src="js/jquery.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>  
+            <script src="js/fontawesome-all.min.js"></script>  
+            
+            {% block javascripts %}{% endblock %}
     </body>
 </html>
