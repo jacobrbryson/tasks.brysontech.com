@@ -124,12 +124,12 @@ function addTask(){
                     response.task_id + "' class='btn btn-secondary btn-simple btn-sm btn-tasks'><i class='fa fa-plus-circle'></i></button></div><div class='d-none d-lg-block'><button type='button' onclick='editTask(" + 
                     response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-sm btn-tasks'><i class='fa fa-pencil-alt'></i></button>&nbsp;<button type='button' onclick='completeTask(" + 
                     response.task_id + ");'rel='tooltip' title='Complete' class='btn btn-success btn-simple btn-sm btn-tasks'><i class='fa fa-check'></i></button>&nbsp;<button type='button' onclick='deleteTask(" + 
-                    response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-sm btn-tasks'><i class='fa fa-times'></i></button></div></td></tr><tr id='tasks-tr-m-" + 
+                    response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-sm btn-tasks'><i class='fa fa-trash'></i></button></div></td></tr><tr id='tasks-tr-m-" + 
                     response.task_id +"' class='d-lg-none'><td colspan='3' style='border-top:none'><div class='navbar-collapse collapse task-" + 
                     response.task_id + "'><ul class='navbar-nav ml-auto'><li class='nav-item'><button type='button' onclick='editTask(" + 
-                    response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-block'><i class='fa fa-pencil'></i>Edit</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='completeTask(" + 
+                    response.task_id + ");'rel='tooltip' title='Edit' class='btn btn-info btn-simple btn-block'><i class='fa fa-pencil-alt'></i>Edit</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='completeTask(" + 
                     response.task_id + ");'rel='tooltip' title='Complete' class='btn btn-success btn-simple btn-block'><i class='fa fa-check'></i>Complete</button></li><li class='nav-item' style='padding-top:10px'><button type='button' onclick='deleteTask(" + 
-                    response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-block'><i class='fa fa-times'></i>Delete</button></li></ul></div></td></tr>");
+                    response.task_id + ");'rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-block'><i class='fa fa-trash'></i>Delete</button></li></ul></div></td></tr>");
                 popup("New Task Added");
                 updateTab(category_id, 1);
             }else{
