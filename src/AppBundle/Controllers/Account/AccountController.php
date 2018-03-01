@@ -275,17 +275,25 @@ class AccountController extends Controller{
         
         $this->get('mailer')->send($message);
     }
-    
+
     private function addDefaultTasks(){
-        $userID = $this->getUser()->getId();
+        $userId = $this->getUser()->getId();
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("INSERT INTO categories (name, description) VALUES (Sample Category, '')");
-        $statement = $connection->prepare(
-                "INSERT INTO tasks(
-                    description, start_date_time, end_date_time)
-                VALUES(Complete Your First Task, 0800, 0900)");
+        $statement = $connection->prepare("INSERT INTO categories (name, description, user_id) VALUES ('Sample Category', '', :userId)");
+        $statement->bindValue('userId', $userId);
         $statement->execute();
         
+        $insertId = $connection->lastInsertId();
+        
+        $statement = $connection->prepare(
+                "INSERT INTO tasks(
+                    description, startDateTime, endDateTime, value, complete, owner, created, updated, categoryId)
+                VALUES('Complete Your First Task', '0800', '0900', '0', '0', :userId , '0800', '0900', :insertId)");
+        $statement->bindValue('userId', $userId);
+        $statement->bindValue('insertId', $insertId);
+        $statement->execute();
+        
+        return new Response(json_encode($connection->lastInsertId()));
     }
 }
