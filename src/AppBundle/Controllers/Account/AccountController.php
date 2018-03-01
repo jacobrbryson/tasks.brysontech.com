@@ -42,6 +42,7 @@ class AccountController extends Controller{
             
             if ($email && $token){
                 if($this->enableUser($email, $token)){
+                    $this->addDefaultTasks();
                     return $this->redirectToRoute('application');
                 } else {
                     $error = "Something went wrong when enabling your account. "
@@ -273,5 +274,18 @@ class AccountController extends Controller{
         );
         
         $this->get('mailer')->send($message);
+    }
+    
+    private function addDefaultTasks(){
+        $userID = $this->getUser()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("INSERT INTO categories (name, description) VALUES (Sample Category, '')");
+        $statement = $connection->prepare(
+                "INSERT INTO tasks(
+                    description, start_date_time, end_date_time)
+                VALUES(Complete Your First Task, 0800, 0900)");
+        $statement->execute();
+        
     }
 }
