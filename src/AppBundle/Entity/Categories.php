@@ -16,6 +16,11 @@ class Categories{
      */
     protected $id;
     
+     /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_id;
+    
     /**
      * @ORM\Column(type="text")
      */
@@ -35,7 +40,7 @@ class Categories{
     {
         return $this->id;
     }
-
+    
     /**
      * Set name.
      *
@@ -82,5 +87,29 @@ class Categories{
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set user_id
+     *
+     * @param integer $user_id
+     *
+     * @return Categories
+     */
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
     }
 }

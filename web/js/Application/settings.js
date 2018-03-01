@@ -77,6 +77,8 @@ function updateCategory(){
                  
                  $("#form_categories_delete option[value=" + id + "]").text(new_name);
                  
+                 $("#form_categories_update")[0].reset();
+                 
                  //$("#form_categories_delete").remove("#select_category_delete option:[value=id]");
                  
                 //$("#form_categories_update").remove(new_name);
