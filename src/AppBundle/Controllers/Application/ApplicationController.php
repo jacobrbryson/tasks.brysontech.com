@@ -219,6 +219,26 @@ class ApplicationController extends Controller{
         return new Response(json_encode($results));
     }
     
+    /**
+     * @Route("/search", name="/search")
+     * @Method("POST")
+     */
+    public function searchTasks(){
+        $search = $_POST['search'];         
+        $em=$this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement=$connection->prepare(""
+                . "SELECT * "
+                . "FROM tasks "
+                . "WHERE owner = :user_id AND description LIKE :search");
+        
+        $statement->bindValue('user_id', $this->getUser()->getId());
+        $statement->bindValue('search', '%' . $search . '%');
+        $statement->execute();
+        
+        return new Response(json_encode($this->getUser()->getId()));
+    }
+    
     
 }
 
