@@ -64,7 +64,7 @@ class CategoriesController extends Controller{
      */
     public function updateCategory(){
         $result = 0;
-        categoryId = $_POST['id'];
+        $categoryId = $_POST['id'];
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection(); 
         $statement = $connection->prepare("
@@ -72,11 +72,11 @@ class CategoriesController extends Controller{
             SET name=:name
             WHERE id=:id
         ");       
-        $statement->bindValue('id', categoryId);
+        $statement->bindValue('id', $categoryId);
         $statement->bindValue('name', $_POST['new_name']);
         $statement->execute();
        
-        $result = categoryId;
+        $result = $categoryId;
         
         return new Response(json_encode($result));
     }
@@ -88,7 +88,7 @@ class CategoriesController extends Controller{
     
     public function deleteCategory(){
         $result = 0;
-        categoryId = $_POST['id'];
+        $categoryId = $_POST['id'];
         $em=$this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement=$connection->prepare("
@@ -98,10 +98,10 @@ class CategoriesController extends Controller{
             DELETE FROM categories 
             WHERE id=:id;
         ");
-        $statement->bindValue('id', categoryId);
+        $statement->bindValue('id', $categoryId);
         $statement->execute();
 
-        $result = categoryId;
+        $result = $categoryId;
         
         return new Response(json_encode($result));
     }
