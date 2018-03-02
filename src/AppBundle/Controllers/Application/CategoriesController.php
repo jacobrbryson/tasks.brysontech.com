@@ -25,7 +25,7 @@ class CategoriesController extends Controller{
         
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.categoryId WHERE uc.userID = " . $this->getUser()->getId());
+        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.category_id WHERE uc.userID = " . $this->getUser()->getId());
         $statement->execute();
         $results['data'] = $statement->fetchAll();
         
@@ -54,7 +54,7 @@ class CategoriesController extends Controller{
         
         $insertId = $connection->lastInsertId();
         
-        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.categoryId WHERE c.id = " . $insertId);
+        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.category_id WHERE c.id = " . $insertId);
         $statement->execute();
         
         $results['data'] = $statement->fetchAll();
