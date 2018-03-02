@@ -39,9 +39,9 @@ class ApplicationController extends Controller{
             //loop over them to create the tasks array
             foreach($distictCategories as $category){
                 $task['category']   = $category['name'];
-                $task['id']         = $category['categoryId'];
+                $task['id']         = $category['category_id'];
                 $task['tasks']      = $em->getRepository('AppBundle:Tasks')
-                ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0, 'categoryId' => $category['categoryId']));
+                ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0, 'category_id' => $category['category_id']));
                 $tasks[] = $task;
             }
         }else{
