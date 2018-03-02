@@ -75,9 +75,13 @@ function updateCategory(){
                  //changes the selected category in the update box
                  $("#form_categories_update").find("option:selected").text(new_name);
                  
+                 $("#form_categories_delete option[value=" + id + "]").text(new_name);
                  
+                 $("#form_categories_update")[0].reset();
                  
-                popup(response.new_name + " updated.");
+                 //$("#form_categories_delete").remove("#select_category_delete option:[value=id]");
+                 
+                //$("#form_categories_update").remove(new_name);
              }
         });
          
@@ -95,7 +99,7 @@ function deleteCategory(){
          $("#form_categories_delete option:selected").remove();
          
          //removes the selected category from the update select box
-         $("#form_categories_update option:selected").remove();
+         $("#form_categories_update option[value=" + id + "]").remove();
         }
     });
 }

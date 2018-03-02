@@ -54,9 +54,6 @@ class CategoriesController extends Controller{
         
         $insertId = $connection->lastInsertId();
         
-        $statement = $connection->prepare("INSERT INTO user_categories (userId, categoryId) VALUES (" . $this->getUser()->getId() . ", " . $insertId . ")");
-        $statement->execute();
-        
         $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.categoryId WHERE c.id = " . $insertId);
         $statement->execute();
         
