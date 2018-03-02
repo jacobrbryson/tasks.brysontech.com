@@ -65,19 +65,20 @@ doctrine:
         default_entity_manager: default
         entity_managers:
             default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
                 connection: default
                 mappings:
                     AppBundle:  ~
                     #AcmeStoreBundle: ~
             auth:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
                 connection: auth
                 mappings:
                     AppBundle:  ~
                 #mappings:
                     #AcmeStoreBundle: ~
         auto_generate_proxy_classes: '%kernel.debug%'
-        #naming_strategy: doctrine.orm.naming_strategy.underscore
-        #auto_mapping: true
+        
 
 # Swiftmailer Configuration
 swiftmailer:

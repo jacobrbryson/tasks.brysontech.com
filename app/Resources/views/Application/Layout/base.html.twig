@@ -23,22 +23,19 @@
         {% block stylesheets %}
             <link rel="stylesheet" 
                   type="text/css" 
-                  href="{{ asset('css/Bootstrap4.0/bootstrap.min.css') }}">
+                  href="{{ asset('css/bootstrap.min.css') }}">
             <link rel="stylesheet" 
                   type="text/css" 
                   href="{{ asset('css/bootstrap-datetimepicker-standalone.min.css') }}" />
             <link rel="stylesheet" 
                   type="text/css" 
                   href="{{ asset('css/datetimepicker.css') }}" />
-            <link rel="stylesheet" 
-                  type="text/css" 
-                  href="{{ asset('css/Web/site.css') }}">
-                        <link rel="stylesheet" 
-                  type="text/css" 
-                  href="{{ asset('css/font-awesome.min.css') }}">
             <link rel="stylesheet"
                   type="text/css"
-                  href="{{ asset('css/Application/site.css') }}">
+                  href="{{ asset('css/fa-regular.min.css') }}">
+            <link rel="stylesheet"
+                  type="text/css"
+                  href="{{ asset('css/site.css') }}">
             
         {% endblock %}
     </head>
@@ -48,17 +45,16 @@
         {% block body %}{% endblock %}
         
         {% include 'Application/Layout/notification.html.twig' %}
-        
+
         <script src="{{ asset('/js/jquery.min.js') }}"></script>
         <script src="{{ asset('/js/tether.min.js') }}"></script>
         <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('/js/Application/moment.min.js') }}"></script>
+        <script src="{{ asset('/js/fontawesome-all.min.js') }}"></script>
         <script src="{{ asset('/js/Application/datetimepicker.min.js') }}"></script>
         <script src="{{ asset('/js/Application/site.js') }}"></script>
         <script src="{{ asset('/js/Application/clock.js') }}"></script>
-        {% block javascripts %}
-        {% endblock %}
-        
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
 

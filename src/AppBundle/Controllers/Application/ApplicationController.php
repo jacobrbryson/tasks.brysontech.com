@@ -27,7 +27,7 @@ class ApplicationController extends Controller{
         $em = $this->getDoctrine()->getManager();
 
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT DISTINCT(t.categoryId) as 'categoryId', c.name as 'name' FROM tasks t JOIN categories c ON t.categoryId = c.Id WHERE owner = :owner AND complete = 0 ORDER BY categoryId asc");
+        $statement = $connection->prepare("SELECT DISTINCT(t.category_id) as 'category', c.name as 'name' FROM tasks t JOIN categories c ON t.category_id = c.id WHERE owner = :owner AND complete = 0 ORDER BY category_id asc");
         $statement->bindValue('owner', $this->getUser()->getId());
         $statement->execute();
         $distictCategories = $statement->fetchAll();
@@ -39,9 +39,9 @@ class ApplicationController extends Controller{
             //loop over them to create the tasks array
             foreach($distictCategories as $category){
                 $task['category']   = $category['name'];
-                $task['id']         = $category['categoryId'];
+                $task['id']         = $category['category'];
                 $task['tasks']      = $em->getRepository('AppBundle:Tasks')
-                ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0, 'categoryId' => $category['categoryId']));
+                ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0, 'categoryId' => $category['category']));
                 $tasks[] = $task;
             }
         }else{

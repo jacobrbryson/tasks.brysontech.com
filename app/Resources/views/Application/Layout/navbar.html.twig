@@ -1,80 +1,88 @@
-<nav class="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-primary">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".settings">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-md fixed-top bg-dark">
     <div class="navbar-collapse collapse" id="dual-left">
         <ul class="navbar-nav mr-auto">
-            <a class="navbar-brand d-flex mx-auto brand" href="/">Task Manager</a>
+            <a class="navbar-brand d-flex mx-auto brand mr-auto" href="/">Task Manager</a>
         </ul>
     </div>
     <a class="navbar-brand d-flex mx-auto" href="#" id="nav_date">May 21, 2017 3:28 PM</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".settings" style="color:#fff; border-color:#000;">
+        <i class="fas fa-bars"></i>
+    </button>   
     <div class="navbar-collapse collapse settings">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link dropdown-toggle" 
-                   href="#" 
-                   id="search" 
-                   data-toggle="dropdown" 
-                   aria-haspopup="true" 
-                   aria-expanded="false">
-                    <i class="fa fa-search fa-2x ep-left-20" aria-hidden="true"></i>
-                    <span class="hidden-md-up ep-left-20">Search</span>
-                </a>
-                
-                <div class="dropdown-menu dropdown-menu-right col-12" aria-labelledby="search">
-                    <a class="dropdown-item" href="#">
-                        <form>
-                            <input class="form-control" type="text">
-                        </form>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" 
+                    href="#" 
+                    id="search" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                        <span class="d-md-none ep-left-20">Search</span>
                     </a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link dropdown-toggle" href="#"
-                   id="knowledgebase" 
-                   data-toggle="dropdown" 
-                   aria-haspopup="true" 
-                   aria-expanded="false">
-                    <i class="fa fa-book fa-2x ep-left-20" aria-hidden="true"></i>
-                    <span class="hidden-md-up ep-left-20">Knowledge Base</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right col-2" aria-labelledby="knowledgebase">
-                    <a class="dropdown-item" href="/tutorial">
-                        Tutorial
+                    <div class="dropdown-menu dropdown-menu-right col-md-3" 
+                         aria-labelledby="search">
+                        <a class="dropdown-item" href="#">
+                            <form id="form_task_search">
+                                <div class="form-group">
+                                    <label for="search">
+                                        Find Tasks:
+                                    </label>
+                                    <input type="text" 
+                                            class="form-control"
+                                            name="search"
+                                            id="search"
+                                            placeholder="Pick up milk."
+                                            required>
+                                </div>
+                                <button type="submit" class="btn btn-primary col-12">Search</button>
+                            </form>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item ep-left-20">
+                    <a class="nav-link dropdown-toggle" href="#"
+                    id="knowledgebase" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                        <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                        <span class="d-md-none ep-left-20">Knowledge Base</span>
                     </a>
-                    <a class="dropdown-item" href="/knowledgebase">
-                        Knowledgebase
+                    <div class="dropdown-menu dropdown-menu-right col-md-3" aria-labelledby="knowledgebase">
+                        <a class="dropdown-item" href="/tutorial">
+                            Tutorial
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/knowledgebase">
+                            Knowledgebase
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item ep-left-20">
+                    <a class="nav-link dropdown-toggle" 
+                    href="#"
+                    id="settings" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                        <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                        <span class="d-md-none ep-left-20">Settings</span>
                     </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/support">
-                        Contact Support
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link dropdown-toggle" 
-                   href="#"
-                   id="settings" 
-                   data-toggle="dropdown" 
-                   aria-haspopup="true" 
-                   aria-expanded="false">
-                    <i class="fa fa-bars fa-2x ep-left-20" aria-hidden="true"></i>
-                    <span class="hidden-md-up ep-left-20">Settings</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right col-2" aria-labelledby="settings">
-                    <a class="dropdown-item" href="/application/settings">
-                        Settings
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/support">
-                        Contact Support
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logout">
-                        Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
+                    <div class="dropdown-menu dropdown-menu-right col-md-3" aria-labelledby="settings">
+                        <a class="dropdown-item" href="/application/settings">
+                            Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/support">
+                            Contact Support
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">
+                            Logout
+                        </a>
+                    </div>
+                </li>       
+            </ul>
     </div>
 </nav>
