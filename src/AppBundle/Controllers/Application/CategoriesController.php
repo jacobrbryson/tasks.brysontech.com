@@ -95,6 +95,10 @@ class CategoriesController extends Controller{
         $statement->bindValue('id', $_POST['id']);
         $statement->execute();
         
+        $statement=$connection->prepare("UPDATE categories SET category_id = 1 WHERE category_id = :id");
+        $statement->bindValue('id', $_POST['id']);
+        $statement->execute();
+        
         return new Response(json_encode($connection->lastInsertId()));
     }
     
