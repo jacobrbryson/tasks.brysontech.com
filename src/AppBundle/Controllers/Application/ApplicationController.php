@@ -31,7 +31,8 @@ class ApplicationController extends Controller{
             SELECT DISTINCT(t.category_id) as 'category', c.name as 'name' 
             FROM tasks t 
             JOIN categories c ON t.category_id = c.id 
-            WHERE owner = :owner AND complete = 0 
+            WHERE owner = :owner 
+            AND complete = 0 
             ORDER BY category_id asc");
         $statement->bindValue('owner', $this->getUser()->getId());
         $statement->execute();
