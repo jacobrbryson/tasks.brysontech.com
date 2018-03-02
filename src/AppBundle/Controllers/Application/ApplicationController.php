@@ -27,7 +27,12 @@ class ApplicationController extends Controller{
         $em = $this->getDoctrine()->getManager();
 
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT DISTINCT(t.category_id) as 'category', c.name as 'name' FROM tasks t JOIN categories c ON t.category_id = c.id WHERE owner = :owner AND complete = 0 ORDER BY category_id asc");
+        $statement = $connection->prepare("
+            SELECT DISTINCT(t.category_id) as 'category', c.name as 'name' 
+            FROM tasks t 
+            JOIN categories c ON t.category_id = c.id 
+            WHERE owner = :owner AND complete = 0 
+            ORDER BY category_id asc");
         $statement->bindValue('owner', $this->getUser()->getId());
         $statement->execute();
         $distictCategories = $statement->fetchAll();
@@ -41,14 +46,21 @@ class ApplicationController extends Controller{
                 $task['category']   = $category['name'];
                 $task['id']         = $category['category'];
                 $task['tasks']      = $em->getRepository('AppBundle:Tasks')
-                ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0, 'categoryId' => $category['category']));
+                ->findBy(array(
+                    'owner' => $this->getUser()->getId(),
+                    'complete' => 0,
+                    'categoryId' => $category['category']
+                ));
                 $tasks[] = $task;
             }
         }else{
             $task['category']   = "Default";
             $task['id']         = "1";
             $task['tasks']      = $em->getRepository('AppBundle:Tasks')
-            ->findBy(array('owner' => $this->getUser()->getId(), 'complete' => 0));
+            ->findBy(array(
+                'owner' => $this->getUser()->getId(),
+                'complete' => 0
+            ));
             $tasks[] = $task;
         }
         
@@ -63,7 +75,10 @@ class ApplicationController extends Controller{
         $taskData = array();
         parse_str($_POST['data'], $taskData);     
         $userId = $this->getUser()->getId();
-        $results = Array('result' => 0, 'message' => "No userid or data.");
+        $results = Array(
+            'result' => 0,
+            'message' => "No userid or data."
+        );
 
         //Check for UserId and data
         if (!$userId || empty($taskData)){
@@ -100,7 +115,10 @@ class ApplicationController extends Controller{
         //Initialize stuff we need
         $taskId  = isset($_POST['task_id']) ? $_POST['task_id'] : false;
         $userId = $this->getUser()->getId();
-        $results = Array('result' => 0, 'message' => "You're not authorized to modify this task.");
+        $results = Array(
+            'result' => 0, 
+            'message' => "You're not authorized to modify this task."
+        );
         
         //Check for taskId
         if(!$taskId){
