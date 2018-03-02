@@ -91,11 +91,7 @@ class CategoriesController extends Controller{
     public function deleteCategory(){
         $em=$this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement=$connection->prepare("DELETE FROM categories WHERE id=:id");
-        $statement->bindValue('id', $_POST['id']);
-        $statement->execute();
-        
-        $statement=$connection->prepare("UPDATE categories SET category_id = 1 WHERE category_id = :id");
+        $statement=$connection->prepare("UPDATE tasks SET category_id = 1 WHERE category_id = :id; DELETE FROM categories WHERE id=:id;");
         $statement->bindValue('id', $_POST['id']);
         $statement->execute();
         
