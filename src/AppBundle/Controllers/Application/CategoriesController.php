@@ -25,7 +25,7 @@ class CategoriesController extends Controller{
         
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.category_id WHERE uc.userID = " . $this->getUser()->getId());
+        $statement = $connection->prepare("SELECT id, name FROM categories WHERE user_id = " . $this->getUser()->getId());
         $statement->execute();
         $results['data'] = $statement->fetchAll();
         
@@ -48,13 +48,14 @@ class CategoriesController extends Controller{
         
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement = $connection->prepare("INSERT INTO categories (name, description) VALUES (:name, '')");
+        $statement = $connection->prepare("INSERT INTO categories (user_id, name, description) VALUES (:user_id, :name, '')");
         $statement->bindValue('name', $_POST['name']);
+        $statement->bindValue('user_id', $this->getUser()->getId());
         $statement->execute();
         
         $insertId = $connection->lastInsertId();
         
-        $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.category_id WHERE c.id = " . $insertId);
+        $statement = $connection->prepare("SELECT user_id, id, name FROM categories WHERE id = " . $insertId);
         $statement->execute();
         
         $results['data'] = $statement->fetchAll();
