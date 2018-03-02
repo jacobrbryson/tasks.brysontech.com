@@ -54,9 +54,6 @@ class CategoriesController extends Controller{
         
         $insertId = $connection->lastInsertId();
         
-        $statement = $connection->prepare("INSERT INTO user_categories (userId, categoryId) VALUES (" . $this->getUser()->getId() . ", " . $insertId . ")");
-        $statement->execute();
-        
         $statement = $connection->prepare("SELECT c.id, c.name FROM categories c JOIN user_categories uc ON c.id = uc.categoryId WHERE c.id = " . $insertId);
         $statement->execute();
         
@@ -64,7 +61,8 @@ class CategoriesController extends Controller{
         
         return new Response(json_encode($results));
     }
-    
+ 
+   
     /**
      * @Route ("/application/categories/update", name="/application/categories/update")
      * @Method("POST")
@@ -83,4 +81,20 @@ class CategoriesController extends Controller{
        
         return new Response(json_encode($connection->lastInsertId()));
     }
+    
+     /**
+     * @Route ("/application/categories/delete", name="/application/categories/delete")
+     * @Method("POST")
+     */
+    
+    public function deleteCategory(){
+        $em=$this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement=$connection->prepare("DELETE FROM categories WHERE id=:id");
+        $statement->bindValue('id', $_POST['id']);
+        $statement->execute();
+        
+        return new Response(json_encode($connection->lastInsertId()));
+    }
+    
 }
