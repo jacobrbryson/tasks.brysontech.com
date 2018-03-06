@@ -33,4 +33,11 @@ class SearchController extends Controller{
             'results' => $results
         ]);
     }
+    
+    /**
+     * @Route("/application/task/{task_id}
+     */
+    public function taskAction($task_id){
+        
+    }
 }
