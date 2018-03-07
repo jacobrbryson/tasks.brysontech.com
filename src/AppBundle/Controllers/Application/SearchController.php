@@ -35,9 +35,22 @@ class SearchController extends Controller{
     }
     
     /**
-     * @Route("/application/task/{task_id}
+     * @Route("/application/task/{task_id}", name="/task/{task_id}")
      */
     public function taskAction($task_id){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement = $connection->prepare("
+            SELECT *
+            FROM tasks
+            WHERE id=:id");
+        $statement->bindValue('id', $task_id);
         
+        $statement->execute();
+        $results = $statement->fetchAll();
+        
+        return $this->render('Application/Search/searchresults.html.twig',[
+            'results'=>$results
+        ]);
     }
 }
