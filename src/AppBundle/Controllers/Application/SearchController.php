@@ -43,14 +43,15 @@ class SearchController extends Controller{
         $statement = $connection->prepare("
             SELECT *
             FROM tasks
-            WHERE id=:id");
+            WHERE id=:id
+            LIMIT 1");
         $statement->bindValue('id', $task_id);
         
         $statement->execute();
         $results = $statement->fetchAll();
         
         return $this->render('Application/Search/searchresults.html.twig',[
-            'results'=>$results
+            'results'=>$results[0]
         ]);
     }
 }

@@ -1,5 +1,46 @@
 {% extends 'Application/Layout/base.html.twig' %}
 {% block body %}
-{{dump(task_id.description)}}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="ep-top-40">
+                Results for "{{results.description}}"
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <h5>
+            Completed?
+        </h5><br/>
+        {{results.complete}}
+    </div>
+    <div class="row">
+        <h5>
+            Created
+        </h5><br/>
+        {{results.created}}
+    </div>
+    <div class="row">
+        <h5>
+            Last Updated
+        </h5><br/>
+        {{results.updated}}
+    </div>
+    <div class="row">
+        <h5>
+            Start Date
+        </h5><br/>
+        {{results.start_date_time}}
+    </div>
+    <div class="row">
+        <h5>
+            End Date
+        </h5><br/>
+        {{results.end_date_time}}
+    </div>
+    <div class="row">
+        {{dump(results)}}
+    </div>
+</div>
 {%endblock%}
 {# empty Twig template #}
