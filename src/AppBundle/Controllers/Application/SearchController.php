@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SearchController extends Controller{
     /**
-     * @Route("/application/search", name="search")
+     * @Route("/application/search", name="search1")
      * @Method("POST")
      */
     public function search(){
