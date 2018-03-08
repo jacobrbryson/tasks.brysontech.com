@@ -67,6 +67,17 @@
         </script>
     </div>
     <div class="row">
+        <h5>Completed?</h5>
+    </div>
+    <div class="row">
+        {% if ('results.complete' == 0) %}
+            <p>Yes</p>
+            {%elseif ('results.complete' == 1) %}
+                <p>No</p>
+        {%endif%}
+        
+    </div>
+    <div class="row">
         {{dump(results)}}
     </div>
 </div>
