@@ -70,9 +70,9 @@
         <h5>Completed?</h5>
     </div>
     <div class="row">
-        {% if ('results.complete' == 0) %}
+        {% if ('results.complete' == 1) %}
             <p>Yes</p>
-            {%elseif ('results.complete' == 1) %}
+            {%elseif ('results.complete' == 0) %}
                 <p>No</p>
         {%endif%}
         
