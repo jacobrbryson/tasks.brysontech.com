@@ -19,7 +19,7 @@ class SearchController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("
-            SELECT id, description 
+            SELECT id, description, created 
             FROM tasks
             WHERE description LIKE :search 
             AND owner = " . $this->getUser()->getId()

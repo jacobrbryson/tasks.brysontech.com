@@ -20,10 +20,24 @@
                         <td>
                             <a href="/application/task/{{result.id}}" title="{{result.description}}">{{result.description}}</a>
                         </td>
-                    </tr>
+                        <td>
+                            Date Created:
+                            <p  id="dateC">
+                            
+                            </p> 
+                            <script>
+                                
+                                var dc = new Date({{result.created}} * 1000);
+                                console.log(dc);
+                                document.getElementById("dateC").innerHTML = dc;
+                                
+                            </script>
+                        </td>                        
+                    </tr>           
             {% endfor %}
-                </tbody>
+            </tbody>
         {% endif %}
         </div>
     </div>
 </div>
+        
