@@ -21,18 +21,21 @@
                             <a href="/application/task/{{result.id}}" title="{{result.description}}">{{result.description}}</a>
                         </td>
                         <td>
-                            Date Created:
-                            <p  id="dateC">
-                            
-                            </p> 
-                            <script>
-                                
-                                var dc = new Date({{result.created}} * 1000);
-                                console.log(dc);
-                                document.getElementById("dateC").innerHTML = dc;
-                                
-                            </script>
-                        </td>                        
+                            Date Created:<br/>
+                            {{result.created}}                             
+                        </td>
+                        <td>
+                            Last Upated:<br/>
+                            {{result.updated}}
+                        </td>
+                        <td>
+                            Completed?:
+                            {% if ('results.complete' == 1) %}
+                                <p>Yes</p>
+                                {%elseif ('results.complete' == 0) %}
+                                    <p>No</p>
+                            {%endif%}
+                        </td>
                     </tr>           
             {% endfor %}
             </tbody>
