@@ -6,9 +6,6 @@
                 <th style="width:75%">
                     Descriptions
                 </th>
-                <th class="text-center">
-                    Points
-                </th>
                 <th class="text-right">
                     Actions
                 </th>
@@ -16,8 +13,7 @@
             <tbody>
         {% for task in category.tasks %}
                 <tr id="tasks-tr-{{ task.id}}">
-                    <td>{{ task.description }}</td>
-                    <td class="text-center">{{ task.value}}</td>
+                    <td><a href="application/task/{{ task.id }}" title="View Task Details">{{ task.description }}</a></td>
                     <td class="td-actions text-right">
                         <div class="d-lg-none text-center">
                             <button type="button"  data-toggle="collapse" data-target=".task-{{ task.id }}" class="btn btn-secondary btn-simple btn-sm btn-tasks">
