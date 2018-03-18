@@ -3,6 +3,7 @@
 // **********************
 $(document).ready(function() {
     getCategories();
+    getStats();
 });
 
 $("#form_categories_add").on("submit", function(e){
@@ -33,6 +34,55 @@ function getCategories(){
         url: "/application/categories/get",
         success: function(response) {
             populateCategories(response.data);
+        },
+        error: function(){
+            popup("Ajax Error - Refresh and try again.");
+        }
+    });
+}
+
+function getStats(){
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/application/stats/completedByCategory",
+        success: function(response) {
+            //console.log(response);
+            var total   = [];
+            var name    = [];
+            for(i=0;i<response.length;i++){
+                total.push(response[i].total);
+                name.push(response[i].Name);
+            }
+            var ctx = document.getElementById("stats");
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: name,
+        datasets: [{
+            label: 'Weekly Tasks',
+            data: total,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    }
+});
+            console.log(name);
         },
         error: function(){
             popup("Ajax Error - Refresh and try again.");
