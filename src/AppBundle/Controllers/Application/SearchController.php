@@ -42,17 +42,32 @@ class SearchController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("
-            SELECT *
-            FROM tasks
-            WHERE id=:id
-            LIMIT 1");
+        SELECT 
+            t.id, 
+            t.description, 
+            from_unixtime(t.created, '%Y-%m-%d %h:%i') as 'created', 
+            from_unixtime(t.updated, '%Y-%m-%d %h:%i') as 'updated', 
+            from_unixtime(t.start_date_time, '%Y-%m-%d %h:%i') as 'start_date_time', 
+            from_unixtime(t.end_date_time, '%Y-%m-%d %h:%i') as 'end_date_time',
+            complete,
+            c.name
+        FROM tasks t
+        JOIN categories c
+        ON t.category_id = c.id
+        WHERE t.id = :id
+        AND owner = :user_id
+        LIMIT 1");
         $statement->bindValue('id', $task_id);
+        $statement->bindValue('user_id', $this->getUser()->getId());
         
         $statement->execute();
         $results = $statement->fetchAll();
-        
-        return $this->render('Application/Search/searchresults.html.twig',[
-            'results'=>$results[0]
-        ]);
+        if(empty($results)){
+            return $this->redirectToRoute('application');
+        } else {
+            return $this->render('Application/Task/index.html.twig',[
+                'results'=>$results[0]
+            ]);
+        }
     }
 }

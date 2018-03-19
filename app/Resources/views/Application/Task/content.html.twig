@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="ep-top-40">
+                Task: {{results.id}}
+            </h1>
+            <h3 class="ep-top-40">
+                {{results.description}}
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover table-striped table-dark">
+                <thead>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Last Updated
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Complete
+                    </th>
+                </thead>
+                <tbody>
+                    <td>
+                        {{results.created}}
+                    </td>
+                    <td>
+                        {{results.updated}}
+                    </td>
+                    <td>
+                        {{results.start_date_time}}
+                    </td>
+                    <td>
+                        {{results.end_date_time}}
+                    </td>
+                    <td>
+                    {% if ('results.complete' == 1) %}
+                        Yes
+                    {% elseif ('results.complete' == 0) %}
+                        No
+                    {% endif %}
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+        
