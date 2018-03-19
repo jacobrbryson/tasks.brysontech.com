@@ -3,6 +3,7 @@
 // **********************
 $(document).ready(function() {
     getCategories();
+    getStats();
 });
 
 $("#form_categories_add").on("submit", function(e){
@@ -33,6 +34,43 @@ function getCategories(){
         url: "/application/categories/get",
         success: function(response) {
             populateCategories(response.data);
+        },
+        error: function(){
+            popup("Ajax Error - Refresh and try again.");
+        }
+    });
+}
+
+function getStats(){
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/application/stats/completedByCategory",
+        success: function(response) {
+            //console.log(response);
+            var total   = [];
+            var name    = [];
+            var color   = [];
+            for(i=0;i<response.length;i++){
+                total.push(response[i].total);
+                name.push(response[i].Name);
+                color.push(dynamicColors());
+            }
+            var ctx = document.getElementById("stats");
+var myChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+        labels: name,
+        datasets: [{
+            label: 'Weekly Tasks',
+            data: total,
+            backgroundColor:color,
+            borderColor: "#000",
+            borderWidth: 1
+        }]
+    }
+});
+            console.log(name);
         },
         error: function(){
             popup("Ajax Error - Refresh and try again.");
@@ -125,3 +163,9 @@ function populateCategories(categories){
     }
 }
 
+var dynamicColors = function() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}

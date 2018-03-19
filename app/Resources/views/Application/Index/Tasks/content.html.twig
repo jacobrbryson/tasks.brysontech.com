@@ -6,9 +6,6 @@
                 <th style="width:75%">
                     Descriptions
                 </th>
-                <th class="text-center">
-                    Points
-                </th>
                 <th class="text-right">
                     Actions
                 </th>
@@ -16,8 +13,7 @@
             <tbody>
         {% for task in category.tasks %}
                 <tr id="tasks-tr-{{ task.id}}">
-                    <td>{{ task.description }}</td>
-                    <td class="text-center">{{ task.value}}</td>
+                    <td><a href="application/task/{{ task.id }}" title="View Task Details">{{ task.description }}</a></td>
                     <td class="td-actions text-right">
                         <div class="d-lg-none text-center">
                             <button type="button"  data-toggle="collapse" data-target=".task-{{ task.id }}" class="btn btn-secondary btn-simple btn-sm btn-tasks">
@@ -25,13 +21,6 @@
                             </button>
                         </div>
                         <div class="d-none d-lg-block">
-                            <button type="button" 
-                                    onclick="editTask({{ task.id }});"
-                                    rel="tooltip" 
-                                    title="Edit" 
-                                    class="btn btn-info btn-simple btn-sm btn-tasks">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
                             <button type="button" 
                                     onclick="completeTask({{ task.id }});"
                                     rel="tooltip" 
@@ -53,16 +42,6 @@
                     <td colspan="3" style="border-top:none">
                         <div class="navbar-collapse collapse task-{{ task.id }}">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <button type="button" 
-                                            onclick="editTask({{ task.id }});"
-                                            rel="tooltip" 
-                                            title="Edit" 
-                                            class="btn btn-info btn-simple btn-block">
-                                        <i class="fa fa-pencil-alt"></i>
-                                        Edit
-                                    </button>
-                                </li>
                                 <li class="nav-item" style="padding-top:10px">
                                     <button type="button" 
                                             onclick="completeTask({{ task.id }});"
