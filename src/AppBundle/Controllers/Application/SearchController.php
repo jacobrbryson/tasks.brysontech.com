@@ -19,7 +19,7 @@ class SearchController extends Controller{
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("
-            SELECT id, description, from_unixtime(created, '%Y-%m-%d %h:%i') as 'created', 
+            SELECT id, description, solution, from_unixtime(created, '%Y-%m-%d %h:%i') as 'created', 
             from_unixtime(updated, '%Y-%m-%d %h:%i') as 'updated', complete  
             FROM tasks
             WHERE description LIKE :search 
