@@ -62,6 +62,11 @@ class Tasks{
     private $categoryId = 1;
     
     /**
+     * @ORM\Column(type="text")
+     */
+    private $solution;
+    
+    /**
      * Get id
      *
      * @return integer
@@ -395,6 +400,30 @@ class Tasks{
         $this->categoryId = $categoryId;
 
         return $this;
+    }
+    
+    /**
+     * Set solution
+     *
+     * @param string $solution
+     *
+     * @return Tasks
+     */
+    public function setSolution($solution)
+    {
+        $this->solution = $solution;
+
+        return $this;
+    }
+
+    /**
+     * Get solution
+     *
+     * @return string
+     */
+    public function getSolution()
+    {
+        return $this->solution;
     }
 
     /**

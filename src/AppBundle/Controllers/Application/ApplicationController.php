@@ -90,6 +90,7 @@ class ApplicationController extends Controller{
         $task = new Tasks();
         
         $task->setDescription($taskData['description'])
+            ->setSolution($taskData['solution'])
             ->setStartDateTime($taskData['start_date_time'])
             ->setEndDateTime($taskData['end_date_time'])
             ->setValue(0)
