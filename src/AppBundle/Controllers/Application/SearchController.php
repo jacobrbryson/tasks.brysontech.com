@@ -44,7 +44,8 @@ class SearchController extends Controller{
         $statement = $connection->prepare("
         SELECT 
             t.id, 
-            t.description, 
+            t.description,
+            t.solution,
             from_unixtime(t.created, '%Y-%m-%d %h:%i') as 'created', 
             from_unixtime(t.updated, '%Y-%m-%d %h:%i') as 'updated', 
             from_unixtime(t.start_date_time, '%Y-%m-%d %h:%i') as 'start_date_time', 

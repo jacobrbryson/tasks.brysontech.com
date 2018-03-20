@@ -240,6 +240,22 @@ class ApplicationController extends Controller{
         return new Response(json_encode($this->getUser()->getId()));
     }
     
+    /**
+     * @Route("/application/step/add", name="/application/step/add")
+     * @Method("POST")
+     */
+    public function addStep(){                
+        $em=$this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement=$connection->prepare("INSERT INTO task_steps (step_description)"
+                . "VALUES (:step)");
+        $statement->bindValue('step', $_POST['step']);
+        $statement->execute();
+        $result = $_POST['step-1'];
+        console.log($result);
+        return new Response(json_encode($result));
+    }
+    
     
 }
 

@@ -140,6 +140,26 @@ function addTask(){
     });
 }
 
+function addStep(){
+    var name= $("#form_add_step").find("#step-1").val();
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/application/step/add",
+        data:{step:name},
+        success: function(name) {
+            console.log(name);
+        }        
+    });
+}
+
+$("#form_add_step").on("submit", function(e){
+    e.preventDefault();
+    
+    addStep($('#step-1').val());
+});
+    
+    
 $(function () {
     var time = new Date().getTime() + 60 * 60 * 24 * 1000;
     

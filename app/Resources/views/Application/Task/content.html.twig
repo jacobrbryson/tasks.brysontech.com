@@ -7,6 +7,8 @@
             <h3 class="ep-top-40">
                 {{results.description}}
             </h3>
+            <strong>Solution:</strong>
+            <em>{{results.solution}}</em><br/>            
         </div>
     </div>
     <div class="row">
@@ -52,6 +54,27 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="col-md-8">
+        <form class="form" id="form_add_step">
+            <h4 class="ep-top-20">
+                Steps or Sub Tasks
+            </h4>
+            <div>
+                <textarea 
+                       rows="2"
+                       class="form-control" 
+                       style="width:100%;"
+                       name="step-1"
+                       id="step-1" 
+                       placeholder="step 1"></textarea>
+                <button type="submit" 
+                        style="width:100%; margin-top:5px"
+                        class="btn btn-default">
+                    Add Step
+                </button>
+            </div>
+        </form>
     </div>
 </div>
         
