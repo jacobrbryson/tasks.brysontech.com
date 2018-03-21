@@ -54,19 +54,65 @@
                 </tbody>
             </table>
         </div>
+    <div class="row">
+        <h4 class="ep-top-20">
+            Steps or Sub Tasks
+        </h4>
+        <div id ="steps_table" class="col-12">
+            <table class="table table-hover table-striped table-dark">
+                <thead>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Last Updated
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Complete
+                    </th>
+                </thead>
+            {%for step_result in step_results %}
+                <tbody>
+                    <td>
+                        {{step_result.created}}
+                    </td>
+                    <td>
+                        {{results.updated}}
+                    </td>
+                    <td>
+                        {{results.start_date_time}}
+                    </td>
+                    <td>
+                        {{results.end_date_time}}
+                    </td>
+                    <td>
+                    {% if ('results.complete' == 1) %}
+                        Yes
+                    {% elseif ('results.complete' == 0) %}
+                        No
+                    {% endif %}
+                    </td>
+                </tbody>
+            {%endfor%}
+            </table>
+        </div>
     </div>
     <div class="col-md-8">
         <form class="form" id="form_add_step">
-            <h4 class="ep-top-20">
-                Steps or Sub Tasks
-            </h4>
+            <!--Could I add a "hidden" input here to hold the task_id-->
             <div>
                 <textarea 
                        rows="2"
                        class="form-control" 
                        style="width:100%;"
-                       name="step-1"
-                       id="step-1" 
+                       name="step"
+                       id="step" 
                        placeholder="step 1"></textarea>
                 <button type="submit" 
                         style="width:100%; margin-top:5px"

@@ -244,18 +244,40 @@ class ApplicationController extends Controller{
      * @Route("/application/step/add", name="/application/step/add")
      * @Method("POST")
      */
-    public function addStep(){                
+    public function addStep(){ 
+        
         $em=$this->getDoctrine()->getManager();
         $connection = $em->getConnection();
-        $statement=$connection->prepare("INSERT INTO task_steps (step_description)"
-                . "VALUES (:step)");
-        $statement->bindValue('step', $_POST['step']);
+        $statement=$connection->prepare("INSERT INTO task_steps (owner, task_id, complete, created, updated,"
+                . " start_date_time, end_date_time, step_description)"
+                . "VALUES (:owner, 13, 0, 1, 2, 3, 4, :step)");
+        $statement->bindValue('owner', $this->getUser()->getId());        
+        $statement->bindValue('step', $_POST['step']);        
         $statement->execute();
-        $result = $_POST['step-1'];
-        console.log($result);
-        return new Response(json_encode($result));
+        
+        $task_id=13;
+        $statement=$connection->prepare("
+                SELECT
+                    id,
+                    owner,
+                    task_id,
+                    complete,
+                    created,
+                    updated,
+                    start_date_time,
+                    end_date_time,
+                    step_description
+                FROM task_steps
+                WHERE id = :id
+                AND owner = :user_id");
+        $statement->bindValue('id', $task_id);
+        $statement->bindValue('user_id', $this->getUser()->getId());
+        $statement->execute();
+        $step_results=$statement->fetchAll();
+        
+        return $this->render('Application/Task/index.html.twig',[
+                'step_results'=>$step_results[0]
+            ]);
     }
-    
-    
 }
 
