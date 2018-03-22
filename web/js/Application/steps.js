@@ -1,7 +1,7 @@
 $("#form_add_step").on("submit", function(e){
     e.preventDefault();
     
-    addStep($("#step").val());
+    addStep();
 });
 
 function addStep(){
@@ -11,8 +11,8 @@ function addStep(){
         dataType: "json",
         url: "/application/step/add",
         data:{step:name},
-        success: function(name) {
-            console.log(name);
+        success: function(response) {
+            console.log(response);
         }        
     });
 }

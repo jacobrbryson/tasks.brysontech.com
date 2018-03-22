@@ -275,9 +275,7 @@ class ApplicationController extends Controller{
         $statement->execute();
         $step_results=$statement->fetchAll();
         
-        return $this->render('Application/Task/index.html.twig',[
-                'step_results'=>$step_results[0]
-            ]);
+        return new Response(json_encode($step_results));
     }
 }
 

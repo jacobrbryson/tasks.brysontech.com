@@ -77,10 +77,10 @@
                         Complete
                     </th>
                 </thead>
-            {%for step_result in step_results %}
+            
                 <tbody>
                     <td>
-                        {{step_result.created}}
+                        {{results.created}}
                     </td>
                     <td>
                         {{results.updated}}
@@ -99,7 +99,7 @@
                     {% endif %}
                     </td>
                 </tbody>
-            {%endfor%}
+            
             </table>
         </div>
     </div>
