@@ -255,7 +255,12 @@ class ApplicationController extends Controller{
         $statement->bindValue('step', $_POST['step']);        
         $statement->execute();
         
-        $task_id=13;
+        /*for the "step_id" variable, I feel like I should be able to do something similar to what we do when I want to
+         * get the "user_id" (see below).  However, I feel like that should be an "entity" type thing.  Is this
+         * correct?  Ex.  Make an entity (i.e. "Steps.php") with "getters and setters" 
+         * (specifically a set and get "id" so I can do a "$statement->bindValue('id', $this->getSteps()->getId());" 
+         */
+        $step_id=24;
         $statement=$connection->prepare("
                 SELECT
                     id,
@@ -270,11 +275,16 @@ class ApplicationController extends Controller{
                 FROM task_steps
                 WHERE id = :id
                 AND owner = :user_id");
-        $statement->bindValue('id', $task_id);
+        $statement->bindValue('id', $step_id);
         $statement->bindValue('user_id', $this->getUser()->getId());
         $statement->execute();
         $step_results=$statement->fetchAll();
         
+        /*If this is turning my "step_results" into a string and my step.js ajax is using the "response"
+         * to return the console log of the information.  This makes sense to me.  But I still can't 
+         * figure out how I can make the "step_results" variable "accessible" so I don't the get 
+         * "step_results variable doesn't exist" error.
+         */
         return new Response(json_encode($step_results));
     }
 }
