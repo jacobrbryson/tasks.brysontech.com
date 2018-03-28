@@ -250,16 +250,22 @@ class ApplicationController extends Controller{
         $connection = $em->getConnection();
         $statement=$connection->prepare("INSERT INTO task_steps (owner, task_id, complete, created, updated,"
                 . " start_date_time, end_date_time, step_description)"
-                . "VALUES (:owner, 13, 0, 1, 2, 3, 4, :step)");
-        $statement->bindValue('owner', $this->getUser()->getId());        
-        $statement->bindValue('step', $_POST['step']);        
+                . "VALUES (:owner, :task_id, 0, 1, 2, 3, 4, :step)");
+        $statement->bindValue('owner', $this->getUser()->getId());
+        $statement->bindValue('task_id', $_POST['task_id']);        
+        $statement->bindValue('step', $_POST['step']);
+        
         $statement->execute();
+        
+        $step_results = $connection->lastInsertId();
+        
+        return new Response(json_encode($step_results));
         
         /*for the "step_id" variable, I feel like I should be able to do something similar to what we do when I want to
          * get the "user_id" (see below).  However, I feel like that should be an "entity" type thing.  Is this
          * correct?  Ex.  Make an entity (i.e. "Steps.php") with "getters and setters" 
          * (specifically a set and get "id" so I can do a "$statement->bindValue('id', $this->getSteps()->getId());" 
-         */
+         
         $step_id=24;
         $statement=$connection->prepare("
                 SELECT
@@ -284,8 +290,8 @@ class ApplicationController extends Controller{
          * to return the console log of the information.  This makes sense to me.  But I still can't 
          * figure out how I can make the "step_results" variable "accessible" so I don't the get 
          * "step_results variable doesn't exist" error.
-         */
-        return new Response(json_encode($step_results));
+         
+        return new Response(json_encode($step_results));*/
     }
 }
 

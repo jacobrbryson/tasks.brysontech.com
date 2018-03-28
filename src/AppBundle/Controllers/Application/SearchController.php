@@ -39,6 +39,8 @@ class SearchController extends Controller{
      * @Route("/application/task/{task_id}", name="/task/{task_id}")
      */
     public function taskAction($task_id){
+        function getSteps($task_id){};
+        $steps=$this->getSteps($task_id);
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("
@@ -67,7 +69,7 @@ class SearchController extends Controller{
             return $this->redirectToRoute('application');
         } else {
             return $this->render('Application/Task/index.html.twig',[
-                'results'=>$results[0]
+                'results'=>$results[0], 'steps'=>$steps
             ]);
         }
     }
