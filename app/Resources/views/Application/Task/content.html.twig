@@ -70,7 +70,11 @@
                 </thead>
                 
                 <tbody id="step_info">              
-                    
+                    {%for step in steps%}
+                        <tr>
+                            <td>{{step.step_description}}</td>
+                            <td>{{step.complete}}</td>                        
+                    {%endfor%}
                 </tbody>
                 
             </table>

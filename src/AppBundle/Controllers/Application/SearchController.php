@@ -35,12 +35,23 @@ class SearchController extends Controller{
         ]);
     }
     
+    public function getSteps($task_id){
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement=$connection->prepare("
+                SELECT
+                    complete,
+                    step_description
+                FROM task_steps");
+          
+        $statement->execute();
+        
+    }
+    
     /**
      * @Route("/application/task/{task_id}", name="/task/{task_id}")
      */
     public function taskAction($task_id){
-        function getSteps($task_id){};
-        $steps=$this->getSteps($task_id);
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("
@@ -62,6 +73,7 @@ class SearchController extends Controller{
         LIMIT 1");
         $statement->bindValue('id', $task_id);
         $statement->bindValue('user_id', $this->getUser()->getId());
+        $steps = $this->getSteps($task_id);
         
         $statement->execute();
         $results = $statement->fetchAll();
