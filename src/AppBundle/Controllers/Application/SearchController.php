@@ -40,6 +40,7 @@ class SearchController extends Controller{
         $connection = $em->getConnection();
         $statement=$connection->prepare("
                 SELECT
+                    id,
                     complete,
                     step_description
                 FROM task_steps
@@ -48,6 +49,23 @@ class SearchController extends Controller{
         $statement->bindValue('task_id', $task_id);
         $statement->execute();
         return $statement->fetchAll();
+    }
+    
+    /**
+     * @Route("/application/step/complete/{{id}}", name="/step/complete")
+     */
+    public function completeStep(){
+        $id=$_POST['id'];
+        $em = $this->getDoctrine()->getManager();
+        $connection = $em->getConnection();
+        $statement=$connection->prepare("
+            UPDATE task_steps
+            SET complete=1
+            WHERE id = :id");
+        $statement-> bindValue('id', $id);
+        $statement-> execute();
+        return new Response(json_encode(1));
+        
     }
     
     /**

@@ -73,7 +73,15 @@
                     {%for step in steps%}
                         <tr>
                             <td>{{step.step_description}}</td>
-                            <td>{{step.complete}}</td>                        
+                            <td> {% if ('step.complete' == 1) %}
+                                Yes
+                            {%elseif ('step.complete' == 0) %}
+                                No
+                            {%endif%}
+                            </td> 
+                            <td>
+                                <button onclick="completeStep({{step.id}});">Complete</button>
+                            </td>
                     {%endfor%}
                 </tbody>
                 

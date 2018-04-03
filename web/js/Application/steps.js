@@ -20,4 +20,17 @@ function addStep(){
     });
 }
 
+function completeStep(id){
+   alert("Completing step " + id);
+   $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "/application/step/complete/{{id}}",
+        data:{id:id},
+        success:function(response){
+            console.log(response);
+        }
+    });
+}
+
 
