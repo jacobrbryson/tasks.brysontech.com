@@ -42,10 +42,12 @@ class SearchController extends Controller{
                 SELECT
                     complete,
                     step_description
-                FROM task_steps");
-          
-        $statement->execute();
+                FROM task_steps
+                WHERE task_id=:task_id");
         
+        $statement->bindValue('task_id', $task_id);
+        $statement->execute();
+        return $statement->fetchAll();
     }
     
     /**
