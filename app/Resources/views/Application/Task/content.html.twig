@@ -60,6 +60,7 @@
         </h4>
         <div id ="steps_table" class="col-12">
             <table class="table table-hover table-striped table-dark">
+                {%for step in steps%}
                 <thead>
                     <th>
                         Step
@@ -69,8 +70,8 @@
                     </th>
                 </thead>
                 
-                <tbody id="step_info">              
-                    {%for step in steps%}
+                <tbody id="step_info">   
+                    
                         <tr>
                             <td>{{step.step_description}}</td>
                             <td> {% if ('step.complete' == 1) %}
