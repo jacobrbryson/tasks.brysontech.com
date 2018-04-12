@@ -4,6 +4,8 @@ $("#form_add_step").on("submit", function(e){
     addStep();
 });
 
+
+
 function addStep(){
     var name= $("#form_add_step").find("#step").val();
     var task_id=$("#form_add_step").find("#task_id").val();
@@ -14,10 +16,33 @@ function addStep(){
         data:{step:name, task_id:task_id},
         success: function(response) {
             console.log(response);
-            $("#steps_table").append("<table class='table table-hover table-striped table-dark'><thead><th>Step</th><th>Complete</th></thead>");
             $("#steps_table").find("#step_info").append("<tr><td>" + name + "</td></tr>");
             $("#steps_table").find("#step_info").append("<td><button onclick=completeStep(" + step.id + "); >Complete</button></td>");
         }        
+    });
+}
+
+function getSteps(){
+    var task_id=$("#form_add_step").find("#task_id").val();
+    $.ajax({
+        type: "GET",
+        datatype: "json",
+        url: "/application/step/" + task_id,
+        //data:{task_id:task_id},
+        success: function(results) {            
+            console.log(results);            
+            var steps = JSON.parse(results);
+            console.log(steps);
+             if(steps.length > 0){ console.log("steps: " + steps.length);}else{console.log("No steps returned");};
+            for (i=0; i<steps.length; i++) {
+            $("#container_steps").append("<div id ='steps_table' class='col-12'>\n\
+                                <table class='table table-hover table-striped table-dark'>\n\
+                                <thead><th>Step</th><th>Complete</th></thead>\n\
+                                <tbody id='step_info'>\n\
+                                <tr><td>"+ steps[i].step_description+"</td><tr>\n\
+                                </tbody></table></div>");
+            }
+        }
     });
 }
 
@@ -35,4 +60,7 @@ function completeStep(id){
     });
 }
 
+$(document).ready(function() { 
+    getSteps();
+});
 

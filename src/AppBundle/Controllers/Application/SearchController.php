@@ -35,6 +35,11 @@ class SearchController extends Controller{
         ]);
     }
     
+    /**
+     * @Route ("/application/step/{task_id}", name="/step/getsteps")
+     *  
+     */
+    
     public function getSteps($task_id){
         $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
@@ -48,7 +53,8 @@ class SearchController extends Controller{
         
         $statement->bindValue('task_id', $task_id);
         $statement->execute();
-        return $statement->fetchAll();
+        $results = $statement->fetchAll();
+        return new Response(json_encode($results));
     }
     
     /**
@@ -93,7 +99,7 @@ class SearchController extends Controller{
         LIMIT 1");
         $statement->bindValue('id', $task_id);
         $statement->bindValue('user_id', $this->getUser()->getId());
-        $steps = $this->getSteps($task_id);
+        
         
         $statement->execute();
         $results = $statement->fetchAll();
@@ -101,7 +107,7 @@ class SearchController extends Controller{
             return $this->redirectToRoute('application');
         } else {
             return $this->render('Application/Task/index.html.twig',[
-                'results'=>$results[0], 'steps'=>$steps
+                'results'=>$results[0]
             ]);
         }
     }

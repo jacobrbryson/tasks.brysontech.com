@@ -54,13 +54,15 @@
                 </tbody>
             </table>
         </div>
+    </div>
     <div class="row">
         <h4 class="ep-top-20">
             Steps or Sub Tasks
         </h4>
-        <div id ="steps_table" class="col-12">
+        {#<div id ="steps_table" class="col-12">
+            {% if steps|length > 0 %}
             <table class="table table-hover table-striped table-dark">
-                {%for step in steps%}
+                
                 <thead>
                     <th>
                         Step
@@ -68,10 +70,9 @@
                     <th>
                         Complete
                     </th>
-                </thead>
-                
+                </thead>                
                 <tbody id="step_info">   
-                    
+                    {%for step in steps%}
                         <tr>
                             <td>{{step.step_description}}</td>
                             <td> {% if ('step.complete' == 1) %}
@@ -85,11 +86,15 @@
                             </td>
                     {%endfor%}
                         </tr>
-                </tbody>
-                
+                </tbody>                
             </table>
-        </div>
+            {%endif%}                
+        </div>#}        
     </div>
+    
+        <div id="container_steps">
+            </div>
+    
     <div class="col-md-8">
         <form class="form" id="form_add_step">
             <input type="hidden" name="task_id" id="task_id" value="{{ results.id }}">
@@ -110,4 +115,5 @@
         </form>
     </div>
 </div>
+
         
