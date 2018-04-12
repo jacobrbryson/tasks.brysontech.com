@@ -32,12 +32,13 @@ function getSteps(){
         url: "/application/step/" + task_id,
         //data:{task_id:task_id},
         success: function(results) {            
-            console.log(results);            
+                        
             var steps = JSON.parse(results);
-            console.log(steps);
+            
              if(steps.length > 0){ console.log("steps: " + steps.length);}else{console.log("No steps returned");};
             if(steps.length > 0){ buildStepsTable(); } else { $("#container_steps").html("No steps yet.");};
-            buildSteps(steps);          
+            buildSteps(steps); 
+            stepComplete(steps);
         }
     });
 }
@@ -51,13 +52,19 @@ function buildStepsTable(){
 }
 
 function buildSteps(steps){
-    console.log(steps);
+    
     for (i=0; i<steps.length; i++){
-        console.log(steps.length);
-        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td>NO</td></tr>');
+        
+        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="step_complete">NO</td>\n\
+                        <td><button onclick="stepComplete('+steps[i].id+');">Complete</button></td></tr>');
+        stepComplete(steps);
     }
 }
 
+function stepComplete(steps){
+    console.log(steps);
+}
+    
 function buildStep(steps){
     
 }
