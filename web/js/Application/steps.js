@@ -38,7 +38,7 @@ function getSteps(){
              if(steps.length > 0){ console.log("steps: " + steps.length);}else{console.log("No steps returned");};
             if(steps.length > 0){ buildStepsTable(); } else { $("#container_steps").html("No steps yet.");};
             buildSteps(steps); 
-            stepComplete(steps);
+            
         }
     });
 }
@@ -55,15 +55,27 @@ function buildSteps(steps){
     
     for (i=0; i<steps.length; i++){
         
-        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="step_complete">NO</td>\n\
+        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="'+steps[i].id+'">NO</td>\n\
                         <td><button onclick="stepComplete('+steps[i].id+');">Complete</button></td></tr>');
-        stepComplete(steps);
+        console.log(steps[i].id);
     }
 }
 
-function stepComplete(steps){
-    console.log(steps);
+function stepComplete(id){
+    console.log("attempting to complete" + id);
+    alert("Completing step " + id);
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/application/step/complete/{id}",
+            data:{id:id},
+            success:function(response){
+                console.log(response);
+            $("#container_steps").find("#" + id).html("YES");    
+            }
+        });
 }
+
     
 function buildStep(steps){
     

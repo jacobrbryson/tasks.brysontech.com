@@ -58,7 +58,8 @@ class SearchController extends Controller{
     }
     
     /**
-     * @Route("/application/step/complete/{{id}}", name="/step/complete")
+     * @Route("/application/step/complete/{id}", name="/step/complete")
+     * @Method("POST")
      */
     public function completeStep(){
         $id=$_POST['id'];
