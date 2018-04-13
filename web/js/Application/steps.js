@@ -8,7 +8,7 @@ $("#form_add_step").on("submit", function(e){
 
 function addStep(){
     var name= $("#form_add_step").find("#step").val();
-    var task_id=$("#form_add_step").find("#task_id").val();
+    var task_id=("#task_id").val();
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -35,7 +35,7 @@ function getSteps(){
                         
             var steps = JSON.parse(results);
             
-             if(steps.length > 0){ console.log("steps: " + steps.length);}else{console.log("No steps returned");};
+             //if(steps.length > 0){ console.log("steps: " + steps.length);}else{console.log("No steps returned");};
             if(steps.length > 0){ buildStepsTable(); } else { $("#container_steps").html("No steps yet.");};
             buildSteps(steps); 
             
@@ -49,16 +49,19 @@ function buildStepsTable(){
                                 <thead><th>Step</th><th>Complete</th></thead>\n\
                                 <tbody id="step_info"></tbody></table></div>';
     $("#container_steps").html(htmlString);
+    
 }
 
 function buildSteps(steps){
     
     for (i=0; i<steps.length; i++){
         
-        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="'+steps[i].id+'">NO</td>\n\
+        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="'+steps[i].id+'">No</td>\n\
                         <td><button onclick="stepComplete('+steps[i].id+');">Complete</button></td></tr>');
-        console.log(steps[i].id);
+        console.log(steps[i].complete);
+        buildStep();
     }
+    
 }
 
 function stepComplete(id){
@@ -78,6 +81,10 @@ function stepComplete(id){
 
     
 function buildStep(steps){
+    console.log(steps);    
+        if(steps.complete === 1){
+          $("#container_steps").find("#" +steps[i].id).html("YES");  
+        }
     
 }
 
