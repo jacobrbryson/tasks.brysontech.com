@@ -8,7 +8,7 @@ $("#form_add_step").on("submit", function(e){
 
 function addStep(){
     var name= $("#form_add_step").find("#step").val();
-    var task_id=("#task_id").val();
+    var task_id=$("#form_add_step").find("#task_id").val();
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -16,9 +16,9 @@ function addStep(){
         data:{step:name, task_id:task_id},
         success: function(response) {
             console.log(response);
-            $("#steps_table").find("#step_info").append("<tr><td>" + name + "</td></tr>");
-            $("#steps_table").find("#step_info").append("<td><button onclick=completeStep(" + step.id + "); >Complete</button></td>");
-            console.log(step);
+            $("#steps_table").find("#step_info").append("<tr><td>" + name + "</td><td>No</td><td><button onclick=completeStep(" + step.id + "); >Complete</button></td></tr>");
+            //$("#steps_table").find("#step_info").append("<td><button onclick=completeStep(" + step.id + "); >Complete</button></td>");
+            
         }
         
     });
