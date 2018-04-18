@@ -16,7 +16,7 @@ function addStep(){
         data:{step:name, task_id:task_id},
         success: function(response) {
             console.log(response);
-            $("#steps_table").find("#step_info").append("<tr><td>" + name + "</td><td>No</td><td><button onclick=completeStep(" + step.id + "); >Complete</button></td></tr>");
+            $("#steps_table").find("#step_info").append("<tr><td>" + name + "</td><td>No</td><td><button onclick=stepComplete(" + step.id + "); >Complete</button></td></tr>");
             //$("#steps_table").find("#step_info").append("<td><button onclick=completeStep(" + step.id + "); >Complete</button></td>");
             
         }
@@ -32,12 +32,12 @@ function getSteps(){
         url: "/application/step/" + task_id,
         //data:{task_id:task_id},
         success: function(results) {            
-                        
+            console.log(results);           
             var steps = JSON.parse(results);
             
              //if(steps.length > 0){ console.log("steps: " + steps.length);}else{console.log("No steps returned");};
             if(steps.length > 0){ buildStepsTable(); } else { $("#container_steps").html("No steps yet.");};
-            buildSteps(steps); 
+            buildSteps(steps);
             
         }
     });
@@ -56,17 +56,17 @@ function buildSteps(steps){
     
     for (i=0; i<steps.length; i++){
         
-        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="'+steps[i].id+'">No</td>\n\
+        $("#container_steps").find("#step_info").append('<tr><td>'+steps[i].step_description+'</td><td id="'+steps[i].id+'">'+(steps[i].complete ? "Yes" : "No")+'</td>\n\
                         <td><button onclick="stepComplete('+steps[i].id+');">Complete</button></td></tr>');
         console.log(steps[i].complete);
-        buildStep();
+        
     }
     
 }
 
 function stepComplete(id){
     console.log("attempting to complete" + id);
-    alert("Completing step " + id);
+    //alert("Completing step " + id);
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -96,7 +96,7 @@ function addRow(steps){
     
 }
 
-function completeStep(id){
+/*function completeStep(id){
    alert("Completing step " + id);
    $.ajax({
         type: "POST",
@@ -108,7 +108,7 @@ function completeStep(id){
             $("#steps_table").find("#step_info").remove(step.id);
         }
     });
-}
+}*/
 
 $(document).ready(function() { 
     getSteps();
